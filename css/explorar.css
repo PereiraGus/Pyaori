@@ -60,6 +60,9 @@
     color: var(--neutral);
 }
 
+#explorarListaDeMusicas{
+    justify-content: space-between;
+}
 .explorarMusica{
     width: 185px;
     height: 185px;

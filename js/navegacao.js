@@ -5,20 +5,26 @@ const ALBUM = document.getElementById("album");
 const ARTISTA = document.getElementById("artista");
 const EXPLORAR = document.getElementById("explorar");
 const ESTANTE = document.getElementById("estante");
-const CONFIGS = document.getElementById("configs");
 
 //O array "paginas" guarda todas as constantes, afim de automatizar sua checagem abaixo
-var paginas = [INICIO,ALBUM,ARTISTA,EXPLORAR,ESTANTE,CONFIGS];
+var paginas = [INICIO,ALBUM,ARTISTA,EXPLORAR,ESTANTE];
 
 function trocarPagina(paginaDeDestino){
+    linkSuporteTecnico.style = "display: none";
     for(var i = 0; i < paginas.length; i++){
         if(paginas[i].id == paginaDeDestino){
             paginas[i].style = "display: flex";
             console.log("Você foi para a página "+paginas[i].id);
             //Chamando a função inicial de cada tela apenas quando forem selecionadas
             switch (paginas[i].id) {
+                case 'inicio':
+                    carregarFavs();
+                    break;
                 case 'explorar':
                     reiniciarExplorar();
+                    break;
+                case 'estante':
+                    trocarAba('estanteSalvos');
                     break;
             }
             //Customizando o estilo do body/aside de acordo com a tela selecionada

@@ -1,0 +1,51 @@
+/*CSS da página da estante*/
+
+/*CSS para o body/aside, adicionado pelo JS*/
+.bodyestante{
+    background-color: var(--neutral);
+}
+.asideestante{
+    color: var(--purpleDark);
+}
+
+.abaInativa{
+    opacity: 50%;
+}
+#abaSuaEstante, #abaEstatisticas{
+    cursor: pointer;
+}
+
+#cabecalhoEstante{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#estantePerfil{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: 'Roxbourgh CF';
+    color: var(--purpleDark);
+    font-size: 20px;
+}
+#nomePerfil{
+    font-size: 28px;
+}
+#iconePerfil{
+    width: 50px;
+    height: 50px;
+}
+.barraPerfil{
+    margin: 0 5px;
+    font-size: 30px;
+}
+#cabecalhoEstante i{
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.subpaginaEstante{
+    width: 100%;
+}

@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="css/inicio.css">
     <!-- CSS da página explorar -->
     <link rel="stylesheet" href="css/explorar.css">
+    <!-- CSS da página estante -->
+    <link rel="stylesheet" href="css/estante.css">
     <!-- Variáveis de cores para os arquivos de CSS -->
     <!-- Só funcionam no HTML ou no arquivo em que foram declaradas -->
     <style>
@@ -50,7 +52,7 @@
                 <img src="">
                 Sua<br>Estante
             </span>
-            <span>
+            <span id="linkSuporteTecnico">
                 <img src="">
                 Suporte<br>Técnico
             </span>
@@ -60,71 +62,9 @@
             <!-- Começo da página de início -->
             <div class="page" id="inicio">
                 <h1>Favoritos</h1>
-                <div id="inicioFavs" class="listaDeMusicas">
-                    <span>
-                        <img src="">
-                        <h4>You Can't Hurry Love</h4>
-                        <p>The Supremes</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>Cor</h4>
-                        <p>Anavitória</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>This Is Why</h4>
-                        <p>Paramore</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>The Fame</h4>
-                        <p>Lady Gaga</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>Suddently I See</h4>
-                        <p>KT Tunstall</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>ARTPOP</h4>
-                        <p>Lady Gaga</p>
-                    </span>
-                </div>
+                <div id="inicioFavs" class="listaDeMusicas"></div>
                 <h1>Recomendados</h1>
-                <div id="inicioRecomends" class="listaDeMusicas">
-                    <span>
-                        <img src="">
-                        <h4>If I Could Ride a Bike</h4>
-                        <p>Chevy</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>Todo mundo (menos eu)</h4>
-                        <p>Lou Garcia</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>This is not America</h4>
-                        <p>Residente</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>Rajadão</h4>
-                        <p>Pabllo Vittar</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>Quem me dera</h4>
-                        <p>Lou Garcia</p>
-                    </span>
-                    <span>
-                        <img src="">
-                        <h4>Rita Lee</h4>
-                        <p>Rita Lee</p>
-                    </span>
-                </div>
+                <div id="inicioRecomends" class="listaDeMusicas"></div>
             </div>
             <!-- Fim da página de início -->
             <!-- Começo da página do álbum -->
@@ -157,16 +97,26 @@
             <!-- Fim do explorar -->
             <!-- Começo da estante -->
             <div class="page" id="estante">
-                ESTANTE
-                <div id="estanteSalvos"></div>
-                <div id="estanteEstatisticas"></div>
+                <div id="cabecalhoEstante">
+                    <h1>
+                        <span id="abaSuaEstante" onclick="trocarAba('estanteSalvos')">Sua Estante</span>
+                         |  
+                        <span id="abaEstatisticas" class="abaInativa" onclick="trocarAba('estanteEstatisticas')">Estatísticas</span>
+                    </h1>
+                    <div id="estantePerfil">
+                        <h4 id="nomePerfil">PearGus</h4>
+                        <h4 class="barraPerfil">|</h4>
+                        <img id="iconePerfil" src="">
+                        <h4 class="barraPerfil">|</h4>
+                        <i class="fa-solid fa-gear" onclick="trocarAba('configs')"></i>
+                    </div>
+                </div>
+                <div id="estanteSalvos" class="subpaginaEstante listaDeMusicas">
+                </div>
+                <div id="estanteEstatisticas" class="subpaginaEstante">ESTATISTICA</div>
+                <div id="configs" class="subpaginaEstante">CONFIGS</div>
             </div>
             <!-- Fim da estante -->
-            <!-- Início das configurações -->
-            <div class="page" id="configs">
-                CONFIGS
-            </div>
-            <!-- Fim das configurações -->
         </main>
     </div>
     <!-- Fim do conteúdo do site -->
@@ -179,7 +129,11 @@
 </html>
 <!-- JS para trocar o estilo das páginas -->
 <script src="js/trocarEstilo.js"></script>
-<!-- JS de controle de navegação das páginas -->
-<script src="js/navegacao.js"></script>
+<!-- JS da página de início -->
+<script src="js/inicio.js"></script>
 <!-- JS da pesquisa da página explorar -->
 <script src="js/explorar.js"></script>
+<!-- JS da estante -->
+<script src="js/estante.js"></script>
+<!-- JS de controle de navegação das páginas -->
+<script src="js/navegacao.js"></script>
