@@ -1,0 +1,17 @@
+/*CSS da página de início*/
+
+/*CSS para o body/aside, adicionado pelo JS*/
+.bodyinicio{
+    background-color: var(--neutral);
+}
+.asideinicio{
+    color: var(--purpleDark);
+}
+
+
+/*CSS próprio*/
+h1{
+    width: 100%;
+    color: var(--purpleDark);
+    font-size: 30px;
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyaori</title>
+    <!-- Link da API de ícones Font Awesome -->
+    <script src="https://kit.fontawesome.com/2d69d246f0.js" crossorigin="anonymous"></script>
+    <!-- Link de ícone de aba -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- CSS de padrões visuais -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- CSS da estrutura geral -->
+    <link rel="stylesheet" href="css/structure.css">
+    <!-- CSS da barra lateral -->
+    <link rel="stylesheet" href="css/aside.css">
+    <!-- CSS da página de início -->
+    <link rel="stylesheet" href="css/inicio.css">
+    <!-- CSS da página explorar -->
+    <link rel="stylesheet" href="css/explorar.css">
+    <!-- Variáveis de cores para os arquivos de CSS -->
+    <!-- Só funcionam no HTML ou no arquivo em que foram declaradas -->
+    <style>
+        :root{
+            --neutral: #F9EFE3;
+            --neutralTransp: #f9efe37e;
+            --purpleDark: #623DF5;
+            --purpleTransp: #623df583;
+            --purpleLight: #BA96D4;
+            --orangeDark: #CF5443;
+            --orangeLight: #F38C7F;
+        }
+    </style>
+</head>
+<body class="bodyInicio">
+    <!-- Início do conteúdo do site -->
+    <div id="content">
+        <!-- Início da barra lateral -->
+        <aside class="asideInicio">
+            <span onclick="trocarPagina('inicio')">
+                <img src="">
+                Início
+            </span>
+            <span onclick="trocarPagina('explorar')">
+                <img src="">
+                Explorar
+            </span>
+            <span onclick="trocarPagina('estante')">
+                <img src="">
+                Sua<br>Estante
+            </span>
+            <span>
+                <img src="">
+                Suporte<br>Técnico
+            </span>
+        </aside>
+        <!-- Fim da barra lateral -->
+        <main>
+            <!-- Começo da página de início -->
+            <div class="page" id="inicio">
+                <h1>Favoritos</h1>
+                <div id="inicioFavs" class="listaDeMusicas">
+                    <span>
+                        <img src="">
+                        <h4>You Can't Hurry Love</h4>
+                        <p>The Supremes</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>Cor</h4>
+                        <p>Anavitória</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>This Is Why</h4>
+                        <p>Paramore</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>The Fame</h4>
+                        <p>Lady Gaga</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>Suddently I See</h4>
+                        <p>KT Tunstall</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>ARTPOP</h4>
+                        <p>Lady Gaga</p>
+                    </span>
+                </div>
+                <h1>Recomendados</h1>
+                <div id="inicioRecomends" class="listaDeMusicas">
+                    <span>
+                        <img src="">
+                        <h4>If I Could Ride a Bike</h4>
+                        <p>Chevy</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>Todo mundo (menos eu)</h4>
+                        <p>Lou Garcia</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>This is not America</h4>
+                        <p>Residente</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>Rajadão</h4>
+                        <p>Pabllo Vittar</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>Quem me dera</h4>
+                        <p>Lou Garcia</p>
+                    </span>
+                    <span>
+                        <img src="">
+                        <h4>Rita Lee</h4>
+                        <p>Rita Lee</p>
+                    </span>
+                </div>
+            </div>
+            <!-- Fim da página de início -->
+            <!-- Começo da página do álbum -->
+            <div class="page" id="album">
+                ALBUM
+            </div>
+            <!-- Fim da página do álbum -->
+            <!-- Começo da página do artista -->
+            <div class="page" id="artista">
+                ARTISTA
+            </div>
+            <!-- Fim da página do artista -->
+            <!-- Começo do explorar-->
+            <div class="page" id="explorar">
+                <h1 id="explorarTitulo">Explorar</h1>
+                <h2 id="perguntaTitulo"></h2>
+                <div class="pergunta" id="explorarDecada"></div>
+                <div class="pergunta" id="explorarNacionalidade"></div>
+                <div class="pergunta" id="explorarEstilo"></div>
+                <div class="pergunta" id="explorarPya"></div>
+                <div class="pergunta" id="explorarResultados">
+                    <div id="explorarListaDeMusicas" class="listaDeMusicas"></div>
+                    <span id="botoesResultado">
+                        <button onclick="reiniciarExplorar()">Começar novamente</button>
+                        <button>Ver  mais</button>
+                    </span>
+                </div>
+                <p id="perguntaDesc"></p>
+            </div>
+            <!-- Fim do explorar -->
+            <!-- Começo da estante -->
+            <div class="page" id="estante">
+                ESTANTE
+                <div id="estanteSalvos"></div>
+                <div id="estanteEstatisticas"></div>
+            </div>
+            <!-- Fim da estante -->
+            <!-- Início das configurações -->
+            <div class="page" id="configs">
+                CONFIGS
+            </div>
+            <!-- Fim das configurações -->
+        </main>
+    </div>
+    <!-- Fim do conteúdo do site -->
+    <!-- Início da div do player de música -->
+    <div id="player">
+
+    </div>
+    <!-- Fim da div do player de música -->
+</body>
+</html>
+<!-- JS para trocar o estilo das páginas -->
+<script src="js/trocarEstilo.js"></script>
+<!-- JS de controle de navegação das páginas -->
+<script src="js/navegacao.js"></script>
+<!-- JS da pesquisa da página explorar -->
+<script src="js/explorar.js"></script>
