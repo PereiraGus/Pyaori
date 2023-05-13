@@ -9,10 +9,10 @@ aside span{
     align-items: center;
 }
 
-aside span img{
+aside span img, aside span i{
     width: 50px;
     height: 50px;
-    background-color: aqua; /*TIRAR DEPOIS DE COLOCAR AS IMGS*/
+    font-size: 50px;
 }
 
 /* .asideDark span{

@@ -41,15 +41,15 @@
         <!-- Início da barra lateral -->
         <aside class="asideInicio">
             <span onclick="trocarPagina('inicio')">
-                <img src="">
+                <img id="imgLinkInicio">
                 Início
             </span>
             <span onclick="trocarPagina('explorar')">
-                <img src="">
+                <i class="fa-solid fa-person-hiking"></i>
                 Explorar
             </span>
             <span onclick="trocarPagina('estante')">
-                <img src="">
+                <img id="imgLinkEstante">
                 Sua<br>Estante
             </span>
             <span id="linkSuporteTecnico">
@@ -104,9 +104,9 @@
                         <span id="abaEstatisticas" class="abaInativa" onclick="trocarAba('estanteEstatisticas')">Estatísticas</span>
                     </h1>
                     <div id="estantePerfil">
-                        <h4 id="nomePerfil">PearGus</h4>
+                        <h4 id="nomePerfil"></h4>
                         <h4 class="barraPerfil">|</h4>
-                        <img id="iconePerfil" src="">
+                        <img id="avatarPerfil" src="">
                         <h4 class="barraPerfil">|</h4>
                         <i class="fa-solid fa-gear" onclick="trocarAba('configs')"></i>
                     </div>

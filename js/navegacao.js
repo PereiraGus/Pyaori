@@ -19,12 +19,14 @@ function trocarPagina(paginaDeDestino){
             switch (paginas[i].id) {
                 case 'inicio':
                     carregarFavs();
+                    carregarRecomends();
                     break;
                 case 'explorar':
                     reiniciarExplorar();
                     break;
                 case 'estante':
                     trocarAba('estanteSalvos');
+                    carregarPerfil();
                     break;
             }
             //Customizando o estilo do body/aside de acordo com a tela selecionada

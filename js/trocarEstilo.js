@@ -8,4 +8,13 @@ function trocarEstilo(pagina){
 
     BODY.className = novoBody;
     ASIDE.className = novoAside;
+
+    if(pagina == "explorar"){
+        imgLinkInicio.src = "svgs/butterflyLight.svg"
+        imgLinkEstante.src = "img/discoClaro.png"
+    }
+    else{
+        imgLinkInicio.src = "svgs/butterflyDark.svg"
+        imgLinkEstante.src = "img/discoEscuro.png"
+    }
 }

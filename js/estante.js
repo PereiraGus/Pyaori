@@ -36,31 +36,54 @@ function trocarAba(abaDestino){
     }
 }
 
+function carregarPerfil(){
+    const NOME = document.getElementById("nomePerfil");
+    const AVATAR = document.getElementById("avatarPerfil");
+
+    //JSON provisório até a conexão com o banco
+    var perfil = {
+        nome: "PearGus",
+        avatar: "1"
+    }
+
+    NOME.innerHTML = perfil.nome;
+    AVATAR.src = "img/avatares/" + perfil.avatar + ".webp";
+}
 
 function carregarSalvos(){
     SALVOS.innerHTML = "";
     //Array de JSONs provisório até a conexão com o banco
     var musicas = [
         {
-            imagem: null,
-            titulo: "successful",
-            artista: "Ariana Grande"
+            imagem: "construcao",
+            titulo: "Contrução",
+            artista: "Chico Buarque"
         },
         {
-            imagem: null,
-            titulo: "POV",
-            artista: "Ariana Grande"
+            imagem: "love-song",
+            titulo: "Love Song",
+            artista: "Sara Bairelles"
         },
         {
-            imagem: null,
-            titulo: "1000 doves",
-            artista: "Lady Gaga"
+            imagem: "nao-fosse-tao-tarde",
+            titulo: "Não Fosse Tão Tarde",
+            artista: "Lou Garcia"
+        },
+        {
+            imagem: "patched-up",
+            titulo: "Patched Up",
+            artista: "Beabadobee"
+        },
+        {
+            imagem: "the-blueprint-3",
+            titulo: "The Blueprint 3",
+            artista: "Jay-Z"
         }
     ]
     for(var i = 0;i < musicas.length; i++){
         SALVOS.innerHTML += `
             <span>
-                <img src="${musicas[i].imagem}">
+                <img src="img/albuns/${musicas[i].imagem}.webp">
                 <h4>${musicas[i].titulo}</h4>
                 <p>${musicas[i].artista}</p>
             </span>

@@ -119,19 +119,19 @@ function darResultados(){
     //Array de JSONs provisório até a conexão com o banco
     var musicas = [
         {
-            imagem: null,
-            titulo: "successful",
+            imagem: "todo-mundo-menos-eu",
+            titulo: "Todo mundo menos eu",
+            artista: "Lou Garcia"
+        },
+        {
+            imagem: "quem-me-dera",
+            titulo: "Quem Me Dera",
             artista: "Ariana Grande"
         },
         {
-            imagem: null,
-            titulo: "POV",
-            artista: "Ariana Grande"
-        },
-        {
-            imagem: null,
-            titulo: "1000 doves",
-            artista: "Lady Gaga"
+            imagem: "rajadao",
+            titulo: "Rajadão",
+            artista: "Pabllo Vittar"
         }
     ]
     const TITULO_GUIA = document.getElementById("explorarTitulo");
@@ -142,7 +142,7 @@ function darResultados(){
     for(var i = 0; i < musicas.length; i++){
         LISTA_MUSICAS.innerHTML += `
         <span>
-            <div class="explorarMusica" style="background-image:url('${musicas[i].imagem}');">
+            <div class="explorarMusica" style="background-image:url('img/albuns/${musicas[i].imagem}.webp');">
                 <div class="optDispMusica" id="optDisp${i}"></div>
                 <div class="optSalvMusica" id="optSalv${i}"></div>
             </div>

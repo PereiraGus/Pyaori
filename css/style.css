@@ -64,7 +64,8 @@ button{
 .listaDeMusicas img{
     width: 100%;
     height: 170px;
-    border-radius: 50px;
+    border: solid 1px var(--purpleDark);
+    border-radius: 15px;
     margin: 0 !important;
 }
 .listaDeMusicas h4, .listaDeMusicas p{
