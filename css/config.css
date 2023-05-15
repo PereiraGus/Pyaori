@@ -1,0 +1,30 @@
+#configs{
+    display: flex;
+    flex-direction: column;
+}
+#configsTitulo{
+    color: var(--purpleDark);
+    font-size: 30px;
+}
+
+#containerConfigs{
+    display: flex;
+    flex-direction: row;
+}
+.colunaConfigs{
+    display: flex;
+    flex-direction: column;
+}
+.infosConfig{
+    display: flex;
+    flex-direction: column;
+}
+
+#configs label{
+    color: var(--purpleDark);
+}
+.inpConfigDesabilit{
+    color: var(--orangeDark);
+    font-family: 'Roxbourough CF';
+    font-weight: bold;
+}

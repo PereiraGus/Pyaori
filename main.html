@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="css/explorar.css">
     <!-- CSS da página estante -->
     <link rel="stylesheet" href="css/estante.css">
+    <!-- CSS das configurações -->
+    <link rel="stylesheet" href="css/config.css">
     <!-- Variáveis de cores para os arquivos de CSS -->
     <!-- Só funcionam no HTML ou no arquivo em que foram declaradas -->
     <style>
@@ -104,9 +106,9 @@
                         <span id="abaEstatisticas" class="abaInativa" onclick="trocarAba('estanteEstatisticas')">Estatísticas</span>
                     </h1>
                     <div id="estantePerfil">
-                        <h4 id="nomePerfil"></h4>
+                        <h4 id="nomePerfil" class="nomePerfil"></h4>
                         <h4 class="barraPerfil">|</h4>
-                        <img id="avatarPerfil" src="">
+                        <img id="avatarPerfil" src="" class="avatarPerfil">
                         <h4 class="barraPerfil">|</h4>
                         <i class="fa-solid fa-gear" onclick="trocarAba('configs')"></i>
                     </div>
@@ -114,7 +116,43 @@
                 <div id="estanteSalvos" class="subpaginaEstante listaDeMusicas">
                 </div>
                 <div id="estanteEstatisticas" class="subpaginaEstante">ESTATISTICA</div>
-                <div id="configs" class="subpaginaEstante">CONFIGS</div>
+                <div id="configs" class="subpaginaEstante">
+                    <h2 id="configsTitulo">Configurações</h2>
+                    <div id="containerConfigs">
+                        <div class="colunaConfigs">
+                            <span class="infosConfig">
+                                <label>Nome de usuário</label>
+                                <input id="inpNome" class="inpConfigDesabilit">
+                            </span>
+                            <span class="infosConfig">
+                                <label>Avatar</label>
+                                <button id="btnImgConfig"></button>
+                            </span>
+                            <span class="infosConfig">
+                                <label>Email</label>
+                                <input id="inpEmail" class="inpConfigDesabilit">
+                            </span>
+                            <span class="infosConfig">
+                                <label>Senha</label>
+                                <button>Alterar</button>
+                            </span>
+                        </div>
+                        <div class="colunaConfigs">
+                            <span class="infosConfig">
+                                <label>Maior de idade</label>
+                                <i id="iconMaioridade"></i>
+                            </span>
+                            <span class="infosConfig">
+                                <label>Pronomes</label>
+                                <select id="pronomesConfig">
+                                    <!-- <option value="ela">Ela/Dela</option> -->
+                                    <!-- <option value="ele">Ele/Dele</option> -->
+                                    <!-- <option value="elu">Elu/Delu</option> -->
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Fim da estante -->
         </main>
@@ -135,5 +173,7 @@
 <script src="js/explorar.js"></script>
 <!-- JS da estante -->
 <script src="js/estante.js"></script>
+<!-- JS das configurações -->
+<script src="js/config.js"></script>
 <!-- JS de controle de navegação das páginas -->
 <script src="js/navegacao.js"></script>

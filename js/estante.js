@@ -26,6 +26,8 @@ function trocarAba(abaDestino){
                     ABA_SALVOS.className = "abaInativa";
                     ABA_ESTATISTICAS.className = "abaInativa";
                     linkSuporteTecnico.style = "display: flex";
+                    carregarInfosPerfil();
+                    break;
             }
             abas[i].style = "display: flex;"
             console.log(`Trocou para a aba ${abas[i].id} da estante.`)
@@ -36,14 +38,18 @@ function trocarAba(abaDestino){
     }
 }
 
+var perfil = null;
 function carregarPerfil(){
     const NOME = document.getElementById("nomePerfil");
     const AVATAR = document.getElementById("avatarPerfil");
 
     //JSON provisório até a conexão com o banco
-    var perfil = {
+    perfil = {
         nome: "PearGus",
-        avatar: "1"
+        avatar: "1",
+        email: "gustavo.castro@sptech.school",
+        maioridade: true,
+        pronomes: "Ele/Dele"
     }
 
     NOME.innerHTML = perfil.nome;
