@@ -116,13 +116,13 @@
                 <div id="estanteSalvos" class="subpaginaEstante listaDeMusicas">
                 </div>
                 <div id="estanteEstatisticas" class="subpaginaEstante">ESTATISTICA</div>
-                <div id="configs" class="subpaginaEstante">
+                <div id="configs" class="subpaginaEstante configs">
                     <h2 id="configsTitulo">Configurações</h2>
                     <div id="containerConfigs">
                         <div class="colunaConfigs">
                             <span class="infosConfig">
                                 <label>Nome de usuário</label>
-                                <input id="inpNome" class="inpConfigDesabilit">
+                                <input id="inpNome" type="text">
                             </span>
                             <span class="infosConfig">
                                 <label>Avatar</label>
@@ -130,11 +130,11 @@
                             </span>
                             <span class="infosConfig">
                                 <label>Email</label>
-                                <input id="inpEmail" class="inpConfigDesabilit">
+                                <input id="inpEmail">
                             </span>
                             <span class="infosConfig">
                                 <label>Senha</label>
-                                <button>Alterar</button>
+                                <button id="btnSenhaConfig">Alterar</button>
                             </span>
                         </div>
                         <div class="colunaConfigs">
@@ -152,6 +152,7 @@
                             </span>
                         </div>
                     </div>
+                    <button id="btnEditarConfig">Editar</button>
                 </div>
             </div>
             <!-- Fim da estante -->

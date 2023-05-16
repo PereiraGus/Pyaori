@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
 }
+.configs{
+    display: flex;
+    flex-direction: column;
+}
 #configsTitulo{
     color: var(--purpleDark);
     font-size: 30px;
@@ -14,17 +18,61 @@
 .colunaConfigs{
     display: flex;
     flex-direction: column;
+    width: 50%;
 }
 .infosConfig{
     display: flex;
     flex-direction: column;
+    margin: 5px 0;
 }
 
 #configs label{
     color: var(--purpleDark);
 }
-.inpConfigDesabilit{
-    color: var(--orangeDark);
-    font-family: 'Roxbourough CF';
+#btnSenhaConfig{
+    width: 20%;
+    border-radius: 50px;
+    padding: 2.5px 5px;
+    align-self: flex-start;
+}
+#btnEditarConfig{
+    width: fit-content;
+    align-self: center;
+}
+
+.infosConfig input, .infosConfig select{
+    color: var(--purpleDark);
+    font-family: 'Roxborough CF';
+    font-size: 22px;
     font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 50px;
+    border: solid 1px var(--purpleDark);
+    background-color: var(--neutral);
+    width: 75%;
+}
+.infosConfig input:disabled{
+    color: var(--orangeDark);
+    font-family: 'Roxborough CF';
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+}
+.infosConfig select{
+    width: 25%;
+}
+.infosConfig select:disabled{
+    color: var(--orangeDark);
+    background-color: transparent;
+    font-weight: bold;
+    border: none;
+}
+
+#inpNome{
+    font-size: 26px;
+}
+
+#iconMaioridade{
+    font-size: 35px;
+    color: var(--orangeDark);
 }
