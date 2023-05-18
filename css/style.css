@@ -56,13 +56,12 @@ button{
     text-align: center;
 }
 .listaDeMusicas span{
-    width: 185px;
     cursor: pointer;
     word-wrap: break-word;
     margin: 0 15px 0 15px;
 }
 .listaDeMusicas img{
-    width: 100%;
+    width: 170px;
     height: 170px;
     border: solid 1px var(--purpleDark);
     border-radius: 15px;

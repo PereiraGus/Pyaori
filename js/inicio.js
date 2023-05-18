@@ -30,6 +30,11 @@ function carregarFavs(){
             imagem: "the-blueprint-3",
             titulo: "The Blueprint 3",
             artista: "Jay-Z"
+        },
+        {
+            imagem: "brutus",
+            titulo: "brutus",
+            artista: "the buttress"
         }
     ]
     for(var i = 0;i < musicas.length; i++){

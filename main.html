@@ -52,15 +52,15 @@
             </span>
             <span onclick="trocarPagina('estante')">
                 <img id="imgLinkEstante">
-                Sua<br>Estante
+                Sua Estante
             </span>
             <span id="linkSuporteTecnico">
-                <img src="">
-                Suporte<br>Técnico
+                <i class="fa-solid fa-ticket-simple"></i>
+                Suporte Técnico
             </span>
         </aside>
         <!-- Fim da barra lateral -->
-        <main>
+        <main id="main">
             <!-- Começo da página de início -->
             <div class="page" id="inicio">
                 <h1>Favoritos</h1>
@@ -126,13 +126,16 @@
                             </span>
                             <span class="infosConfig">
                                 <label>Avatar</label>
-                                <button id="btnImgConfig"></button>
+                                <span id="infoAvatar">
+                                    <img id="imgAvatarConfig">
+                                    <button id="btnAvatarConfig">Trocar avatar</button>
+                                </span>
                             </span>
                             <span class="infosConfig">
                                 <label>Email</label>
                                 <input id="inpEmail">
                             </span>
-                            <span class="infosConfig">
+                            <span class="infosConfig" id="divSenhaConfig">
                                 <label>Senha</label>
                                 <button id="btnSenhaConfig">Alterar</button>
                             </span>
@@ -140,19 +143,20 @@
                         <div class="colunaConfigs">
                             <span class="infosConfig">
                                 <label>Maior de idade</label>
-                                <i id="iconMaioridade"></i>
+                                <span id="infoMaioridade">
+                                    <i id="iconMaioridade"></i>
+                                    <p id="avisoMaioridade">
+                                        Essa opção só pode ser alterada  mediante solicitação do <u id="linkSuporte">suporte</u>.
+                                    </p>
+                                </span>
                             </span>
                             <span class="infosConfig">
                                 <label>Pronomes</label>
-                                <select id="pronomesConfig">
-                                    <!-- <option value="ela">Ela/Dela</option> -->
-                                    <!-- <option value="ele">Ele/Dele</option> -->
-                                    <!-- <option value="elu">Elu/Delu</option> -->
-                                </select>
+                                <select id="pronomesConfig"></select>
                             </span>
                         </div>
                     </div>
-                    <button id="btnEditarConfig">Editar</button>
+                    <div id="btnEditarConfig"></div>
                 </div>
             </div>
             <!-- Fim da estante -->

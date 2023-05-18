@@ -20,13 +20,16 @@ function trocarPagina(paginaDeDestino){
                 case 'inicio':
                     carregarFavs();
                     carregarRecomends();
+                    esconderMostrarPlayer(true);
                     break;
                 case 'explorar':
                     reiniciarExplorar();
+                    esconderMostrarPlayer(true);
                     break;
                 case 'estante':
                     trocarAba('estanteSalvos');
                     carregarPerfil();
+                    esconderMostrarPlayer(true);
                     break;
             }
             //Customizando o estilo do body/aside de acordo com a tela selecionada

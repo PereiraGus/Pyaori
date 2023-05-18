@@ -39,6 +39,9 @@
     width: fit-content;
     align-self: center;
 }
+.btnSalvarConfig{
+    font-size: 14px;
+}
 
 .infosConfig input, .infosConfig select{
     color: var(--purpleDark);
@@ -51,28 +54,43 @@
     background-color: var(--neutral);
     width: 75%;
 }
-.infosConfig input:disabled{
+.infosConfig input:disabled, .infosConfig select:disabled{
     color: var(--orangeDark);
     font-family: 'Roxborough CF';
     font-weight: bold;
     background-color: transparent;
+    opacity: 1;
+}
+.infosConfig input:disabled{
     border: none;
+    border-radius: 0;
+    padding: 5px 0;
 }
 .infosConfig select{
     width: 25%;
-}
-.infosConfig select:disabled{
-    color: var(--orangeDark);
-    background-color: transparent;
-    font-weight: bold;
-    border: none;
 }
 
 #inpNome{
     font-size: 26px;
 }
 
+#infoMaioridade, #infoAvatar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#infoMaioridade p{
+    font-size: 16px;
+    margin: 0 10px;
+    color: var(--purpleDark);
+    width: 50%;
+}
 #iconMaioridade{
     font-size: 35px;
     color: var(--orangeDark);
+}
+#imgAvatarConfig{
+    height: 150px;
+    width: 150px;
+    border: solid 1px var(--purpleDark);
 }

@@ -8,6 +8,17 @@ const ABA_ESTATISTICAS = document.getElementById("abaEstatisticas");
 
 var abas = [SALVOS,ESTATISTICAS,CONFIGS];
 
+function esconderMostrarPlayer(estadoDoPlayer){
+    if(estadoDoPlayer){
+        player.style = "display: flex";
+        main.className = "";
+    }
+    else{
+        player.style = "display: none";
+        main.className = "mainPaginaInteira";
+    }
+}
+
 function trocarAba(abaDestino){
     linkSuporteTecnico.style = "display: none";
     for(var i = 0; i < abas.length; i++){
@@ -17,16 +28,19 @@ function trocarAba(abaDestino){
                     ABA_SALVOS.className = null;
                     ABA_ESTATISTICAS.className = "abaInativa";
                     carregarSalvos();
+                    esconderMostrarPlayer(true);
                     break;
                 case 'estanteEstatisticas':
                     ABA_SALVOS.className = "abaInativa";
                     ABA_ESTATISTICAS.className = null;
+                    esconderMostrarPlayer(true);
                     break;
                 case 'configs':
                     ABA_SALVOS.className = "abaInativa";
                     ABA_ESTATISTICAS.className = "abaInativa";
                     linkSuporteTecnico.style = "display: flex";
                     carregarInfosPerfil();
+                    esconderMostrarPlayer(false);
                     break;
             }
             abas[i].style = "display: flex;"
