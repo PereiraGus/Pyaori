@@ -9,7 +9,7 @@ const ESTANTE = document.getElementById("estante");
 //O array "paginas" guarda todas as constantes, afim de automatizar sua checagem abaixo
 var paginas = [INICIO,ALBUM,ARTISTA,EXPLORAR,ESTANTE];
 
-function trocarPagina(paginaDeDestino){
+function trocarPagina(paginaDeDestino, identificador){
     linkSuporteTecnico.style = "display: none";
     for(var i = 0; i < paginas.length; i++){
         if(paginas[i].id == paginaDeDestino){
@@ -21,6 +21,9 @@ function trocarPagina(paginaDeDestino){
                     carregarFavs();
                     carregarRecomends();
                     esconderMostrarPlayer(true);
+                    break;
+                case 'album':
+                    carregarAlbum(identificador);
                     break;
                 case 'explorar':
                     reiniciarExplorar();

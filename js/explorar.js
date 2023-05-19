@@ -117,7 +117,7 @@ function reiniciarExplorar(){
 function darResultados(){
     console.log(`Resultados: ${filtros}`);
     //Array de JSONs provisório até a conexão com o banco
-    var musicas = [
+    var albuns = [
         {
             imagem: "todo-mundo-menos-eu",
             titulo: "Todo mundo menos eu",
@@ -135,19 +135,19 @@ function darResultados(){
         }
     ]
     const TITULO_GUIA = document.getElementById("explorarTitulo");
-    const LISTA_MUSICAS = document.getElementById("explorarListaDeMusicas");
-    LISTA_MUSICAS.innerHTML = null;
+    const LISTA_albuns = document.getElementById("explorarListaDealbuns");
+    LISTA_albuns.innerHTML = null;
 
     TITULO_GUIA.innerHTML = "Resultados";
-    for(var i = 0; i < musicas.length; i++){
-        LISTA_MUSICAS.innerHTML += `
+    for(var i = 0; i < albuns.length; i++){
+        LISTA_albuns.innerHTML += `
         <span>
-            <div class="explorarMusica" style="background-image:url('img/albuns/${musicas[i].imagem}.webp');">
+            <div class="explorarMusica" style="background-image:url('img/albuns/${albuns[i].imagem}.webp');">
                 <div class="optDispMusica" id="optDisp${i}"></div>
                 <div class="optSalvMusica" id="optSalv${i}"></div>
             </div>
-            <h4>${musicas[i].titulo}</h4>
-            <p>${musicas[i].artista}</p>
+            <h4>${albuns[i].titulo}</h4>
+            <p>${albuns[i].artista}</p>
         `;
         var dispensarMusicaAtual = document.getElementById(`optDisp${i}`);
         dispensarMusicaAtual.innerHTML += `

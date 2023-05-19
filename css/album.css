@@ -1,0 +1,116 @@
+#album{
+    background-image: linear-gradient(
+                        to right,
+                        var(--purpleDark),
+                        var(--purpleLight));
+    color: var(--neutral);
+    height: fit-content;
+}
+
+
+#cabecalhoAlbum{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+#imgAlbumCapa{
+    width: 200px;
+    height: 200px;
+    border-radius: 50px;
+}
+
+#infosAlbum{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-left: 10px;
+}
+
+#tituloAlbum{
+    font-size: 65px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: default;
+    margin: 0;
+    color: var(--neutral);
+}
+.infosAlbumExplito{
+    color: var(--purpleDark);
+    background-color: var(--neutral);
+    border-radius: 10px;
+    font-family: 'Roxborough CF';
+    font-weight: bold;
+    font-size: 14px;
+    padding: 3.5px 7.5px 5px 7.5px;
+    margin: 0 5px;
+}
+
+#maisInfosAlbum{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Libre Baskerville';
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0;
+}
+#maisInfosAlbum img{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin-right: 5px;
+}
+
+#faixasAlbum{
+    margin: 15px 0;
+    min-width: 50%;
+}
+#faixasAlbum div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border-top: solid 1px var(--neutral);
+    border-width: 1px 0;
+    padding: 2.5px 10px;
+    width: 100%;
+    cursor: default;
+    transition: 0.5s;
+}
+#faixasAlbum div:last-child{
+    border: solid 1px var(--neutral);
+    border-width: 1px 0 1px 0;
+}
+#faixasAlbum div:hover{
+    background-color: var(--neutralTransp);
+}
+#faixasAlbum div i{
+    cursor: pointer;
+}
+#faixasAlbum div .infosAlbumExplito{
+    margin: 0;
+}
+#faixasAlbum span{
+    margin: 0 15px;
+}
+.numFaixaAlbum{
+    font-family: 'Libre Baskerville';
+    margin-right: 5px !important;
+}
+.tituloFaixaAlbum{
+    font-weight: normal;
+    font-size: 26px;
+    margin: 0 10px 5px 0;
+}
+.artistaFaixaAlbum, .duracaoFaixaAlbum{
+    font-family: 'Libre Baskerville';
+    font-weight: normal;
+    font-size: 16px;
+    margin: 0 10px;
+}
+.duracaoFaixaAlbum{
+    margin-left: auto;
+}

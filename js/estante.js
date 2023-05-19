@@ -73,39 +73,44 @@ function carregarPerfil(){
 function carregarSalvos(){
     SALVOS.innerHTML = "";
     //Array de JSONs provisório até a conexão com o banco
-    var musicas = [
+    var albuns = [
         {
+            id: 1,
             imagem: "construcao",
             titulo: "Contrução",
             artista: "Chico Buarque"
         },
         {
+            id: 2,
             imagem: "love-song",
             titulo: "Love Song",
             artista: "Sara Bairelles"
         },
         {
+            id: 3,
             imagem: "nao-fosse-tao-tarde",
             titulo: "Não Fosse Tão Tarde",
             artista: "Lou Garcia"
         },
         {
+            id: 4,
             imagem: "patched-up",
             titulo: "Patched Up",
             artista: "Beabadobee"
         },
         {
+            id: 5,
             imagem: "the-blueprint-3",
             titulo: "The Blueprint 3",
             artista: "Jay-Z"
         }
     ]
-    for(var i = 0;i < musicas.length; i++){
+    for(var i = 0;i < albuns.length; i++){
         SALVOS.innerHTML += `
-            <span>
-                <img src="img/albuns/${musicas[i].imagem}.webp">
-                <h4>${musicas[i].titulo}</h4>
-                <p>${musicas[i].artista}</p>
+            <span onclick="trocarPagina(${albuns[i].id})">
+                <img src="img/albuns/${albuns[i].imagem}.webp">
+                <h4>${albuns[i].titulo}</h4>
+                <p>${albuns[i].artista}</p>
             </span>
         `
     }

@@ -4,7 +4,7 @@
 .bodyinicio{
     background-color: var(--neutral);
 }
-.asideinicio{
+.asideinicio, .bodyalbum{
     color: var(--purpleDark);
 }
 
