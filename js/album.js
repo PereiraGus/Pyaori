@@ -7,7 +7,7 @@ function carregarAlbum(idAlbum){
     MAIS_INFOS_ALBUM.innerHTML = "";
     DIV_FAIXAS_ALBUM.innerHTML = "";
 
-    IMG_CAPA_ALBUM.src = "img/albuns/" + albumEscolhido.imagem + ".webp";
+    IMG_CAPA_ALBUM.src = `img/albuns/${albumEscolhido.idAlbum}.webp`;
     TITULO_ALBUM.innerHTML = albumEscolhido.titulo;
     if(albumEscolhido.explicito){
         TITULO_ALBUM.innerHTML += `
@@ -17,8 +17,10 @@ function carregarAlbum(idAlbum){
         `;
     }
     MAIS_INFOS_ALBUM.innerHTML += `
-    <img src="img/artistas/${albumEscolhido.idArtista}.webp">
-    ${albumEscolhido.nomeArtista}
+    <span onclick="trocarPagina('artista',${albumEscolhido.idArtista})">
+        <img src="img/artistas/${albumEscolhido.idArtista}.webp">
+        ${albumEscolhido.nomeArtista}
+    </span>
      | 
     ${albumEscolhido.anoLanc}
     `;
@@ -57,10 +59,16 @@ function carregarAlbum(idAlbum){
         for(var c = 0; c < faixaArtista.length; c++){
             if(faixaArtista[c].idFaixa == faixasAlbum[i].idFaixa){
                 if(faixaArtista[c].principalOuConvidado == "P"){
-                    ultimaFaixa.item(i).innerHTML += faixaArtista[c].artista;
+                    ultimaFaixa.item(i).innerHTML += `
+                    <span onclick="trocarPagina('artista',${faixaArtista.idArtista})">
+                        ${faixaArtista[c].artista}
+                    </span>`;
                 }
                 else{
-                    ultimaFaixa.item(i).innerHTML += `, ${faixaArtista[c].artista}`;
+                    ultimaFaixa.item(i).innerHTML += `, 
+                    <span onclick="trocarPagina('artista',${faixaArtista.idArtista})">
+                        ${faixaArtista[c].artista}
+                    </span>`;
                 }
             }
         }

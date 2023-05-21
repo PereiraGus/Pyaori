@@ -1,0 +1,46 @@
+#artista{
+    min-height: 91.5%;
+}
+#artista header{
+    display: flex;
+    flex-direction: row;
+}
+
+#fotoArtista{
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+}
+
+#infosArtista{
+    margin: 0 10px;
+}
+#infosArtista span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#infosArtista span img{
+    height: 30px;
+}
+#infosArtista h1{
+    color: var(--neutral);
+    font-size: 46px;
+    font-weight: normal;
+    margin: 0 10px 0 0;
+}
+#infosArtista p{
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+#artista h2{
+    font-size: 26px;
+}
+
+#artista .listaDeMusicas{
+    justify-content: center;
+}
+#artista .listaDeMusicas h4, #artista .listaDeMusicas p{
+    color: var(--neutral);
+}

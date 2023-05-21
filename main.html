@@ -17,8 +17,10 @@
     <link rel="stylesheet" href="css/aside.css">
     <!-- CSS da página de início -->
     <link rel="stylesheet" href="css/inicio.css">
-    <!-- CSS da página de álbuns -->
+    <!-- CSS da página de um álbum -->
     <link rel="stylesheet" href="css/album.css">
+    <!-- CSS da página de um artista -->
+    <link rel="stylesheet" href="css/artista.css">
     <!-- CSS da página explorar -->
     <link rel="stylesheet" href="css/explorar.css">
     <!-- CSS da página estante -->
@@ -87,7 +89,20 @@
             <!-- Fim da página do álbum -->
             <!-- Começo da página do artista -->
             <div class="page" id="artista">
-                ARTISTA
+                <header>
+                    <img id="fotoArtista" alt="">
+                    <span id="infosArtista">
+                        <span>
+                            <h1 id="nomeArtista"></h1>
+                            <img id="bandeiraArtista"">
+                        </span>
+                        <p id="estiloArtista"></p>
+                    </span>
+                </header>
+                <h2>Discografia</h2>
+                <div id="discografiaArtista" class="listaDeMusicas">
+
+                </div>
             </div>
             <!-- Fim da página do artista -->
             <!-- Começo do explorar-->
@@ -181,12 +196,18 @@
     <!-- Fim da div do player de música -->
 </body>
 </html>
+
+<!-- TEMPORARIO -->
+<script src="js/TEMP_album.js"></script>
+
 <!-- JS para trocar o estilo das páginas -->
 <script src="js/trocarEstilo.js"></script>
 <!-- JS da página de início -->
 <script src="js/inicio.js"></script>
 <!-- JS da página do álbum -->
 <script src="js/album.js"></script>
+<!-- JS da pesquisa da página do artista -->
+<script src="js/artista.js"></script>
 <!-- JS da pesquisa da página explorar -->
 <script src="js/explorar.js"></script>
 <!-- JS da estante -->
@@ -195,6 +216,3 @@
 <script src="js/config.js"></script>
 <!-- JS de controle de navegação das páginas -->
 <script src="js/navegacao.js"></script>
-
-<!-- TEMPORARIO -->
-<script src="js/TEMP_album.js"></script>

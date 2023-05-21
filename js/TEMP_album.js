@@ -3,11 +3,32 @@ var albumEscolhido =
     idAlbum: 1,
     titulo: "ARTPOP",
     explicito: true,
-    imagem: "artpop",
     anoLanc: "2013",
     idArtista: 1,
     nomeArtista: "Lady Gaga"
 }
+var albunsDoArtista = [
+    {
+        idAlbum: 1,
+        titulo: "ARTPOP",
+        anoLanc: "2013"
+    },
+    {
+        idAlbum: 2,
+        titulo: "The Fame",
+        anoLanc: "2008"
+    },
+    {
+        idAlbum: 3,
+        titulo: "Joanne",
+        anoLanc: "2016"
+    },
+    {
+        idAlbum: 4,
+        titulo: "Chromatica",
+        anoLanc: "2020"
+    }
+]
 
 var faixasAlbum = [
     {
@@ -237,7 +258,9 @@ var faixaArtista = [
 var artistas = [
     {
         idArtista: 1,
-        nome: "Lady Gaga"
+        nome: "Lady Gaga",
+        nacionalidade: "us",
+        estiloPrincipal: "Pop"
     },
     {
         idArtista: 2,

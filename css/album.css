@@ -1,4 +1,4 @@
-#album{
+#album, #artista{
     background-image: linear-gradient(
                         to right,
                         var(--purpleDark),
@@ -56,11 +56,18 @@
     font-size: 22px;
     font-weight: normal;
     margin: 0;
+    cursor: default;
 }
 #maisInfosAlbum img{
     width: 30px;
     height: 30px;
     border-radius: 100%;
+    margin-right: 5px;
+}
+#maisInfosAlbum span{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
     margin-right: 5px;
 }
 
@@ -110,6 +117,10 @@
     font-weight: normal;
     font-size: 16px;
     margin: 0 10px;
+}
+.artistaFaixaAlbum span{
+    margin: 0px !important;
+    cursor: pointer;
 }
 .duracaoFaixaAlbum{
     margin-left: auto;
