@@ -56,7 +56,7 @@ function trocarAba(abaDestino){
 perfil = {
     id: sessionStorage.ID_USUARIO,
     nome: sessionStorage.NOME_USUARIO,
-    avatar: "1", //Temporário
+    avatar: sessionStorage.AVATAR_USUARIO,
     email: sessionStorage.EMAIL_USUARIO,
     maioridade: true, //Temporário
     pronomes: sessionStorage.PRONOME_USUARIO

@@ -94,6 +94,7 @@ function salvarAlteracoes(){
 }
 
 function encerrarSessao(){
+    sessionStorage.ID_USUARIO = undefined;
     sessionStorage.NOME_USUARIO = undefined;
     sessionStorage.DATA_NASC_USUARIO = undefined;
     sessionStorage.PRONOME_USUARIO = undefined;

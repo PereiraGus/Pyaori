@@ -6,10 +6,11 @@ create procedure spUsuario(
 	pNickname varchar(15),
     pDataNasc date,
     pPronomes char(3),
+    pAvatar smallint,
     pEmail varchar(60),
     pSenha varchar(15))
 begin
-	insert into usuario values(null, pNickname, pDataNasc, pPronomes);
+	insert into usuario values(null, pNickname, pDataNasc, pPronomes, pAvatar);
     insert into login values(null, pEmail, pSenha, (select idUsuario from usuario where nickname = pNickname));
 end
 $$

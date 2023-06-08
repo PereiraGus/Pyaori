@@ -58,7 +58,8 @@ create table usuario(
 	idUsuario int primary key auto_increment,
     nickname varchar(15) not null unique,
     dataNasc date not null,
-    pronomes char(3) not null
+    pronomes char(3) not null,
+    avatar smallint default(1)
 );
 
 create table login(

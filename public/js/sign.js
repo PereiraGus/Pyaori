@@ -163,6 +163,7 @@ function login(){
                 sessionStorage.NOME_USUARIO = json.nickname;
                 sessionStorage.DATA_NASC_USUARIO = json.dataNasc;
                 sessionStorage.PRONOME_USUARIO = json.pronomes;
+                sessionStorage.AVATAR_USUARIO = json.avatar;
                 sessionStorage.EMAIL_USUARIO = json.email;
 
                 trocarAba(false);
