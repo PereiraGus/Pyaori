@@ -12,9 +12,22 @@ function cadastro(req, res){
                 res.json(result);
             }
         ).catch(function (error){
-            console.log(error);
-            console.log(`Erro ao cadastrar:\n ${error.sqlMessage}`);
-            res.status(500).json(error.sqlMessage);
+            console.log(error.sqlState);
+            if(error.sqlState == 23000){
+                if((error.sqlMessage).indexOf("nickname") != -1){
+                    console.log("Nickname duplicado");
+                    res.status(409).json("nickname");
+                }
+                if((error.sqlMessage).indexOf("email") != -1){
+                    console.log("Email duplicado");
+                    res.status(409).json("nickname");
+                }
+            }
+            else{
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                console.log.json(erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
         });
 }
 

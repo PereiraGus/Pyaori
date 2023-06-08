@@ -1,8 +1,5 @@
 -- -------------------------------------------------------------------------------------------
 -- ------------------------------------- Inserindo usuários ----------------------------------
-/* Reiniciar os dados
-truncate usuario;
-*/
 insert into usuario values
 	(null,'PearGuss','2005-06-13','Elu');
 insert into login values

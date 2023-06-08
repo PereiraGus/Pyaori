@@ -49,6 +49,7 @@ body{
     background-color: var(--pinkLight);
     font-family: "Libre Baskerville";
     width: 250px;
+    transition: 0.5s;
 }
 .modal input::placeholder{
     color: var(--pinkTransp);
@@ -98,12 +99,36 @@ body{
     color: var(--pinkTransp);
     transition: 0.5s;
 }
-#spanLinha select:focus, #spanLinha select:hover
+#spanLinha select:focus, #spanLinha select:hover,
 #spanLinha input:focus, #spanLinha input:hover{
     color: black;
 }
 #spanLinha label{
     font-size: 12px;
+}
+
+.erro{
+    box-shadow: 0px 0px 5px 2px red;
+}
+#mensagensErro{
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 10px 15px;
+    border: solid red;
+    border-width: 0 0 2px 2px;
+    border-bottom-left-radius: 25px;
+    animation-duration: 1s;
+}
+#mensagensErro p{
+    margin: 5px 0;
+}
+
+@keyframes aparecer{
+    0%{ opacity: 0; } 100%{ opacity: 1; }
 }
 
 #modalUp{
