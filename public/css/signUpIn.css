@@ -49,7 +49,6 @@ body{
     background-color: var(--pinkLight);
     font-family: "Libre Baskerville";
     width: 250px;
-    transition: 0.5s;
 }
 .modal input::placeholder{
     color: var(--pinkTransp);
@@ -92,12 +91,10 @@ body{
 }
 #spanLinha select{
     width: 100%;
-    transition: 0.5s;
 }
 #spanLinha input{
     width: 85%;
     color: var(--pinkTransp);
-    transition: 0.5s;
 }
 #spanLinha select:focus, #spanLinha select:hover,
 #spanLinha input:focus, #spanLinha input:hover{

@@ -41,7 +41,7 @@ function cadastro(){
          alvo.push(inpEmailUp);
          mensagem.push("O email deve ter no máximo 60 caracteres.");
     }
-    if(email.indexOf('@') == -1){
+    if(email.indexOf('@') == -1 || email.indexOf('.') == -1){
          alvo.push(inpEmailUp);
          mensagem.push("Digite um email válido.");
     }
@@ -129,6 +129,57 @@ function cadastro(){
 }
 
 function login(){
-    let sEmail = inpEmailIn.value;
-    let sSenha = inpPassIn.value;
+    let email = inpEmailIn.value;
+    let senha = inpPassIn.value;
+
+    let alvo = [];
+    let mensagem = [];
+
+    if(email.length > 60){
+         alvo.push(inpEmailIn);
+         mensagem.push("O email deve ter no máximo 60 caracteres.");
+    }
+    if(email.indexOf('@') == -1 || email.indexOf('.') == -1){
+         alvo.push(inpEmailIn);
+         mensagem.push("Digite um email válido.");
+    }
+    if(senha > 15 || senha < 8){
+        alvo.push(inpPassIn);
+        mensagem.push("A senha deve ter entre 8 e 15 caracteres.");
+    }
+
+    if(alvo.length == 0){
+        fetch("usuario/login",{
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                sEmail: email,
+                sSenha: senha
+            })
+        }).then(function(response){
+            console.log("Resposta:\n", response);
+            if(response.ok){response.json().then(json => {
+                sessionStorage.ID_USUARIO = json.idUsuario;
+                sessionStorage.NOME_USUARIO = json.nickname;
+                sessionStorage.DATA_NASC_USUARIO = json.dataNasc;
+                sessionStorage.PRONOME_USUARIO = json.pronomes;
+                sessionStorage.EMAIL_USUARIO = json.email;
+
+                trocarAba(false);
+
+                setTimeout(() => {
+                    window.location = "main.html";
+                },750);
+            });
+            }
+            else{
+                console.log("Houve um erro ao tentar realizar o login!");
+            }
+        }).catch(function(error){
+            console.log(error);
+        });
+    }
+    else{
+        marcarErro(alvo, mensagem);
+    }
 }

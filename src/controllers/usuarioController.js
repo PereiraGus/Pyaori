@@ -42,7 +42,7 @@ function login(req, res){
         .then(function (result){
             if(result.length == 1){
                 console.log(result);
-                res.json(result);
+                res.json(result[0]);
             }
             else{
                 res.status(404).send("Email ou senha inválidos.");

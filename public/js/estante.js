@@ -52,14 +52,14 @@ function trocarAba(abaDestino){
     }
 }
 
-var perfil = null;
-//JSON provisório até a conexão com o banco
+//JSON pegando as informações do session storage
 perfil = {
-    nome: "PearGus",
-    avatar: "1",
-    email: "gustavo.castro@sptech.school",
-    maioridade: true,
-    pronomes: "Ele/Dele"
+    id: sessionStorage.ID_USUARIO,
+    nome: sessionStorage.NOME_USUARIO,
+    avatar: "1", //Temporário
+    email: sessionStorage.EMAIL_USUARIO,
+    maioridade: true, //Temporário
+    pronomes: sessionStorage.PRONOME_USUARIO
 }
 function carregarPerfil(){
     const NOME = document.getElementById("nomePerfil");

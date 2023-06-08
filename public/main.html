@@ -188,11 +188,11 @@
                     <div id="containerConfigs">
                         <div class="colunaConfigs">
                             <span class="infosConfig">
-                                <label>Nome de usuário</label>
+                                <label for="inpNome">Nome de usuário</label>
                                 <input id="inpNome" type="text">
                             </span>
                             <span class="infosConfig">
-                                <label>Avatar</label>
+                                <label for="modalAvatar">Avatar</label>
                                 <span id="infoAvatar">
                                     <img id="imgAvatarConfig">
                                     <button id="btnAvatarConfig" onclick="abrirModalAvatar()">
@@ -222,18 +222,18 @@
                                 </span>
                             </span>
                             <span class="infosConfig">
-                                <label>Email</label>
+                                <label for="inpEmail">Email</label>
                                 <input id="inpEmail">
                             </span>
                             <span class="infosConfig" id="divSenhaConfig">
-                                <label>Senha</label>
+                                <label for="btnSenhaConfig">Senha</label>
                                 <button id="btnSenhaConfig" onclick="abrirModalSenha()">
                                     Alterar
                                 </button>
                                 <!-- Início do modal de alterar senha -->
                                 <div id="modalSenha" class="modal">    
                                     <div class="modal__inner">
-                                        <label class="modal__close" onclick="fecharModalSenha()">
+                                        <label for="modalSenha" class="modal__close" onclick="fecharModalSenha()">
                                             X
                                         </label>
                                         <h1>Alterando sua senha</h1>
@@ -251,7 +251,7 @@
                         </div>
                         <div class="colunaConfigs">
                             <span class="infosConfig">
-                                <label>Maior de idade</label>
+                                <label for="iconMaioridade">Maior de idade</label>
                                 <span id="infoMaioridade">
                                     <i id="iconMaioridade"></i>
                                     <p id="avisoMaioridade">
@@ -260,8 +260,12 @@
                                 </span>
                             </span>
                             <span class="infosConfig">
-                                <label>Pronomes</label>
+                                <label for="pronomesConfig">Pronome</label>
                                 <select id="pronomesConfig"></select>
+                            </span>
+                            <span class="infosConfig">
+                                <label for="btnEncessarSessao">Sair</label>
+                                <button id="btnEncessarSessao" onclick="encerrarSessao()">Encerrar sessão</button>
                             </span>
                         </div>
                     </div>

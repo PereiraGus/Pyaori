@@ -94,6 +94,10 @@
     width: 150px;
     border: solid 1px var(--purpleDark);
 }
+
+#btnEncessarSessao{
+    width: fit-content;
+}
   
 #modalSenha{
     background-image: url("../svg/blobPink.svg");

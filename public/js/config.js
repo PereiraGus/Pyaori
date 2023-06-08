@@ -23,7 +23,7 @@ function carregarInfosPerfil(){
     }
     
     SLCT_CONFIG_PRONOMES.innerHTML = "";
-    var pronomes = ["Ela/Dela","Ele/Dele","Elu/Delu"];
+    var pronomes = ["Ela","Ele","Elu"];
     for(var i = 0; i < pronomes.length; i++){
         if(pronomes[i] == perfil.pronomes){
             SLCT_CONFIG_PRONOMES.innerHTML += `
@@ -91,4 +91,13 @@ function salvarAlteracoes(){
     perfil.email = INP_CONFIG_EMAIL.value;
     perfil.pronomes = SLCT_CONFIG_PRONOMES.value;
     carregarPerfil();
+}
+
+function encerrarSessao(){
+    sessionStorage.NOME_USUARIO = undefined;
+    sessionStorage.DATA_NASC_USUARIO = undefined;
+    sessionStorage.PRONOME_USUARIO = undefined;
+    sessionStorage.EMAIL_USUARIO = undefined;
+
+    window.location = "index.html";
 }
