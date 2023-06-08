@@ -85,8 +85,6 @@ function cadastro(){
         alvo.push(inpConfPass);
         mensagem.push("As senhas não coincidem");
     }
-    console.log(alvo);
-    console.log(mensagem);
 
     if(alvo.length == 0){ //Se não tiver nenhuma input pra marcar (nenhum erro)
         fetch("usuario/cadastro",{
@@ -102,13 +100,24 @@ function cadastro(){
         }).then(function(response){
             console.log("Resposta:\n", response);
             if(response.ok){
-                alert("Cadastro efetuado com sucesso!")
+                alert("Cadastro efetuado com sucesso!");
+                trocarAba(true);
             }
             else if(response.status == 409){
-                alert("Conflito");
+                response.json().then(json => {
+                    if(json == "Email"){
+                        marcarErro([inpEmailUp],[`${json} já utilizado.`]);
+                    }
+                    else if(json == "Nome de usuário"){
+                        marcarErro([inpNickname],[`${json} já utilizado.`]);
+                    }
+                    else{
+                        window.location = "https://http.cat/500";
+                    }
+                });
             }
             else{
-                alert("Erro ao cadastrar");
+                window.location = `https://http.cat/${response.status}`;
             }
         }).catch(function(response){
             console.log("ERRO: ", response);

@@ -16,17 +16,20 @@ function cadastro(req, res){
             if(error.sqlState == 23000){
                 if((error.sqlMessage).indexOf("nickname") != -1){
                     console.log("Nickname duplicado");
-                    res.status(409).json("nickname");
+                    res.status(409).json("Nome de usuário");
                 }
                 if((error.sqlMessage).indexOf("email") != -1){
                     console.log("Email duplicado");
-                    res.status(409).json("nickname");
+                    res.status(409).json("Email");
                 }
             }
+            else if(error.sqlState == 42000){
+                res.status(400);
+            }
             else{
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-                console.log.json(erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", error.sqlMessage);
+                console.log(error.sqlState);
+                res.status(500).json(error.sqlMessage);
             }
         });
 }

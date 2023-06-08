@@ -22,6 +22,7 @@ create or replace view vwUsuario as
 	select u.*, email, senha from usuario as u
     join login as l on u.idUsuario = l.idUsuario;
 /*
+select * from vwUsuario;
 select * from vwUsuario where idUsuario = 1;
 select * from vwUsuario where email = 'gustavo.oito@hotmail.com' and senha = 'urubu100';
 ----------------------------------------------*/
