@@ -7,10 +7,14 @@
     <title>Pyaori</title>
     <!-- Link da API de ícones Font Awesome -->
     <script src="https://kit.fontawesome.com/2d69d246f0.js" crossorigin="anonymous"></script>
+    <!-- Link da API geradora de gráficos Chart.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Link de ícone de aba -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- CSS de padrões visuais -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- CSS de modais -->
+    <link rel="stylesheet" href="css/modal.css">
     <!-- CSS da estrutura geral -->
     <link rel="stylesheet" href="css/structure.css">
     <!-- CSS da barra lateral -->
@@ -25,6 +29,8 @@
     <link rel="stylesheet" href="css/explorar.css">
     <!-- CSS da página estante -->
     <link rel="stylesheet" href="css/estante.css">
+    <!-- CSS das estatísticas -->
+    <link rel="stylesheet" href="css/estatisticas.css">
     <!-- CSS das configurações -->
     <link rel="stylesheet" href="css/config.css">
     <!-- CSS do player de música -->
@@ -141,7 +147,42 @@
                 </div>
                 <div id="estanteSalvos" class="subpaginaEstante listaDeMusicas">
                 </div>
-                <div id="estanteEstatisticas" class="subpaginaEstante">ESTATISTICA</div>
+                <div id="estanteEstatisticas" class="subpaginaEstante">
+                    <main>
+                        <div class="estatisticasSessao" id="maisOuvidosPositividade">
+                            <div id="maisOuvidos">
+                                <h3>Suas 10 mais ouvidas</h3>
+                                <canvas id="graficoMaisOuvidas"></canvas>
+                            </div>
+                            <div id="positividade">
+                                <h5 id="KPIpositividade">
+                                    PearGus tende a ser uma pessoa 
+                                    <span class="destaque">positiva</span>
+                                </h5>
+                                <canvas id="graficoPyas"></canvas>
+                            </div>
+                        </div>
+                        <div class="estatisticasSessao" id="ultimos7Dias">
+                            <h3>Últimos 7 dias desde a última reprodução</h3>
+                            <canvas id="graficoReproducoes"></canvas>
+                        </div>
+                    </main>
+                    <aside>
+                        <h3>Seus favoritos</h3>
+                        <div class="graficoPizza">
+                            <h4>Artistas</h4>
+                            <canvas id="graficoArtistas"></canvas>
+                        </div>
+                        <div class="graficoPizza">
+                            <h4>Países</h4>
+                            <canvas id="graficoPaises"></canvas>
+                        </div>
+                        <div class="graficoPizza">
+                            <h4>Estilos</h4>
+                            <canvas id="graficoEstilos"></canvas>
+                        </div>
+                    </aside>
+                </div>
                 <div id="configs" class="subpaginaEstante configs">
                     <h2 id="configsTitulo">Configurações</h2>
                     <div id="containerConfigs">
@@ -154,7 +195,30 @@
                                 <label>Avatar</label>
                                 <span id="infoAvatar">
                                     <img id="imgAvatarConfig">
-                                    <button id="btnAvatarConfig">Trocar avatar</button>
+                                    <button id="btnAvatarConfig" onclick="abrirModalAvatar()">
+                                        Trocar avatar
+                                    </button>
+                                    <!-- Início do modal de alterar senha -->
+                                    <div id="modalAvatar" class="modal">    
+                                        <div class="modal__inner">
+                                            <h1>Clique em um avatar abaixo para escolhê-lo</h1>
+                                            <div id="avatares">
+                                                <img onclick="escolherAvatar(1)" src="img/avatares/1.webp" alt="Cachorro maneiro">
+                                                <img onclick="escolherAvatar(2)" src="img/avatares/2.webp" alt="Menina retrô">
+                                                <img onclick="escolherAvatar(3)" src="img/avatares/3.webp" alt="Rasputin">
+                                                <img onclick="escolherAvatar(4)" src="img/avatares/4.webp" alt="Can't Hurry Love">
+                                                <img onclick="escolherAvatar(5)" src="img/avatares/5.webp" alt="Cara punk">
+                                                <img onclick="escolherAvatar(6)" src="img/avatares/6.webp" alt="Moça verão">
+                                                <img onclick="escolherAvatar(7)" src="img/avatares/7.webp" alt="Slash">
+                                                <img onclick="escolherAvatar(8)" src="img/avatares/8.webp" alt="Robin Sparkles">
+                                                <img onclick="escolherAvatar(9)" src="img/avatares/9.webp" alt="Moça patinadora">
+                                                <img onclick="escolherAvatar(10)" src="img/avatares/10.webp" alt="Elvis">
+                                                <img onclick="escolherAvatar(11)" src="img/avatares/11.webp" alt="Moça geek">
+                                                <img onclick="escolherAvatar(12)" src="img/avatares/12.webp" alt="Gueixa">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Fim do modal de alterar senha -->
                                 </span>
                             </span>
                             <span class="infosConfig">
@@ -163,7 +227,26 @@
                             </span>
                             <span class="infosConfig" id="divSenhaConfig">
                                 <label>Senha</label>
-                                <button id="btnSenhaConfig">Alterar</button>
+                                <button id="btnSenhaConfig" onclick="abrirModalSenha()">
+                                    Alterar
+                                </button>
+                                <!-- Início do modal de alterar senha -->
+                                <div id="modalSenha" class="modal">    
+                                    <div class="modal__inner">
+                                        <label class="modal__close" onclick="fecharModalSenha()">
+                                            X
+                                        </label>
+                                        <h1>Alterando sua senha</h1>
+                                        <label>Senha antiga</label>
+                                        <input type="text"id="">
+                                        <label>Nova senha</label>
+                                        <input type="text"id="">
+                                        <button>
+                                            Alterar
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Fim do modal de alterar senha -->
                             </span>
                         </div>
                         <div class="colunaConfigs">
@@ -190,8 +273,35 @@
     </div>
     <!-- Fim do conteúdo do site -->
     <!-- Início da div do player de música -->
+    <img id="playerCapaFaixa" class="capaEscondendo" onclick="mostrarCapa(false)">
     <div id="player">
-
+        <div id="playerInside">
+            <div id="playerInfosFaixa">
+                <span>
+                    <h3 id="playerTituloFaixa"></h3>
+                    <i id="setaMostrarCapa" class="fa-solid fa-arrow-up"
+                    onclick="mostrarCapa(true)"></i>
+                </span>
+                <h4 id="playerAlbumFaixa"></h4>
+                <h5 id="playerArtistaFaixa"></h5>
+            </div>
+            <div id="playerSlider">
+                <input type="range" id="playerTime" class="playerSlider" value="0">
+                <div id="playerMinute">
+                    <p id="playerMinuteStart">0:00</p>
+                    <p id="playerMinuteEnd"></p>
+                </div>
+                <div id="playerButtons">
+                    <i class="fa-solid fa-backward"></i>
+                    <i class="fa-solid fa-circle-play" id="iconPlay" onclick="tocarOuPausar()"></i>
+                    <i class="fa-solid fa-forward"></i>
+                </div>
+            </div>
+            <div id="playerSecond">
+                <i class="fa-solid fa-volume-low" id="iconVolume" onclick="mudo()"></i>
+                <input type="range" id="playerVolume" class="playerSlider" oninput="atualizarVolume()">
+            </div>
+        </div>
     </div>
     <!-- Fim da div do player de música -->
 </body>
@@ -212,7 +322,11 @@
 <script src="js/explorar.js"></script>
 <!-- JS da estante -->
 <script src="js/estante.js"></script>
+<!-- JS das estatítiscas -->
+<script src="js/estatisticas.js"></script>
 <!-- JS das configurações -->
 <script src="js/config.js"></script>
 <!-- JS de controle de navegação das páginas -->
 <script src="js/navegacao.js"></script>
+<!-- JS do player de música -->
+<script src="js/player.js"></script>

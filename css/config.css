@@ -94,3 +94,39 @@
     width: 150px;
     border: solid 1px var(--purpleDark);
 }
+  
+#modalSenha{
+    background-image: url("../svg/blobPink.svg");
+    background-position: 49%;
+}
+#modalSenha .modal__inner{
+    width: 20%;
+    height: 50%;
+}
+#modalSenha input{
+    border-radius: 10px;
+    width: 90%;
+    margin-bottom: 5px;
+    border: none;
+}
+
+#modalAvatar{
+    background-image: url("../svg/blobOrange.svg");
+}
+#avatares img{
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    cursor: pointer;
+}
+#avatares img:hover{
+    animation: pular 0.5s;
+}
+  
+@keyframes pular{
+    0% { transform: translate(1px, 1px) rotate(0deg); width: 75px; height: 75px;}
+    20% { transform: translate(-3px, 0px) rotate(4deg); width: 80px; height: 80px;}
+    50% { transform: translate(-1px, 2px) rotate(-2deg); width: 75px; height: 75px;}
+    70% { transform: translate(2px, 0px) rotate(-2deg); width: 70px; height: 70px;}
+    100% { transform: translate(0px, 0px) rotate(0deg); width: 75px; height: 75px;}
+}

@@ -1,0 +1,52 @@
+#estanteEstatisticas main{
+    width: 70%;
+    overflow: initial;
+}
+#estanteEstatisticas aside{
+    width: 30%;
+}
+#estanteEstatisticas h3, #estanteEstatisticas h4,
+#estanteEstatisticas h5, #estanteEstatisticas p{
+    color: var(--purpleDark);
+    margin: 0;
+}
+.destaque{
+    color: var(--orangeDark) !important;
+}
+#estanteEstatisticas h3{
+    font-size: 22px;
+}
+#estanteEstatisticas h4{
+    font-size: 20px;
+}
+#estanteEstatisticas h5{
+    font-size: 18px;
+}
+#estanteEstatisticas p{
+    font-size: 12px;
+    margin: 0;
+}
+
+.estatisticasSessao{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+#ultimos7Dias{
+    flex-direction: column;
+}
+
+#maisOuvidos{
+    width: 60%;
+}
+#positividade{
+    width: 40%;
+}
+
+.graficoPizza{
+    width: 90%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

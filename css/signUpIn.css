@@ -1,0 +1,96 @@
+body{
+    margin: 0;
+    overflow: hidden;
+}
+
+#filtroDeCor{
+    background-color: var(--pinkDark);
+}
+
+#background{
+    background-image: url("../img/signUpInBg.png");
+    background-size: initial;
+    animation-name: sliderDeImagens;
+    animation-iteration-count: infinite;
+    animation-duration: 25s;
+    animation-delay: 0ms;
+    animation-timing-function: linear;
+    width: 100%;
+    height: 620px;
+}
+
+@keyframes sliderDeImagens{
+    0% { background-position: 0% 0%; }
+    100% { background-position: 352% 235%; }
+}
+
+.modal{
+    background: none;
+    background-repeat: no-repeat;
+    background-position: 47%;
+    animation-duration: 1.5s;
+}
+
+.modal h1, .modal h3{
+    margin: 0;
+    color: var(--neutral);
+}
+.modal h1{
+    font-size: 45px;
+}
+.modal h3{
+    margin-bottom: 10px;
+}
+.modal input, .modal select{
+    margin: 3px 0;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 15px;
+    background-color: var(--pinkLight);
+    font-family: "Libre Baskerville";
+    width: 250px;
+}
+.modal input::placeholder{
+    color: var(--pinkTransp);
+    text-align: center;
+}
+.modal select{
+    color: var(--pinkTransp);
+}
+.iptEmail{
+    font-size: 12px;
+}
+#modalUp .iptEmail::placeholder{
+    font-size: 18px;
+}
+.modal button{
+    background-color: var(--orangeDark);
+    padding: 10px 25px;
+}
+.signLink{
+    color: var(--neutral);
+    font-family: "Libre Baskerville";
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#modalUp{
+    visibility: visible;
+    background-image: url("../svg/blobPurple.svg");
+    background-size: 60%;
+}
+#modalIn{
+    background-image: url("../svg/blobPink.svg");
+    background-size: 50%;
+}
+
+:root{
+    --proporcaoTop: -500px;
+    --proporcaoEsqrd: -200px;
+}
+@keyframes popFora{
+    20%{ transform: scale(1.2,1.2); }
+    100%{ transform: scale(0,0) rotate(390deg);
+          top: var(--proporcaoTop);
+          left: var(--proporcaoEsqrd); }
+}

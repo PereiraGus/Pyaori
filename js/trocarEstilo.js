@@ -10,11 +10,11 @@ function trocarEstilo(pagina){
     ASIDE.className = novoAside;
 
     if(pagina == "explorar"){
-        imgLinkInicio.src = "svgs/butterflyLight.svg"
+        imgLinkInicio.src = "svg/butterflyLight.svg"
         imgLinkEstante.src = "img/discoClaro.png"
     }
     else{
-        imgLinkInicio.src = "svgs/butterflyDark.svg"
+        imgLinkInicio.src = "svg/butterflyDark.svg"
         imgLinkEstante.src = "img/discoEscuro.png"
     }
 }

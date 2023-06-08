@@ -53,18 +53,17 @@ function trocarAba(abaDestino){
 }
 
 var perfil = null;
+//JSON provisório até a conexão com o banco
+perfil = {
+    nome: "PearGus",
+    avatar: "1",
+    email: "gustavo.castro@sptech.school",
+    maioridade: true,
+    pronomes: "Ele/Dele"
+}
 function carregarPerfil(){
     const NOME = document.getElementById("nomePerfil");
     const AVATAR = document.getElementById("avatarPerfil");
-
-    //JSON provisório até a conexão com o banco
-    perfil = {
-        nome: "PearGus",
-        avatar: "1",
-        email: "gustavo.castro@sptech.school",
-        maioridade: true,
-        pronomes: "Ele/Dele"
-    }
 
     NOME.innerHTML = perfil.nome;
     AVATAR.src = "img/avatares/" + perfil.avatar + ".webp";

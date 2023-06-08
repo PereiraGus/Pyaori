@@ -1,4 +1,3 @@
-
 const FAVS = document.getElementById("inicioFavs");
 const RECOMENDS = document.getElementById("inicioRecomends");
 

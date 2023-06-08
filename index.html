@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyaori</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/signUpIn.css">
+    <style>
+        :root{
+            --neutral: #F9EFE3;
+            --neutralTransp: #f9efe37e;
+            --purpleDark: #623DF5;
+            --purpleTransp: #623df583;
+            --purpleLight: #BA96D4;
+            --orangeDark: #CF5443;
+            --orangeLight: #F38C7F;
+            --pinkDark: #D65880;
+            --pinkLight: #F9EFE3;
+            --pinkTransp: #A791FA;
+        }
+    </style>
+</head>
+<body>
+    <div id="filtroDeCor">
+        <div id="background">
+            <!-- Início da modal cadastro -->
+            <div id="modalUp" class="modal">    
+                <div class="modal__inner">
+                    <h1>Pyaori</h1>
+                    <h3>Descubra, ouça, sinta</h3>
+                    <input id="iptEmailUp" class="iptEmail" type="email" placeholder="Seu melhor email">
+                    <input type="text" placeholder="Crie um nome de usuário">
+                    <select>
+                        <option value="">Ela</option>
+                        <option value="">Ele</option>
+                        <option value="">Elu</option>
+                    </select>
+                    <input type="password" placeholder="Uma senha bem segura">
+                    <input type="password" placeholder="Confirme a senha">
+                    <button>Cadastrar</button>
+                    <span class="signLink" onclick="trocarAba(true)">Já tenho uma conta</span>
+                </div>
+            </div>
+            <!-- Fim da modal cadastro -->
+            <!-- Início da modal login -->
+            <div id="modalIn" class="modal">    
+                <div class="modal__inner">
+                    <h1>Pyaori</h1>
+                    <h3>Descubra, ouça, sinta</h3>
+                    <input id="iptEmailIn" class="iptEmail" type="text" placeholder="Email ou nome de usuário">
+                    <input type="password" placeholder="Sua senha">
+                    <button>Cadastrar</button>
+                    <span class="signLink" onclick="trocarAba(false)">Não tenho uma conta</span>
+                </div>
+            </div>
+            <!-- Fim da modal login -->
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function trocarAba(login){
+        //Sorteam-se números para a proporção do topo e da esquerda de descolamento da modal na animação
+        var proporcaoTopo = Number((Math.random()*500).toFixed());
+        //Se sortea se essa proporção vai ser positiva ou negativa
+        var sinalTopo = Math.random();
+        if(sinalTopo < 0.5){
+            proporcaoTopo = proporcaoTopo*-1;
+        }
+        //Define-se a variável do CSS que controla o deslocamento do topo/esquerda na animação para os valores sorteados
+        //Fonte: https://davidwalsh.name/css-variables-javascript
+        document.documentElement.style
+            .setProperty('--proporcaoTop', proporcaoTopo+"px");
+
+        var proporcaoEsqrd = Number((Math.random()*200).toFixed())*-1;
+        var sinalEsqrd = Math.random();
+        if(sinalEsqrd < 0.5){
+            proporcaoEsqrd = proporcaoEsqrd*-1;
+        }
+        document.documentElement.style
+            .setProperty('--proporcaoTop', proporcaoEsqrd+"px");
+
+        console.log("X: "+proporcaoEsqrd);
+        console.log("Y: "+proporcaoTopo);
+
+        if(login){
+            modalUp.style = "animation-name: popFora";
+            setTimeout(() => {
+                modalUp.style = "visibility: hidden";
+                modalIn.style = `visibility: visible;
+                                 animation-name: popFora;
+                                 animation-direction: reverse;"`;
+            },1500);
+            setTimeout(() => {
+                modalIn.style = "visibility: visible";
+            },3000);
+        }
+        else{
+            modalIn.style = "visibility: visible; animation-name: popFora";
+            setTimeout(() => {
+                modalIn.style = "visibility: hidden";
+                modalUp.style = `visibility: visible;
+                                 animation-name: popFora;
+                                 animation-direction: reverse;"`;
+            },1500);
+            setTimeout(() => {
+                modalUp.style = "visibility: visible";
+            },3000);
+        }
+    }
+</script>

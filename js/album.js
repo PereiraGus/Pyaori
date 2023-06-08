@@ -38,7 +38,9 @@ function carregarAlbum(idAlbum){
 
         DIV_FAIXAS_ALBUM.innerHTML += `
         <div>
-            <i class="fa-solid fa-play"></i>
+            <i class="fa-solid fa-play"
+                onclick="carregarFaixa(${albumEscolhido.idAlbum},
+                    ${faixasAlbum[i].idFaixa})"></i>
             <span class="numFaixaAlbum">
                 ${faixasAlbum[i].idFaixa}.
             </span>

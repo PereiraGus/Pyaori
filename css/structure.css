@@ -19,7 +19,7 @@ aside{
 
 main{
     width: 95%;
-    height: 470px;
+    height: 490px;
     overflow-y: scroll;
 }
 .mainPaginaInteira{
@@ -28,19 +28,9 @@ main{
 
 .page{
     width: 100%;
-    height: 91.5%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-}
-
-
-#player{
-    width: 100%;
-    height: 160px;
-    background-image: linear-gradient(
-        to right,
-        var(--purpleDark),
-        var(--purpleLight));
 }

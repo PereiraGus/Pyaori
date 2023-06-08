@@ -14,6 +14,7 @@ function trocarPagina(paginaDeDestino, identificador){
     for(var i = 0; i < paginas.length; i++){
         if(paginas[i].id == paginaDeDestino){
             paginas[i].style = "display: flex";
+            console.clear();
             console.log("Você foi para a página "+paginas[i].id);
             //Chamando a função inicial de cada tela apenas quando forem selecionadas
             switch (paginas[i].id) {
