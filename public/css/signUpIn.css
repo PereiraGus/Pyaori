@@ -57,10 +57,7 @@ body{
 .modal select{
     color: var(--pinkTransp);
 }
-.iptEmail{
-    font-size: 12px;
-}
-#modalUp .iptEmail::placeholder{
+#modalUp .inpEmail::placeholder{
     font-size: 18px;
 }
 .modal button{
@@ -72,6 +69,41 @@ body{
     font-family: "Libre Baskerville";
     text-decoration: underline;
     cursor: pointer;
+}
+
+#spanLinha{
+    display: flex;
+    flex-direction: row;
+    width: 280px;
+    justify-content: center;
+}
+#spanLinha div{
+    display: flex;
+    flex-direction: column;
+}
+#spanLinha div:first-child{
+    width: 30%;
+    margin-right: 5px;
+}
+#spanLinha div:last-child{
+    width: 65%;
+    margin-left: 5px;
+}
+#spanLinha select{
+    width: 100%;
+    transition: 0.5s;
+}
+#spanLinha input{
+    width: 85%;
+    color: var(--pinkTransp);
+    transition: 0.5s;
+}
+#spanLinha select:focus, #spanLinha select:hover
+#spanLinha input:focus, #spanLinha input:hover{
+    color: black;
+}
+#spanLinha label{
+    font-size: 12px;
 }
 
 #modalUp{

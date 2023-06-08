@@ -32,16 +32,25 @@
                 <div class="modal__inner">
                     <h1>Pyaori</h1>
                     <h3>Descubra, ouça, sinta</h3>
-                    <input id="iptEmailUp" class="iptEmail" type="email" placeholder="Seu melhor email">
-                    <input type="text" placeholder="Crie um nome de usuário">
-                    <select>
-                        <option value="">Ela</option>
-                        <option value="">Ele</option>
-                        <option value="">Elu</option>
-                    </select>
-                    <input type="password" placeholder="Uma senha bem segura">
-                    <input type="password" placeholder="Confirme a senha">
-                    <button>Cadastrar</button>
+                    <input id="inpEmailUp" class="inpEmail" type="email" placeholder="Seu melhor email">
+                    <input id="inpNickname" type="text" placeholder="Crie um nome de usuário">
+                    <span id="spanLinha">
+                        <div>
+                            <label for="slctPronome">Pronome</label>
+                            <select id="slctPronome">
+                                <option value="">Ela</option>
+                                <option value="">Ele</option>
+                                <option value="">Elu</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="inpDataNasc">Data de nascimento</label>
+                            <input type="date" id="inpDataNasc">
+                        </div>
+                    </span>
+                    <input id="inpPassUp" type="password" placeholder="Uma senha bem segura">
+                    <input id="inpConfPass" type="password" placeholder="Confirme a senha">
+                    <button onclick="cadastro()">Cadastrar</button>
                     <span class="signLink" onclick="trocarAba(true)">Já tenho uma conta</span>
                 </div>
             </div>
@@ -51,9 +60,9 @@
                 <div class="modal__inner">
                     <h1>Pyaori</h1>
                     <h3>Descubra, ouça, sinta</h3>
-                    <input id="iptEmailIn" class="iptEmail" type="text" placeholder="Email ou nome de usuário">
-                    <input type="password" placeholder="Sua senha">
-                    <button>Cadastrar</button>
+                    <input id="inpEmailIn" class="inpEmail" type="text" placeholder="Email ou nome de usuário">
+                    <input id="inpPassIn" type="password" placeholder="Sua senha">
+                    <button onclick="login()">Entrar</button>
                     <span class="signLink" onclick="trocarAba(false)">Não tenho uma conta</span>
                 </div>
             </div>
@@ -62,6 +71,7 @@
     </div>
 </body>
 </html>
+<script src="js/sign.js"></script>
 <script>
     function trocarAba(login){
         //Sorteam-se números para a proporção do topo e da esquerda de descolamento da modal na animação
