@@ -52,23 +52,6 @@ function trocarAba(abaDestino){
     }
 }
 
-//JSON pegando as informações do session storage
-perfil = {
-    id: sessionStorage.ID_USUARIO,
-    nome: sessionStorage.NOME_USUARIO,
-    avatar: sessionStorage.AVATAR_USUARIO,
-    email: sessionStorage.EMAIL_USUARIO,
-    maioridade: true, //Temporário
-    pronomes: sessionStorage.PRONOME_USUARIO
-}
-function carregarPerfil(){
-    const NOME = document.getElementById("nomePerfil");
-    const AVATAR = document.getElementById("avatarPerfil");
-
-    NOME.innerHTML = perfil.nome;
-    AVATAR.src = "img/avatares/" + perfil.avatar + ".webp";
-}
-
 function carregarSalvos(){
     SALVOS.innerHTML = "";
     //Array de JSONs provisório até a conexão com o banco

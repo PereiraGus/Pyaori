@@ -92,13 +92,3 @@ function salvarAlteracoes(){
     perfil.pronomes = SLCT_CONFIG_PRONOMES.value;
     carregarPerfil();
 }
-
-function encerrarSessao(){
-    sessionStorage.ID_USUARIO = undefined;
-    sessionStorage.NOME_USUARIO = undefined;
-    sessionStorage.DATA_NASC_USUARIO = undefined;
-    sessionStorage.PRONOME_USUARIO = undefined;
-    sessionStorage.EMAIL_USUARIO = undefined;
-
-    window.location = "index.html";
-}
