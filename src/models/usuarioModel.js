@@ -42,10 +42,19 @@ function trocarAvatar(idUsuario, avatar){
     return database.execute(command);
 }
 
+function trocarSenha(idUsuario, senhaAntiga, senhaNova){
+    console.log("Trocando a senha de um usuário");
+    var command = `
+        update login set senha = '${senhaNova}' where idUsuario = ${idUsuario} and senha = '${senhaAntiga}';`
+    console.log("Comando: \n"+command);
+    return database.execute(command);
+}
+
 module.exports = {
     cadastro,
     login,
     selecionar,
     atualizar,
-    trocarAvatar
+    trocarAvatar,
+    trocarSenha
 };

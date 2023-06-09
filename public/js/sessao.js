@@ -4,12 +4,16 @@ if(sessionStorage.ID_USUARIO == undefined){
 }
 
 //JSON pegando as informações do session storage
+var anoAtual = new Date().getFullYear();
+var idade = anoAtual - Number(String(sessionStorage.DATA_NASC_USUARIO).slice(0,4));
+var maiorDeIdade = idade >= 18;
+
 var perfil = {
     id: sessionStorage.ID_USUARIO,
     nome: sessionStorage.NOME_USUARIO,
     avatar: sessionStorage.AVATAR_USUARIO,
     email: sessionStorage.EMAIL_USUARIO,
-    maioridade: true, //Temporário
+    maioridade: maiorDeIdade,
     pronomes: sessionStorage.PRONOME_USUARIO
 }
 
@@ -19,7 +23,7 @@ function carregarPerfil(){
         nome: sessionStorage.NOME_USUARIO,
         avatar: sessionStorage.AVATAR_USUARIO,
         email: sessionStorage.EMAIL_USUARIO,
-        maioridade: true, //Temporário
+        maioridade: maiorDeIdade,
         pronomes: sessionStorage.PRONOME_USUARIO
     }
 

@@ -1,3 +1,4 @@
+const { json } = require("express");
 var usuarioModel = require("../models/usuarioModel");
 
 function cadastro(req, res){
@@ -129,10 +130,33 @@ function trocarAvatar(req, res){
         });
 }
 
+function trocarSenha(req, res){
+    let idUsuario = req.params.idUsuario;
+    let senhaAntiga = req.body.senhaAntiga;
+    let senhaNova = req.body.senhaNova
+
+    usuarioModel.trocarSenha(idUsuario, senhaAntiga, senhaNova  )
+        .then(function (result){
+            if(result.affectedRows != 1){//Verifica se algum registro foi alterado, ou seja, a senha antiga confere
+                res.status(400).json("Senha errada"); //Se não, é erro 400
+            }
+            else{
+                console.log(result);
+                res.json(result);
+            }
+        })
+        .catch(function (error){
+            console.log("Houve um erro ao realizar a consulta! Erro: ", error.sqlMessage);
+            console.log(error.sqlState);
+            res.status(500).json(error.sqlMessage);
+        });
+}
+
 module.exports = {
     cadastro,
     login,
     selecionar,
     atualizar,
-    trocarAvatar
+    trocarAvatar,
+    trocarSenha
 }

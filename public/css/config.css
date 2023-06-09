@@ -107,6 +107,9 @@
     background-image: url("../svg/blobPink.svg");
     background-position: 49%;
 }
+#modalSenha label{
+    color: var(--neutral);
+}
 #modalSenha .modal__inner{
     width: 20%;
     height: 50%;
@@ -127,7 +130,7 @@
     object-fit: contain;
     cursor: pointer;
 }
-#avatares img:hover{
+#avatares img:hover, #avatares img:focus{
     animation: pular 0.5s;
 }
   

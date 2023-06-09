@@ -185,3 +185,75 @@ function erroConfigs(alvo, mensagem) {
         }
     }, 5000)
 }
+
+function alterarSenha(){
+    let senhaAntiga = inpSenhaAntiga.value;
+    let senhaNova =inpSenhaNova.value;
+
+    let alvo = [];
+    let mensagem = [];
+
+    if(senhaNova > 15 || senhaNova < 8){
+        alvo.push(inpSenhaNova);
+        mensagem.push("A nova senha deve ter entre 8 e 15 caracteres.");
+    }
+    let maisculas = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+    let minusculas = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    let numerais = [0,1,2,3,4,5,6,7,8,9]
+    let especiais = ["!","@","#","$",".","%","*","&"]
+    
+    let caracteresObrigatorios = [maisculas,minusculas,numerais,especiais];
+    let atendeOsRequisitos = [false, false, false, false];
+    for (let i = 0; i < caracteresObrigatorios.length; i++) {
+        for (let c = 0; c < caracteresObrigatorios[i].length; c++) {
+            if(senhaNova.indexOf(caracteresObrigatorios[i][c]) != -1){
+                atendeOsRequisitos[i] = true;
+            }
+        }
+    }
+    for (let i = 0; i < atendeOsRequisitos.length; i++) {
+        if(!atendeOsRequisitos[i]){
+            alvo.push(inpSenhaNova);
+            mensagem.push("A nova senha deve conter letras maiúsculas, minúsculas, números e um caractere especial.");
+            break;
+        }
+    }
+
+    if(senhaNova == senhaAntiga){
+        alvo.push(inpSenhaNova);
+        alvo.push(inpSenhaAntiga);
+        mensagem.push("As senhas são iguais");
+    }
+
+    if(alvo.length == 0){
+        fetch(`usuario/trocarSenha/${perfil.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                senhaAntiga: senhaAntiga,
+                senhaNova: senhaNova
+            })
+        }).then(function (response) {
+            console.log("Resposta:\n", response);
+            if (response.ok) {
+                alert("Senha alterada com sucesso");
+                                
+                inpSenhaAntiga.value = "";
+                inpSenhaNova.value = "";
+                
+                fecharModalSenha();
+            }
+            else if (response.status == 400) {
+                erroConfigs([inpSenhaAntiga],["Senha atual incorreta"]);
+            }
+            else {
+                window.location = `https://http.cat/${response.status}`;
+            }
+        }).catch(function (response) {
+            console.log("ERRO: ", response);
+        });
+    }
+    else{
+        erroConfigs(alvo, mensagem);
+    }
+}

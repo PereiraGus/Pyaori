@@ -234,14 +234,14 @@
                                 <div id="modalSenha" class="modal">    
                                     <div class="modal__inner">
                                         <label for="modalSenha" class="modal__close" onclick="fecharModalSenha()">
-                                            X
+                                            <i class="fa-solid fa-x"></i>
                                         </label>
                                         <h1>Alterando sua senha</h1>
-                                        <label>Senha antiga</label>
-                                        <input type="text"id="">
-                                        <label>Nova senha</label>
-                                        <input type="text"id="">
-                                        <button>
+                                        <label for="inpSenhaAntiga">Senha antiga</label>
+                                        <input type="text" id="inpSenhaAntiga">
+                                        <label for="inpSenhaNova">Nova senha</label>
+                                        <input type="text" id="inpSenhaNova">
+                                        <button onclick="alterarSenha()">
                                             Alterar
                                         </button>
                                     </div>

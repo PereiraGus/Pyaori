@@ -23,4 +23,8 @@ router.put("/trocarAvatar/:idUsuario", function(req, res){
     usuarioController.trocarAvatar(req, res);
 })
 
+router.put("/trocarSenha/:idUsuario", function(req, res){
+    usuarioController.trocarSenha(req, res);
+})
+
 module.exports = router;
