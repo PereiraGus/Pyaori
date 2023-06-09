@@ -99,6 +99,10 @@
     width: fit-content;
 }
   
+.erro{
+    text-shadow: 1px 1px 3px red;
+}
+
 #modalSenha{
     background-image: url("../svg/blobPink.svg");
     background-position: 49%;

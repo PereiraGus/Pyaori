@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function cadastro(nickname, dataNasc, pronomes, email, senha){
     console.log("Inserindo novo usuário");
-    var command = `call spUsuario('${nickname}', '${dataNasc}', '${pronomes}', default, '${email}', '${senha}');`;
+    var command = `call spUsuario('${nickname}', '${dataNasc}', '${pronomes}', '${email}', '${senha}');`;
     console.log("Comando: \n"+command);
     return database.execute(command);
 }
@@ -26,8 +26,17 @@ function selecionar(idUsuario){
     return database.execute(command);
 }
 
+function atualizar(idUsuario, nickname, pronomes, email){
+    console.log("Atualizando as infos. de um usuário")
+    var command = `
+        call spUpdateUsuario(${idUsuario}, '${nickname}', '${pronomes}', '${email}');`
+    console.log("Comando: \n"+command);
+    return database.execute(command);
+}
+
 module.exports = {
     cadastro,
     login,
-    selecionar
+    selecionar,
+    atualizar
 };

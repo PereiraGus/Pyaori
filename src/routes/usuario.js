@@ -15,8 +15,8 @@ router.get("/selecionar/:idUsuario", function(req, res){
     usuarioController.selecionar(req, res);
 })
 
-router.get("/", function(req, res){
-    console.log("Funcionando");
+router.put("/atualizar/:idUsuario", function(req, res){
+    usuarioController.atualizar(req, res);
 })
 
 module.exports = router;

@@ -54,8 +54,3 @@ function trocarPagina(paginaDeDestino, identificador){
 trocarPagina("inicio");
 //Inicia-se a função na primeira vez em que se carrega o HTML, para aparecer
 //primeiramente a página de início
-
-//Se o usuário não estiver logado, é redirecionado para a index
-if(sessionStorage.ID_USUARIO == undefined){
-    window.location = "index.html";
-}

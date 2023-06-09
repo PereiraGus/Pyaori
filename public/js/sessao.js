@@ -1,5 +1,10 @@
+//Se o usuário não estiver logado, é redirecionado para a index
+if(sessionStorage.ID_USUARIO == undefined){
+    window.location = "index.html";
+}
+
 //JSON pegando as informações do session storage
-perfil = {
+var perfil = {
     id: sessionStorage.ID_USUARIO,
     nome: sessionStorage.NOME_USUARIO,
     avatar: sessionStorage.AVATAR_USUARIO,
