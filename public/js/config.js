@@ -79,9 +79,29 @@ function abrirModalAvatar() {
     MODAL_AVATAR.style = "visibility: visible";
 }
 function escolherAvatar(index) {
-    perfil.avatar = index;
-    carregarPerfil();
-    IMG_CONFIG_AVATAR.src = "img/avatares/" + perfil.avatar + ".webp";
+    fetch(`usuario/trocarAvatar/${perfil.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            sAvatar: index,
+        })
+    }).then(function (response) {
+        console.log("Resposta:\n", response);
+        if (response.ok) {
+            sessionStorage.AVATAR_USUARIO = index;
+            carregarPerfil();
+            IMG_CONFIG_AVATAR.src = "img/avatares/" + perfil.avatar + ".webp";
+        }
+        else if (response.status == 404) {
+            alert("Avatar inválido. Escolha outro ou tente novamente mais tarde")
+        }
+        else {
+            window.location = `https://http.cat/${response.status}`;
+        }
+    }).catch(function (response) {
+        console.log("ERRO: ", response);
+    });
+    
     MODAL_AVATAR.style = "visibility: hidden";
 }
 

@@ -19,4 +19,8 @@ router.put("/atualizar/:idUsuario", function(req, res){
     usuarioController.atualizar(req, res);
 })
 
+router.put("/trocarAvatar/:idUsuario", function(req, res){
+    usuarioController.trocarAvatar(req, res);
+})
+
 module.exports = router;

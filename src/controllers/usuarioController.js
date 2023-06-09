@@ -109,9 +109,30 @@ function atualizar(req, res){
         });
 }
 
+function trocarAvatar(req, res){
+    let idUsuario = req.params.idUsuario;
+    let avatar = req.body.sAvatar;
+
+    if(Number(avatar) < 1 || Number(avatar) > 12){
+        res.status(404).json("Avatar inválido");
+    }
+
+    usuarioModel.trocarAvatar(idUsuario, avatar)
+        .then(function (result){
+            console.log(result);
+            res.json(result);
+        })
+        .catch(function (error){
+            console.log("Houve um erro ao realizar a consulta! Erro: ", error.sqlMessage);
+            console.log(error.sqlState);
+            res.status(500).json(error.sqlMessage);
+        });
+}
+
 module.exports = {
     cadastro,
     login,
     selecionar,
-    atualizar
+    atualizar,
+    trocarAvatar
 }

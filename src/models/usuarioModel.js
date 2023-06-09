@@ -34,9 +34,18 @@ function atualizar(idUsuario, nickname, pronomes, email){
     return database.execute(command);
 }
 
+function trocarAvatar(idUsuario, avatar){
+    console.log("Trocando o avatar de um usuário");
+    var command = `
+        update usuario set avatar = ${avatar} where idUsuario = ${idUsuario};`
+    console.log("Comando: \n"+command);
+    return database.execute(command);
+}
+
 module.exports = {
     cadastro,
     login,
     selecionar,
-    atualizar
+    atualizar,
+    trocarAvatar
 };
