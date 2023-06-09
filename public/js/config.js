@@ -78,7 +78,7 @@ function fecharModalSenha() {
 function abrirModalAvatar() {
     MODAL_AVATAR.style = "visibility: visible";
 }
-function escolherAvatar(index) {
+function escolherAvatar(index, img) {
     fetch(`usuario/trocarAvatar/${perfil.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -88,9 +88,23 @@ function escolherAvatar(index) {
     }).then(function (response) {
         console.log("Resposta:\n", response);
         if (response.ok) {
+            img.style = "animation: girar 1s linear alternate";
+            falaAvatar(index, true);
+
+            let sfx = new Audio();
+            sfx.src = "sfx/Escolher avatar.wav";
+            sfx.play();
+
             sessionStorage.AVATAR_USUARIO = index;
             carregarPerfil();
-            IMG_CONFIG_AVATAR.src = "img/avatares/" + perfil.avatar + ".webp";
+
+            setTimeout(() => {
+                IMG_CONFIG_AVATAR.src = "img/avatares/" + perfil.avatar + ".webp";
+                IMG_CONFIG_AVATAR.style = "animation: cairDoCeu 1s linear alternate";
+            },1000)
+            setTimeout(() => {
+                IMG_CONFIG_AVATAR.style = "";
+            },2000)
         }
         else if (response.status == 404) {
             alert("Avatar inválido. Escolha outro ou tente novamente mais tarde")
@@ -102,7 +116,39 @@ function escolherAvatar(index) {
         console.log("ERRO: ", response);
     });
     
-    MODAL_AVATAR.style = "visibility: hidden";
+    setTimeout(() => {
+        img.style = "";
+        MODAL_AVATAR.style = "visibility: hidden";
+    },1000)
+}
+
+function falaAvatar(avatar, final){
+    let fala = new Audio();
+    fala.volume = 0.7;
+
+    let tresFalas = [1,2,4,6,8,11,12];
+    let quatroFalas = [3,5,7,9,10];
+    let opcao = 0;
+
+    if(tresFalas.includes(avatar)){
+        if(final){
+            opcao = 3;
+        }
+        else{
+            opcao = Number((Math.random()+1).toFixed(0));
+        }
+    }
+    else if(quatroFalas.includes(avatar)){
+        if(final){ 
+            opcao = 4;
+        }
+        else{
+            opcao = Number((Math.random()*2+1).toFixed(0));
+        }
+    }
+    
+    fala.src = `sfx/avatares/${avatar}/${opcao}.wav`;
+    fala.play();
 }
 
 function salvarAlteracoes() {
