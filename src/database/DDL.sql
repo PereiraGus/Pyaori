@@ -13,6 +13,7 @@ create table artista(
 create table album(
 	idAlbum int primary key auto_increment,
     titulo varchar(100) not null,
+	tipo varchar(25) not null,
     anoLanc year not null,
     idArtista int not null,
     foreign key(idArtista) references artista(idArtista)
@@ -23,9 +24,7 @@ create table faixa(
     titulo varchar(65) not null,
     genero varchar(50) not null,
     explicita char(1) not null,
-    duracao time not null,
-    humor decimal(3,2) not null,
-    animo decimal(3,2) not null,
+    positividade tinyint not null,
 	idAlbum int not null,
     foreign key(idAlbum) references album(idAlbum)
 );
