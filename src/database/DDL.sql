@@ -70,11 +70,11 @@ create table login(
 
 create table avaliacao(
 	idUsuario int,
-    idFaixa int,
+    idAlbum int,
     salvoOuDispensado char(1) not null,
-    primary key(idUsuario, idFaixa),
+    primary key(idUsuario, idAlbum),
     foreign key(idUsuario) references usuario(idUsuario),
-    foreign key(idFaixa) references faixa(idFaixa)
+    foreign key(idAlbum) references album(idAlbum)
 );
 
 create table reproducao(

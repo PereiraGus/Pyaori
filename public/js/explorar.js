@@ -106,17 +106,19 @@ function buscarOpcoes(){
                     }
                 }   
                 else{
-                    if(json.length > 3){
-                        darResultados([json[1],json[2],json[3]], json.length);
-                    }
-                    else{
-                        darResultados(json, json.length);
-                    }
+                    darResultados(json);
                 }
             })
         }
+        else{
+            if(response.status == 404){
+                tituloAtual.innerHTML = "0 resultados restantes";
+                perguntas[respondidas].innerHTML = "<p style='text-align: center'>Todos os álbuns existentes com essas características já foram salvos ou dispensados. Para verificar os salvos, acesse a aba 'Sua Estante'</p>";
+                console.warn("Nenhum álbum encontrada");
+            }
+        }
     }).catch(function (response) {
-        console.log("ERRO: ", response);
+        window.location = "https://http.cat/500";
     });
     passarPerguntas();
 }
@@ -133,29 +135,62 @@ function reiniciarExplorar() {
 }
 
 //Função que entrega os resultados do banco
-function darResultados(faixas, quantidade) {
+function darResultados(result) {
     console.log(`Resultados: ${filtros}`);
     TITULO_GUIA.innerHTML = "Resultados";
-    tituloAtual.innerHTML = quantidade + " resultados encontrados";
+    tituloAtual.innerHTML = result.length + " resultados encontrados";
     LISTA_FAIXAS.innerHTML = "";
 
-    for (let i = 0; i < quantidade; i++) {
+    let faixas = [];
+    let numsSorteados = [];
+    for (let i = 0; i < 3; i++) {
+        let sorteioUnico = false;
+        while(!sorteioUnico){
+            var sorteio = Number((Math.random()*2).toFixed());
+            if(!(numsSorteados.includes(sorteio))){
+                numsSorteados.push(sorteio);
+                sorteioUnico = true;
+            }
+        }
+        if(result[sorteio] != undefined){
+            faixas.push(result[sorteio]);
+        }
+    }
+
+    for (let i = 0; i < faixas.length; i++) {
         LISTA_FAIXAS.innerHTML += `
-        <span>
+        <span id="spanMusica${i+1}">
             <div class="explorarMusica" style="background-image:url('img/albuns/${faixas[i].idAlbum}.webp');">
-                <div class="optDispMusica" id="optDisp${i}"></div>
-                <div class="optSalvMusica" id="optSalv${i}"></div>
+                <div class="optDispMusica" id="optDisp${i}" onclick="salvarOuDispensar(${i+1},${faixas[i].idAlbum},'D')">
+                    <i class="fa-solid fa-x"></i>
+                </div>
+                <div class="optSalvMusica" id="optSalv${i}" onclick="salvarOuDispensar(${i+1},${faixas[i].idAlbum},'S')">
+                    <i class="fa-solid fa-bookmark"></i>
+                </div>
             </div>
             <h4>${faixas[i].titulo}</h4>
-            <p>${faixas[i].album}</p>
-        `;
-        var dispensarMusicaAtual = document.getElementById(`optDisp${i}`);
-        dispensarMusicaAtual.innerHTML += `
-            <i class="fa-solid fa-x"></i>
-        `;
-        var salvarMusicaAtual = document.getElementById(`optSalv${i}`);
-        salvarMusicaAtual.innerHTML += `
-            <i class="fa-solid fa-bookmark"></i>
+            <p>${faixas[i].artista}</p>
         `;
     }
+}
+
+function salvarOuDispensar(spanMusica, varIdAlbum, varSalvarDispensar){
+    let varIdUsuario = perfil.id;
+    fetch(`interacoes/salvarOuDispensar`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: varIdUsuario,
+                idAlbum: varIdAlbum,
+                salvarDispensar: varSalvarDispensar
+            })
+    }).then(function (response) {
+        if (response.ok) {
+            let spanAlvo = document.getElementById("spanMusica"+spanMusica);
+            LISTA_FAIXAS.removeChild(spanAlvo);
+            buscarOpcoes();
+        }
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
 }

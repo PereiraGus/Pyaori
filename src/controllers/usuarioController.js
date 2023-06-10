@@ -152,11 +152,33 @@ function trocarSenha(req, res){
         });
 }
 
+function carregarSalvos(req, res){
+    let idUsuario = req.params.idUsuario;
+    let salvoOuDispensado = req.params.salvoOuDispensado;
+
+    usuarioModel.carregarAvaliados(idUsuario, salvoOuDispensado)
+        .then(function (result){
+            if(result.length > 1){
+                console.log(result);
+                res.json(result);
+            }
+            else{
+                res.status(404).send("Usuário não encontrado.");
+            }
+        })
+        .catch(function (error){
+            console.log(error);
+            console.log(`Erro ao carregar salvos de um usuário:\n ${error.sqlMessage}`);
+            res.status(500).json(error.sqlMessage);
+        });
+}
+
 module.exports = {
     cadastro,
     login,
     selecionar,
     atualizar,
     trocarAvatar,
-    trocarSenha
+    trocarSenha,
+    carregarSalvos
 }

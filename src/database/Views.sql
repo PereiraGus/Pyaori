@@ -40,6 +40,12 @@ create or replace view vwFaixaArtista as
 /*
 select * from vwFaixaArtista where idFaixa = 5;
 ----------------------------------------------*/
+-- Selecionar os álbuns avaliados de um determinado usuário
+select alb.*, art.nome as artista, av.salvoOuDispensado as salvoOuDispensado
+    from album as alb
+	join artista as art on alb.idArtista = art.idArtista
+    join avaliacao as av on av.idAlbum = alb.idAlbum
+    where idUsuario = 1;
 -- --------------------------------------------
 -- Inserir usuário e login juntos
 DELIMITER $$

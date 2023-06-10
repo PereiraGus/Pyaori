@@ -50,11 +50,25 @@ function trocarSenha(idUsuario, senhaAntiga, senhaNova){
     return database.execute(command);
 }
 
+function carregarAvaliados(idUsuario, salvoOuDispensado){
+    console.log("Trocando a senha de um usuário");
+    var command = `select alb.*, art.nome as artista, av.salvoOuDispensado as salvoOuDispensado
+    from album as alb
+	join artista as art on alb.idArtista = art.idArtista
+    join faixa as f on alb.idAlbum = f.idAlbum
+    join avaliacao as av on av.idFaixa = f.idFaixa
+    where idUsuario = ${idUsuario} and salvoOuDispensado = "${salvoOuDispensado}"
+    group by alb.idAlbum, av.salvoOuDispensado;`
+    console.log("Comando: \n"+command);
+    return database.execute(command);
+}
+
 module.exports = {
     cadastro,
     login,
     selecionar,
     atualizar,
     trocarAvatar,
-    trocarSenha
+    trocarSenha,
+    carregarAvaliados
 };

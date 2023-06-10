@@ -27,4 +27,8 @@ router.put("/trocarSenha/:idUsuario", function(req, res){
     usuarioController.trocarSenha(req, res);
 })
 
+router.get("/carregarAvaliados/:idUsuario/:salvoOuDispensado", function(req, res){
+    usuarioController.carregarSalvos(req, res);
+})
+
 module.exports = router;
