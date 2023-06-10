@@ -17,6 +17,22 @@ function salvarOuDispensar(req, res) {
         });
 }
 
+function marcarReproducao(req, res) {
+    let idUsuario = req.body.idUsuario;
+    let idFaixa = req.body.idFaixa;
+
+    interacoesModel.marcarReproducao(idUsuario, idFaixa)
+        .then(function (result) {
+            res.json(result);
+        })
+        .catch(function (error) {
+            console.log(error);
+            console.log(`Erro ao reproduzir faixa:\n ${error.sqlMessage}`);
+            res.status(500).json(error.sqlMessage);
+        });
+}
+
 module.exports = {
-    salvarOuDispensar
+    salvarOuDispensar,
+    marcarReproducao
 }

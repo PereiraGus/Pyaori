@@ -8,16 +8,30 @@ function carregarFaixa(idAlbum, indiceFaixa){
     if(tocandoMusica){
         tocarOuPausar();
     }
+
     fetch(`musica/selecionarAlbum/${idAlbum}`, {
         cache: 'no-store',
     }).then(function (response) {
         if (response.ok) {
             response.json().then(json => {
                 atualizarInformacoes(json[indiceFaixa]);
+                marcarReproducao(json[indiceFaixa].idFaixa);
             })
         } 
     }).catch(function (response) {
-        // window.location = "https://http.cat/500";
+        window.location = "https://http.cat/500";
+    });
+}
+
+function marcarReproducao(varIdFaixa){
+    fetch(`interacoes/marcarReproducao`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            idUsuario: perfil.id,
+            idFaixa: varIdFaixa
+        })
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
     });
 }
 
