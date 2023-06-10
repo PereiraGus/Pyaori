@@ -13,100 +13,60 @@ var pesquisa = [
     {
         titulo: "Selecione uma época abaixo",
         opcoes: [
-            "Qualquer uma","Décadas de 40, 50 e 60","Décadas de 70, 80 e 90","Anos 2000","2010 - Hoje"
+            "Qualquer uma", "Décadas de 40, 50 e 60", "Décadas de 70, 80 e 90", "Anos 2000", "2010 - Hoje"
         ],
         desc: null
-    },
-    {
-        titulo: "Selecione uma nacionalidade abaixo",
-        opcoes: [
-            "Qualquer uma",
-            "Brasil",
-            "USA",
-            "Japão",
-            "França",
-            "Reino Unido"
-        ],
-        imagens: [
-            "Qualquer uma",
-            '<img class="bandeira" src="https://flagcdn.com/60x45/br.png">',
-            '<img class="bandeira" src="https://flagcdn.com/60x45/us.png">',
-            '<img class="bandeira" src="https://flagcdn.com/60x45/jp.png">',
-            '<img class="bandeira" src="https://flagcdn.com/60x45/fr.png">',
-            '<img class="bandeira" src="https://flagcdn.com/60x45/gb.png">'
-        ],
-        desc: "Músicas de mais países serão adicionadas ao longo das atualizações"
-
-    },
-    {
-        titulo: "Selecione um estilo abaixo",
-        opcoes: [
-            "Qualquer um","Pop","Rock","Indie / Alternativa","R&B / Soul","Rap / Hip-Hop","Samba / Bossa Nova",
-            "Jazz","Funk Brasileiro","Axé","Dance","Eletrônica","Disco","Country"
-        ],
-        desc: null
-    },
-    {
-        titulo: "Selecione um <i>Pya</i>* abaixo",
-        opcoes: [
-            "Qualquer um","Alegre","Depressivo","Raivoso","Empoderador","Calmo","Animado","Assustador",
-            "Apaixonado","Acústico / Confortável","Épico","Nostálgico","Transcendente"
-        ],
-        desc: "* Um <i>Pya</i> é o estado emocional incentivado ou aliviado por cada música"
-    },
-    {
-        titulo: "Clique em 'ver mais' para descobrir outras músicas com as mesmas características",
-        opcoes: null,
-        desc: null
-    }
-]
+    }];
 
 //Mesma lógica do array de 'navegacao.js'
-var perguntas = [DECADA,NACAO,ESTILO,PYA,RESULT];
+var perguntas = [DECADA, NACAO, ESTILO, PYA, RESULT];
 
 //Variável que armazena os filtros
-var filtros = [];
+var filtros = ["", "", "", ""];
+var respondidas = 0;
 
-function passarPerguntas(proxPergunta){
-    for(var i = 0; i < perguntas.length; i++){
-        if(perguntas[i].id == proxPergunta){ 
-            console.log("Passando para pergunta sobre "+perguntas[i].id);
-            
-            perguntas[i].style = "display: flex";
-            //Pegando as infos do JSON e transformando em HTML
-            tituloAtual.innerHTML = pesquisa[i].titulo;
-            descAtual.innerHTML = pesquisa[i].desc;
-            //Parando se já chegou no resultado
-            if(perguntas[i].id == RESULT.id){
-                darResultados();
-                break;
-            }
-            for(var c = 0; c < pesquisa[i].opcoes.length; c++){
-                perguntas[i].innerHTML += `
-                <button id="btn${i}${c}"
-                    onclick="marcarResposta('${pesquisa[i].opcoes[c]}','${perguntas[i+1].id}')">
-                </button>`
-                var botaoAtual = document.getElementById(`btn${i}${c}`);
-                botaoAtual.innerHTML = pesquisa[i].opcoes[c];
-                if(pesquisa[i].titulo == "Selecione uma nacionalidade abaixo"){
-                    botaoAtual.innerHTML = pesquisa[i].imagens[c];
-                }
-            }
-        }
-        else{
-            perguntas[i].style = "display: none";
-        }
+function passarPerguntas() {
+    console.log("Passando para pergunta sobre " + perguntas[respondidas].id);
+    if (respondidas != 0) {
+        perguntas[respondidas - 1].style = "display: none";
     }
+    perguntas[respondidas].style = "display: flex";
 }
 
-function marcarResposta(resposta, proxPergunta){
-    filtros.push(resposta);
-    passarPerguntas(proxPergunta);
+function marcarResposta(resposta) {
+    filtros[respondidas] = "/"+resposta;
+    respondidas++;
+
+    fetch(`explorar/passo${respondidas}${filtros[0]}${filtros[1]}${filtros[2]}${filtros[3]}`, {
+        cache: 'no-store'
+    }).then(function (response) {
+        if (response.ok) {
+            // if (response.status == 100) {
+            //     console.log("No processo");
+            // }
+            // else if (response.status == 200) {
+            //     console.log("FIM");
+            // }
+            response.json().then(json => {   
+                for (var c = 0; c < json.length; c++) {
+                    perguntas[respondidas].innerHTML += `
+                        <button id="btn${respondidas+1}${c}"
+                            onclick="marcarResposta('${json[c].opcao}')">
+                            ${json[c].opcao}
+                        </button>`
+                }
+            })
+        }
+    }).catch(function (response) {
+        console.log("ERRO: ", response);
+    });
+
+
+    passarPerguntas();
 }
 
-function reiniciarExplorar(){
-    filtros = [];
-    DECADA.innerHTML = null;
+function reiniciarExplorar() {
+    filtros = ["", "", "", ""];
     NACAO.innerHTML = null;
     ESTILO.innerHTML = null;
     PYA.innerHTML = null;
@@ -114,7 +74,7 @@ function reiniciarExplorar(){
 }
 
 //Função que entrega os resultados do banco
-function darResultados(){
+function darResultados() {
     console.log(`Resultados: ${filtros}`);
     //Array de JSONs provisório até a conexão com o banco
     var albuns = [
@@ -139,23 +99,23 @@ function darResultados(){
     LISTA_albuns.innerHTML = null;
 
     TITULO_GUIA.innerHTML = "Resultados";
-    for(var i = 0; i < albuns.length; i++){
+    for (var respondidas = 0; respondidas < albuns.length; respondidas++) {
         LISTA_albuns.innerHTML += `
         <span>
-            <div class="explorarMusica" style="background-image:url('img/albuns/${albuns[i].imagem}.webp');">
-                <div class="optDispMusica" id="optDisp${i}"></div>
-                <div class="optSalvMusica" id="optSalv${i}"></div>
+            <div class="explorarMusica" style="background-image:url('img/albuns/${albuns[respondidas].imagem}.webp');">
+                <div class="optDispMusica" id="optDisp${respondidas}"></div>
+                <div class="optSalvMusica" id="optSalv${respondidas}"></div>
             </div>
-            <h4>${albuns[i].titulo}</h4>
-            <p>${albuns[i].artista}</p>
+            <h4>${albuns[respondidas].titulo}</h4>
+            <p>${albuns[respondidas].artista}</p>
         `;
-        var dispensarMusicaAtual = document.getElementById(`optDisp${i}`);
+        var dispensarMusicaAtual = document.getElementById(`optDisp${respondidas}`);
         dispensarMusicaAtual.innerHTML += `
-            <i class="fa-solid fa-x"></i>
+            <respondidas class="fa-solid fa-x"></respondidas>
         `;
-        var salvarMusicaAtual = document.getElementById(`optSalv${i}`);
+        var salvarMusicaAtual = document.getElementById(`optSalv${respondidas}`);
         salvarMusicaAtual.innerHTML += `
-            <i class="fa-solid fa-bookmark"></i>
+            <respondidas class="fa-solid fa-bookmark"></respondidas>
         `;
     }
 }

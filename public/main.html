@@ -114,12 +114,28 @@
             <!-- Começo do explorar-->
             <div class="page" id="explorar">
                 <h1 id="explorarTitulo">Explorar</h1>
-                <h2 id="perguntaTitulo"></h2>
-                <div class="pergunta" id="explorarDecada"></div>
+                <h2 id="perguntaTitulo">Selecione uma época abaixo</h2>
+                <div class="pergunta" id="explorarDecada">
+                    <button id="btn11" onclick="marcarResposta('%')">
+                        Qualquer uma
+                    </button>
+                    <button id="btn12" onclick="marcarResposta(1969)">
+                        Décadas de 40, 50 e 60
+                    </button>
+                    <button id="btn13" onclick="marcarResposta(1990)">
+                        Décadas de 70, 80 e 90
+                    </button>
+                    <button id="btn14" onclick="marcarResposta(2009)">
+                        Anos 2000
+                    </button>
+                    <button id="btn15" onclick="marcarResposta('hoje')">
+                        2010 - Hoje
+                    </button>
+                </div>
                 <div class="pergunta" id="explorarNacionalidade"></div>
                 <div class="pergunta" id="explorarEstilo"></div>
                 <div class="pergunta" id="explorarPya"></div>
-                <div class="pergunta" id="explorarResultados">
+                <div class="pergunta" id="explorarResultados" style="display:none">
                     <div id="explorarListaDeMusicas" class="listaDeMusicas"></div>
                     <span id="botoesResultado">
                         <button onclick="reiniciarExplorar()">Começar novamente</button>

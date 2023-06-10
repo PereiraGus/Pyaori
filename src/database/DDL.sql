@@ -47,7 +47,6 @@ create table pya(
 create table pyaFaixa(
     idFaixa int,
     idPya int,
-    principalOuConvidado char(1) not null,
     primary key(idFaixa, idPya),
 	foreign key(idFaixa) references faixa(idFaixa),
 	foreign key(idPya) references pya(idPya)

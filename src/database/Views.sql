@@ -24,8 +24,8 @@ select * from vwAlbum where idAlbum = 1;
 ----------------------------------------------*/
 -- --------------------------------------------
 -- Selecionar faixas de um album
--- create or replace view vwMusica as
-	select f.*, a.titulo from faixa as f
+create or replace view vwMusica as
+	select f.*, a.titulo as album from faixa as f
     join album as a on f.idAlbum = a.idAlbum;
 /*
 select * from vwFaixas where idAlbum = 1;
@@ -52,8 +52,8 @@ create procedure spUsuario(
 begin
 	insert into usuario values(null, pNickname, pDataNasc, pPronomes, default);
     insert into login values(null, pEmail, pSenha, (select idUsuario from usuario where nickname = pNickname));
-end
-DELIMITER $$
+end;
+$$
 /*
 call spUsuario('lobiClara', '2007-09-12', 'Ela', 'lobi@gmail.com', 'urubu100');
 ----------------------------------------------*/
@@ -69,8 +69,8 @@ create procedure spUpdateUsuario(
 begin
 	update usuario set nickname = pNickname, pronomes = pPronomes where idUsuario = pIdUsuario;
     update login set email = pEmail where idUsuario = pIdUsuario;
-end
-DELIMITER $$
+end;
+$$
 /*
 call spUpdateUsuario(1, 'gusPear', 'Ele', 'gus.pereira.castro@gmail.com');
 ----------------------------------------------*/

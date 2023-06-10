@@ -97,8 +97,7 @@ insert into faixa values(null,'Mas que nada','Samba / Bossa Nova',0,100,11);
 insert into faixa values(null,'Fly Me to the Moon','Jazz',0,100,12);
 insert into faixa values(null,'PLASTIC LOVE','Pop',0,100,13);
 insert into faixa values(null,'Valerie - Live At BBC Radio 1','Jazz',0,100,6);
-select * from faixa;
-SELECT * from artista;
+-- select * from faixa;
 -- -------------------------------------------------------------------------------------------
 -- ------------------------------- Ligando faixas e artistas ---------------------------------
 insert into faixaArtista values(1,1,'P'),
@@ -147,3 +146,77 @@ insert into faixaArtista values(1,1,'P'),
 							   (39,13,'P'), --
 							   (40,6,'P'); --
 -- select * from faixaArtista;
+-- -------------------------------------------------------------------------------------------
+-- ------------------------------- Inserindo pyas --------------------------------------------
+insert into pya values(null,'Alegre','1'),
+					  (null,'Depressivo','0'),
+					  (null,'Raivoso','N'),
+					  (null,'Empoderador','1'),
+					  (null,'Calmo','1'),
+					  (null,'Animado','1'),
+					  (null,'Assustador / Misterioso','N'),
+					  (null,'Apaixonado','1'),
+					  (null,'Sensual','N'),
+					  (null,'Acústico / Confortável','1'),
+					  (null,'Épico','N'),
+					  (null,'Nostálgico','1'),
+					  (null,'Transcendente','1'),
+                      (null,'Divertido','1'),
+                      (null,'Rave / Balada','N'),
+                      (null,'Excêntrico','N');
+-- select * from pya;
+-- -------------------------------------------------------------------------------------------
+-- ---------------------------- Ligando pyas e músicas ---------------------------------------
+insert into pyafaixa values(1,6),
+						   (1,8),
+						   (1,9),
+						   (1,15),
+						   (1,16),
+						   (2,7),
+						   (2,8),
+						   (2,13),
+						   (2,15),
+						   (2,16),
+						   (3,4),
+						   (3,9),
+						   (3,13),
+						   (3,16),
+						   (4,6),
+						   (4,8),
+						   (4,9),
+						   (4,14),
+						   (6,3),
+						   (6,4),
+						   (6,6),
+						   (6,9),
+						   (7,5),
+						   (7,8),
+						   (7,13),
+						   (7,16),
+						   (8,3),
+						   (8,4),
+						   (8,9),
+						   (9,4),
+						   (9,9),
+						   (10,1),
+						   (10,4),
+						   (10,5),
+						   (10,10),
+						   (11,6),
+						   (11,14),
+						   (11,15),
+						   (12,2),
+						   (13,6),
+						   (13,8),
+						   (13,14),
+						   (13,15),
+						   (14,4),
+						   (14,6),
+						   (14,11),
+						   (14,14),
+						   (15,4),
+						   (15,10),
+						   (16,1),
+						   (16,5),
+						   (16,10);
+-- select * from pyafaixa;
