@@ -1,57 +1,55 @@
 var database = require("../database/config");
 
-function nacionalidades(anoLanc){
+function nacionalidades(anoMin, anoMax){
     console.log("Explorar passo 1 - ano de laçamento e nacionalidade");
-    var command = `
-    select distinct nacionalidade as opcao
-    from faixa as f
-	join faixaartista as fa on f.idFaixa = fa.idFaixa
-    join artista as art on fa.idArtista = art.idArtista
-    join album as alb on f.idAlbum = alb.idAlbum
-    where anoLanc > ${anoLanc};`;
+    var command = `select distinct nacionalidade as opcao
+    from artista as art
+    join album as alb on art.idArtista = alb.idArtista
+    where anoLanc between ${anoMin} and ${anoMax}`;
     console.log("Comando: \n"+command);
     return database.execute(command);
 }
 
-function generos(anoLanc, nacionalidade){
+function generos(anoMin, anoMax, nacionalidade){
     console.log("Explorar passo 2 - estilo musical");
     var command = `
     select distinct genero as opcao
-    from faixa as f
-	join faixaartista as fa on f.idFaixa = fa.idFaixa
-    join artista as art on fa.idArtista = art.idArtista
-    join album as alb on f.idAlbum = alb.idAlbum
-    where anoLanc > ${anoLanc} and nacionalidade = '${nacionalidade}';`;
+    from faixa as fx
+    join faixaartista as fa on fx.idFaixa = fa.idFaixa
+    join artista as art on art.idArtista = fa.idArtista
+	join album as alb on fx.idAlbum = alb.idAlbum
+    where (anoLanc between ${anoMin} and ${anoMax}) and (nacionalidade like '${nacionalidade}');`;
     console.log("Comando: \n"+command);
     return database.execute(command);
 }
 
-function pyas(anoLanc, nacionalidade, genero){
+function pyas(anoMin, anoMax, nacionalidade, genero){
     console.log("Explorar passo 3 - pya");
     var command = `
     select distinct p.nome as opcao
-    from faixa as f
-        join faixaartista as fa on f.idFaixa = fa.idFaixa
-    join artista as art on fa.idArtista = art.idArtista
-    join album as alb on f.idAlbum = alb.idAlbum
-    join pyafaixa pf on f.idFaixa = pf.idFaixa
-    join pya as p on pf.idPya = p.idPya
-    where anoLanc > ${anoLanc} and nacionalidade = '${nacionalidade}' and genero = '${genero}';`;
+    from pya as p
+    join pyafaixa as pf on p.idPya = pf.idPya
+    join faixa as fx on pf.idFaixa = fx.idFaixa
+    join faixaartista as fa on fx.idFaixa = fa.idFaixa
+    join artista as art on art.idArtista = fa.idArtista
+	join album as alb on fx.idAlbum = alb.idAlbum
+    where (anoLanc between ${anoMin} and ${anoMax}) and (nacionalidade like '${nacionalidade}') and (genero like '${genero}');`;
     console.log("Comando: \n"+command);
     return database.execute(command);
 }
 
-function resultados(anoLanc, nacionalidade, genero, pya){
+function resultados(anoMin, anoMax, nacionalidade, genero, pya){
     console.log("Explorar passo 4 - resultados");
     var command = `
-    select distinct f.*
-    from faixa as f
-    join faixaartista as fa on f.idFaixa = fa.idFaixa
-    join artista as art on fa.idArtista = art.idArtista
-    join album as alb on f.idAlbum = alb.idAlbum
-    join pyafaixa pf on f.idFaixa = pf.idFaixa
-    join pya as p on pf.idPya = p.idPya
-    where anoLanc > ${anoLanc} and nacionalidade = '${nacionalidade}' and genero = '${genero}' and p.nome = '${pya}';`;
+    select distinct fx.*, alb.titulo as album
+    from faixa as fx
+    join pyafaixa as pf on fx.idFaixa = pf.idFaixa
+    join pya as p on p.idPya = pf.idPya
+    join faixaartista as fa on fx.idFaixa = fa.idFaixa
+    join artista as art on art.idArtista = fa.idArtista
+	join album as alb on fx.idAlbum = alb.idAlbum
+    where (anoLanc between ${anoMin} and ${anoMax}) and (nacionalidade like '${nacionalidade}') and (genero like '${genero}') and (p.nome like '${pya}')
+    order by rand();`;
     console.log("Comando: \n"+command);
     return database.execute(command);
 }

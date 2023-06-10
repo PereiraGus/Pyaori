@@ -4,19 +4,12 @@ const NACAO = document.getElementById("explorarNacionalidade");
 const ESTILO = document.getElementById("explorarEstilo");
 const PYA = document.getElementById("explorarPya");
 const RESULT = document.getElementById("explorarResultados");
+const TITULO_GUIA = document.getElementById("explorarTitulo");
+const LISTA_FAIXAS = document.getElementById("explorarListaDeMusicas");
 
 //Variáveis para adaptar o título e descrição da pergunta
 var tituloAtual = document.getElementById("perguntaTitulo");
 var descAtual = document.getElementById("perguntaDesc");
-
-var pesquisa = [
-    {
-        titulo: "Selecione uma época abaixo",
-        opcoes: [
-            "Qualquer uma", "Décadas de 40, 50 e 60", "Décadas de 70, 80 e 90", "Anos 2000", "2010 - Hoje"
-        ],
-        desc: null
-    }];
 
 //Mesma lógica do array de 'navegacao.js'
 var perguntas = [DECADA, NACAO, ESTILO, PYA, RESULT];
@@ -33,89 +26,136 @@ function passarPerguntas() {
     perguntas[respondidas].style = "display: flex";
 }
 
+var varAnoMax = 0;
 function marcarResposta(resposta) {
-    filtros[respondidas] = "/"+resposta;
+    filtros[respondidas] = resposta;
     respondidas++;
 
-    fetch(`explorar/passo${respondidas}${filtros[0]}${filtros[1]}${filtros[2]}${filtros[3]}`, {
-        cache: 'no-store'
+    switch(respondidas){
+        case 0:
+            tituloAtual.innerHTML = "Selecione uma época abaixo:";
+            break;
+        case 1:
+            tituloAtual.innerHTML = "Selecione um país abaixo:";
+            break;
+        case 2:
+            tituloAtual.innerHTML = "Selecione um gênero musical abaixo:";
+            break;
+        case 3:
+            tituloAtual.innerHTML = "Selecione um sentimento abaixo:";
+            break;
+    }
+    if(filtros[1] == ""){
+        switch(filtros[0]){
+            case 1940:
+                varAnoMax = 1969;
+                break;
+            case 1970:
+                varAnoMax = 1999
+                break;
+            case 2000:
+                varAnoMax = 2009
+                break;
+            case 0:
+            case 2010:
+                let anoAtual = new Date().getFullYear();
+                varAnoMax = anoAtual
+                break;
+        }
+    }
+    buscarOpcoes();
+}
+
+function buscarOpcoes(){    
+    fetch(`explorar/passo${respondidas}`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                anoMin: filtros[0],
+                anoMax: varAnoMax,
+                nacionalidade: filtros[1],
+                genero: filtros[2],
+                pya: filtros[3]
+            })
     }).then(function (response) {
         if (response.ok) {
-            // if (response.status == 100) {
-            //     console.log("No processo");
-            // }
-            // else if (response.status == 200) {
-            //     console.log("FIM");
-            // }
-            response.json().then(json => {   
-                for (var c = 0; c < json.length; c++) {
-                    perguntas[respondidas].innerHTML += `
-                        <button id="btn${respondidas+1}${c}"
-                            onclick="marcarResposta('${json[c].opcao}')">
-                            ${json[c].opcao}
-                        </button>`
+            response.json().then(json => {
+                if(filtros[3] == ""){
+                    for (var c = 0; c < json.length; c++) {
+                        if(c == 0){
+                            perguntas[respondidas].innerHTML += `
+                            <button id="btn%${c}"
+                                onclick="marcarResposta('%')">
+                                Qualquer um
+                            </button>`
+                        }
+                        if(respondidas == 1){
+                            perguntas[respondidas].innerHTML += `
+                            <button id="btn${respondidas+1}${c}"
+                                onclick="marcarResposta('${json[c].opcao}')">
+                                <img class="bandeira" src="https://flagcdn.com/60x45/${json[c].opcao}.png">
+                            </button>`
+                        }
+                        else{
+                            perguntas[respondidas].innerHTML += `
+                            <button id="btn${respondidas+1}${c}"
+                                onclick="marcarResposta('${json[c].opcao}')">
+                                ${json[c].opcao}
+                            </button>`
+                        }
+                    }
+                }   
+                else{
+                    if(json.length > 3){
+                        darResultados([json[1],json[2],json[3]], json.length);
+                    }
+                    else{
+                        darResultados(json, json.length);
+                    }
                 }
             })
         }
     }).catch(function (response) {
         console.log("ERRO: ", response);
     });
-
-
     passarPerguntas();
 }
 
 function reiniciarExplorar() {
     filtros = ["", "", "", ""];
+    respondidas = 0;
     NACAO.innerHTML = null;
     ESTILO.innerHTML = null;
     PYA.innerHTML = null;
+    LISTA_FAIXAS.innerHTML = null;
+    RESULT.style = "display: none";
     passarPerguntas('explorarDecada');
 }
 
 //Função que entrega os resultados do banco
-function darResultados() {
+function darResultados(faixas, quantidade) {
     console.log(`Resultados: ${filtros}`);
-    //Array de JSONs provisório até a conexão com o banco
-    var albuns = [
-        {
-            imagem: "todo-mundo-menos-eu",
-            titulo: "Todo mundo menos eu",
-            artista: "Lou Garcia"
-        },
-        {
-            imagem: "quem-me-dera",
-            titulo: "Quem Me Dera",
-            artista: "Ariana Grande"
-        },
-        {
-            imagem: "rajadao",
-            titulo: "Rajadão",
-            artista: "Pabllo Vittar"
-        }
-    ]
-    const TITULO_GUIA = document.getElementById("explorarTitulo");
-    const LISTA_albuns = document.getElementById("explorarListaDealbuns");
-    LISTA_albuns.innerHTML = null;
-
     TITULO_GUIA.innerHTML = "Resultados";
-    for (var respondidas = 0; respondidas < albuns.length; respondidas++) {
-        LISTA_albuns.innerHTML += `
+    tituloAtual.innerHTML = quantidade + " resultados encontrados";
+    LISTA_FAIXAS.innerHTML = "";
+
+    for (let i = 0; i < quantidade; i++) {
+        LISTA_FAIXAS.innerHTML += `
         <span>
-            <div class="explorarMusica" style="background-image:url('img/albuns/${albuns[respondidas].imagem}.webp');">
-                <div class="optDispMusica" id="optDisp${respondidas}"></div>
-                <div class="optSalvMusica" id="optSalv${respondidas}"></div>
+            <div class="explorarMusica" style="background-image:url('img/albuns/${faixas[i].idAlbum}.webp');">
+                <div class="optDispMusica" id="optDisp${i}"></div>
+                <div class="optSalvMusica" id="optSalv${i}"></div>
             </div>
-            <h4>${albuns[respondidas].titulo}</h4>
-            <p>${albuns[respondidas].artista}</p>
+            <h4>${faixas[i].titulo}</h4>
+            <p>${faixas[i].album}</p>
         `;
-        var dispensarMusicaAtual = document.getElementById(`optDisp${respondidas}`);
+        var dispensarMusicaAtual = document.getElementById(`optDisp${i}`);
         dispensarMusicaAtual.innerHTML += `
-            <respondidas class="fa-solid fa-x"></respondidas>
+            <i class="fa-solid fa-x"></i>
         `;
-        var salvarMusicaAtual = document.getElementById(`optSalv${respondidas}`);
+        var salvarMusicaAtual = document.getElementById(`optSalv${i}`);
         salvarMusicaAtual.innerHTML += `
-            <respondidas class="fa-solid fa-bookmark"></respondidas>
+            <i class="fa-solid fa-bookmark"></i>
         `;
     }
 }

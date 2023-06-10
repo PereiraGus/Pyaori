@@ -30,6 +30,9 @@
     text-align: center;
     font-family: 'Libre Baskerville';
 }
+#explorar h4, #explorar p{
+    color: var(--neutral);
+}
 
 .pergunta{
     width: 75%;
@@ -61,7 +64,7 @@
 }
 
 #explorarListaDeMusicas{
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 .explorarMusica{
     width: 185px;
