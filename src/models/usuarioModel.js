@@ -51,14 +51,12 @@ function trocarSenha(idUsuario, senhaAntiga, senhaNova){
 }
 
 function carregarAvaliados(idUsuario, salvoOuDispensado){
-    console.log("Trocando a senha de um usuário");
+    console.log("Carregando os itens avaliados de um usuário");
     var command = `select alb.*, art.nome as artista, av.salvoOuDispensado as salvoOuDispensado
     from album as alb
 	join artista as art on alb.idArtista = art.idArtista
-    join faixa as f on alb.idAlbum = f.idAlbum
-    join avaliacao as av on av.idFaixa = f.idFaixa
-    where idUsuario = ${idUsuario} and salvoOuDispensado = "${salvoOuDispensado}"
-    group by alb.idAlbum, av.salvoOuDispensado;`
+    join avaliacao as av on av.idAlbum = alb.idAlbum
+    where idUsuario = ${idUsuario} and salvoOuDispensado = '${salvoOuDispensado}';`
     console.log("Comando: \n"+command);
     return database.execute(command);
 }

@@ -54,46 +54,25 @@ function trocarAba(abaDestino){
 
 function carregarSalvos(){
     SALVOS.innerHTML = "";
-    //Array de JSONs provisório até a conexão com o banco
-    var albuns = [
-        {
-            id: 1,
-            imagem: "construcao",
-            titulo: "Contrução",
-            artista: "Chico Buarque"
-        },
-        {
-            id: 2,
-            imagem: "love-song",
-            titulo: "Love Song",
-            artista: "Sara Bairelles"
-        },
-        {
-            id: 3,
-            imagem: "nao-fosse-tao-tarde",
-            titulo: "Não Fosse Tão Tarde",
-            artista: "Lou Garcia"
-        },
-        {
-            id: 4,
-            imagem: "patched-up",
-            titulo: "Patched Up",
-            artista: "Beabadobee"
-        },
-        {
-            id: 5,
-            imagem: "the-blueprint-3",
-            titulo: "The Blueprint 3",
-            artista: "Jay-Z"
-        }
-    ]
-    for(var i = 0;i < albuns.length; i++){
-        SALVOS.innerHTML += `
-            <span onclick="trocarPagina(${albuns[i].id})">
-                <img src="img/albuns/${albuns[i].imagem}.webp">
-                <h4>${albuns[i].titulo}</h4>
-                <p>${albuns[i].artista}</p>
-            </span>
-        `
-    }
+    let idUsuario = perfil.id;
+
+    fetch(`usuario/carregarAvaliados/${idUsuario}/S`, {
+        cache: 'no-store',
+    }).then(function (response) {
+        if (response.ok) { response.json().then(json => {
+            for(var i = 0;i < json.length; i++){
+                SALVOS.innerHTML += `
+                    <span>
+                        <img src="img/albuns/${json[i].idAlbum}.webp" onclick="trocarPagina(${json[i].id})">
+                        <h4 onclick="trocarPagina(${json[i].id})">${json[i].titulo}</h4>
+                        <p onclick="trocarPagina(${json[i].id})">${json[i].artista}</p>
+                    </span>
+                `
+            }
+        })}
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
+
+    
 }

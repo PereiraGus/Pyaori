@@ -51,20 +51,21 @@ button{
 .listaDeMusicas{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     /* justify-content: space-between; */
     width: 100%;
     text-align: center;
 }
 .listaDeMusicas span{
-    cursor: pointer;
     word-wrap: break-word;
     margin: 0 15px 0 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 280px;
+    width: 210px;
 }
 .listaDeMusicas img{
+    cursor: pointer;
     width: 170px;
     height: 170px;
     border: solid 1px var(--purpleDark);
@@ -72,6 +73,7 @@ button{
     margin: 0 !important;
 }
 .listaDeMusicas h4, .listaDeMusicas p{
+    cursor: pointer;
     margin: 0;
     color: var(--purpleDark);
 }

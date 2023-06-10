@@ -93,6 +93,7 @@
     color: transparent;
     font-size: 50px;
     transition: 1s;
+    cursor: pointer;
 }
 .explorarMusica:hover > .optSalvMusica,
 .explorarMusica:hover > .optDispMusica{
