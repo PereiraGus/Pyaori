@@ -63,13 +63,22 @@ function carregarSalvos(){
             for(var i = 0;i < json.length; i++){
                 SALVOS.innerHTML += `
                     <span>
-                        <img src="img/albuns/${json[i].idAlbum}.webp" onclick="trocarPagina(${json[i].id})">
-                        <h4 onclick="trocarPagina(${json[i].id})">${json[i].titulo}</h4>
-                        <p onclick="trocarPagina(${json[i].id})">${json[i].artista}</p>
+                        <img src="img/albuns/${json[i].idAlbum}.webp" onclick="trocarPagina('album',${json[i].idAlbum})">
+                        <h4 onclick="trocarPagina('album',${json[i].idAlbum})">${json[i].titulo}</h4>
+                        <p onclick="trocarPagina('artista',${json[i].artista})">${json[i].artista}</p>
                     </span>
                 `
             }
         })}
+        else{
+            if(response.status == 404){
+                console.warn("Nenhum álbum salvo.");
+                SALVOS.innerHTML += `
+                <p style="text-align: center; width: 100%; margin-top: 15%">
+                    Nenhum álbum salvo. Vá para 'Explorar' para descobrir novas batidas e melodias!
+                </p>`;
+            }
+        }
     }).catch(function (response) {
         window.location = "https://http.cat/500";
     });

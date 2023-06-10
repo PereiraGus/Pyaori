@@ -1,18 +1,33 @@
 const { json } = require("express");
-var musicalModel = require("../models/musicaModel");
+var musicaModel = require("../models/musicaModel");
 
-function cadastro(nickname, dataNasc, pronomes, email, senha){
-    console.log("Inserindo novo usuário");
-    var command = `call spUsuario('${nickname}', '${dataNasc}', '${pronomes}', '${email}', '${senha}');`;
-    console.log("Comando: \n"+command);
-    return database.execute(command);
+function selecionarAlbum(req, res){
+    let idAlbum = req.params.idAlbum;
+
+    musicaModel.selecionarAlbum(idAlbum)
+        .then(function (result){
+            res.json(result);
+        })
+        .catch(function (error){
+            console.log("Houve um erro ao realizar a consulta! Erro: ", error.sqlMessage);
+            res.status(500).json(error.sqlMessage);
+        });
 }
 
-function explorarAlbum(epoca, pais, estilo, pya){
-    console.log("Explorando albums");
-    var command = `select * from vwAlbum where nacionalidade = ${pais} and `
+function selecionarArtistasMusica(req, res){
+    let idAlbum = req.params.idAlbum;
+
+    musicaModel.selecionarArtistasMusica(idAlbum)
+        .then(function (result){
+            res.json(result);
+        })
+        .catch(function (error){
+            console.log("Houve um erro ao realizar a consulta! Erro: ", error.sqlMessage);
+            res.status(500).json(error.sqlMessage);
+        });
 }
 
 module.exports = {
-
-};
+    selecionarAlbum,
+    selecionarArtistasMusica
+}

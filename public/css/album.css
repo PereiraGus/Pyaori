@@ -5,6 +5,7 @@
                         var(--purpleLight));
     color: var(--neutral);
     height: fit-content;
+    min-height: 95%;
 }
 
 
@@ -63,6 +64,7 @@
     height: 30px;
     border-radius: 100%;
     margin-right: 5px;
+    object-fit: cover;
 }
 #maisInfosAlbum span{
     cursor: pointer;
@@ -121,7 +123,16 @@
 .artistaFaixaAlbum span{
     margin: 0px !important;
     cursor: pointer;
+    display: inline-block;
 }
 .duracaoFaixaAlbum{
     margin-left: auto;
+}
+
+.faixaIndisponivel i{
+    opacity: 0.5;
+    cursor: default !important;
+}
+.avisoInd{
+    font-size: 10px;
 }

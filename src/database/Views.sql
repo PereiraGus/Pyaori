@@ -28,12 +28,13 @@ create or replace view vwMusica as
 	select f.*, a.titulo as album from faixa as f
     join album as a on f.idAlbum = a.idAlbum;
 /*
-select * from vwFaixas where idAlbum = 1;
+select * from vwMusica where idAlbum = 1;
 ----------------------------------------------*/
 -- --------------------------------------------
 -- Selecionar os artistas de uma determinada faixa
 create or replace view vwFaixaArtista as
-	select f.idFaixa, f.titulo, a.nome from faixa as f
+	select f.idFaixa, f.titulo, a.idArtista, a.nome, fa.principalOuConvidado as principalOuConvidado
+    from faixa as f
     join faixaartista as fa on f.idFaixa = fa.idFaixa
     join artista as a on fa.idArtista = a.idArtista
     order by f.idFaixa;

@@ -9,6 +9,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuario");
 var explorarRouter = require("./src/routes/explorar");
 var interacoesRouter = require("./src/routes/interacoes");
+var musicaRouter = require("./src/routes/musica");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,6 +21,7 @@ app.use("/", indexRouter);
 app.use("/usuario", usuarioRouter);
 app.use("/explorar", explorarRouter);
 app.use("/interacoes", interacoesRouter);
+app.use("/musica", musicaRouter);
 
 app.listen(PORTA, function () {
     console.log(`O servidor já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
