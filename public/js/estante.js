@@ -34,6 +34,7 @@ function trocarAba(abaDestino){
                     ABA_SALVOS.className = "abaInativa";
                     ABA_ESTATISTICAS.className = null;
                     esconderMostrarPlayer(true);
+                    estMaisOuvidas();
                     break;
                 case 'configs':
                     ABA_SALVOS.className = "abaInativa";

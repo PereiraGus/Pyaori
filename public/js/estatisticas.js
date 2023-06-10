@@ -6,35 +6,163 @@ const GRAF_ARTISTAS = document.getElementById("graficoArtistas");
 const GRAF_PAISES = document.getElementById("graficoPaises");
 const GRAF_ESTILOS = document.getElementById("graficoEstilos");
 
-const font = new FontFace("Libre Baskerville", "url(outros/LibreBaskerville-Regular.ttf)", {
-    style: "normal",
-    weight: "400",
-    stretch: "condensed",
-});
-document.fonts.add(font);
-font.load();
-document.fonts.ready.then(() => {
-    carregarGraficos();
-});
+const corPrincipal = ['#623df5d5'];
+const corPrincipalTransp = ['#623df53a'];
+const paletaCores = ['#623DF5','#CF5443','#D65880','#6CB9BB','#DBAC7E'];
+    
+Chart.defaults.font.family = "Libre Baskerville";
+Chart.defaults.color = "#CF5443";
+Chart.defaults.scale.grid.color = corPrincipalTransp;
+
+var maisOuvidas = [];
+var datasetsMaisOuvidas = [{data:[],backgroundColor:corPrincipal}];
+
+var pyas = [];
+var datasetsPyas = [{data:[],backgroundColor:paletaCores}];
+
+var artistasFavs = [];
+var datasetsArtistasFavs = [{data:[],backgroundColor:paletaCores}];
+
+var paisesFavs = [];
+var datasetsPaisesFavs = [{data:[],backgroundColor:paletaCores}];
+
+var generosFavs = [];
+var datasetsGenerosFavs = [{data:[],backgroundColor:paletaCores}];
+
+var dias = [];
+var datasetsReproducoes = [{data:[],backgroundColor:paletaCores}];
+
+function estMaisOuvidas(){
+    fetch(`estatisticas/maisOuvidas/${perfil.id}`, {
+        cache: 'no-store',
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(json => {
+                console.log(json);
+                for (let i = 0; i < json.length; i++) {
+                    maisOuvidas.push(json[i].titulo);
+                    datasetsMaisOuvidas[0].data.push(json[i].reproducoes);
+                }
+                estPya();
+            })
+
+        } 
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
+}
+function estPya(){
+    fetch(`estatisticas/pyas/${perfil.id}`, {
+        cache: 'no-store',
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(json => {
+                console.log(json);
+                for (let i = 0; i < json.length; i++) {
+                    pyas.push(json[i].nome);
+                    datasetsPyas[0].data.push(json[i].vezes);
+                }
+                estArtistasFavs();
+            })
+
+        } 
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
+}
+function estArtistasFavs(){
+    fetch(`estatisticas/artistasFavoritos/${perfil.id}`, {
+        cache: 'no-store',
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(json => {
+                console.log(json);
+                for (let i = 0; i < json.length; i++) {
+                    artistasFavs.push(json[i].nome);
+                    datasetsArtistasFavs[0].data.push(json[i].vezes);
+                }
+                estPaisesFavs();
+            })
+
+        } 
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
+}
+function estPaisesFavs(){
+    fetch(`estatisticas/paisesFavoritos/${perfil.id}`, {
+        cache: 'no-store',
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(json => {
+                console.log(json);
+                for (let i = 0; i < json.length; i++) {
+                    paisesFavs.push(json[i].nacionalidade);
+                    datasetsPaisesFavs[0].data.push(json[i].vezes);
+                }
+                estEstilosFavs();
+            })
+
+        } 
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
+}
+function estEstilosFavs(){
+    fetch(`estatisticas/estilosFavoritos/${perfil.id}`, {
+        cache: 'no-store',
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(json => {
+                console.log(json);
+                for (let i = 0; i < json.length; i++) {
+                    generosFavs.push(json[i].genero);
+                    datasetsGenerosFavs[0].data.push(json[i].vezes);
+                }
+                estReproducoes();
+            })
+
+        } 
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
+}
+function estReproducoes(){
+    fetch(`estatisticas/ultimasReproducoes/${perfil.id}`, {
+        cache: 'no-store',
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(json => {
+                console.log(json);
+
+                const font = new FontFace("Libre Baskerville", "url(outros/LibreBaskerville-Regular.ttf)", {
+                    style: "normal",
+                    weight: "400",
+                    stretch: "condensed",
+                });
+                for (let i = 0; i < json.length; i++) {
+                    dias.push(json[i].diaMes);
+                    datasetsReproducoes[0].data.push(json[i].vezes);
+                }
+                document.fonts.add(font);
+                font.load();
+
+                document.fonts.ready.then(() => {
+                    carregarGraficos();
+                });
+            })
+
+        } 
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
+}
 
 function carregarGraficos(){
-    const corPrincipal = ['#623df5d5'];
-    const corPrincipalTransp = ['#623df53a'];
-    const paletaCores = ['#623DF5','#CF5443','#D65880','#6CB9BB','#DBAC7E'];
-    
-    Chart.defaults.font.family = "Libre Baskerville";
-    Chart.defaults.color = "#CF5443";
-    Chart.defaults.scale.grid.color = corPrincipalTransp;
-
     //------- GRÁFICO DAS MAIS OUVIDAS -------------
-    const maisOuvidas = ['MANiCURE','Applause','Aura','Stay with me','Quem me dera','Ai-Wa Energy','Todo Mundo (menos eu)','Cor','Say So/Like That','Bad Girls'];
-    const reprodcsMaisOuvidas = [47,31,29,20,18,13,9,6,4,2]
     const dadosMaisOuvidas = {
         labels: maisOuvidas,
-        datasets: [{
-            data: reprodcsMaisOuvidas,
-            backgroundColor: corPrincipal
-        }]
+        datasets: datasetsMaisOuvidas
     }
     const configMaisOuvidas = {
         type: "bar",
@@ -49,14 +177,9 @@ function carregarGraficos(){
         GRAF_MAIS_OUVIDAS, configMaisOuvidas
     );
     //--------- GRÁFICO DOS PYAS --------------
-    const pyas = ['Alegre','Animado','Raivoso','Transcendente','Depressivo'];
-    const qtdPyas = [17,12,8,4,2];
     const dadosPyas = {
         labels: pyas,
-        datasets: [{
-            data: qtdPyas,
-            backgroundColor: paletaCores
-        }]
+        datasets: datasetsPyas
     }
     const configPyas = {
         type: "pie",
@@ -72,14 +195,9 @@ function carregarGraficos(){
         GRAF_PYAS, configPyas
     )    
     //--------- GRÁFICO DOS ARTISTAS --------------
-    const artistas = ['Lady Gaga','Lou Garcia','Ana Vitória','Miki Matsubara','Outros'];
-    const qtdArtistas = [22,19,10,8,39];
     const dadosArtistas = {
-        labels: artistas,
-        datasets: [{
-            data: qtdArtistas,
-            backgroundColor: paletaCores
-        }]
+        labels: artistasFavs,
+        datasets: datasetsArtistasFavs
     }
     const configArtistas = {
         type: "pie",
@@ -94,14 +212,9 @@ function carregarGraficos(){
         GRAF_ARTISTAS, configArtistas
     )
     //------- GRÁFICO DOS PAÍSES ------------------
-    const paises = ['Brasil','EUA','Japão','França','Outros'];
-    const qtdPaises = [42,38,5,6,4];
     const dadosPaises = {
-        labels: paises,
-        datasets: [{
-            data: qtdPaises,
-            backgroundColor: paletaCores
-        }]
+        labels: paisesFavs,
+        datasets: datasetsPaisesFavs
     }
     const configPaises = {
         type: "pie",
@@ -116,14 +229,9 @@ function carregarGraficos(){
         GRAF_PAISES, configPaises
     )
     //------- GRÁFICO DOS ESTILOS ------------------
-    const estilos = ['Pop','Alternativa','Dance','Samba','Outros'];
-    const qtdEstilos = [55,32,12,8,4];
     const dadosEstilos = {
-        labels: estilos,
-        datasets: [{
-            data: qtdEstilos,
-            backgroundColor: paletaCores
-        }]
+        labels: generosFavs,
+        datasets: datasetsGenerosFavs
     }
     const configEstilos = {
         type: "pie",
@@ -138,16 +246,9 @@ function carregarGraficos(){
         GRAF_ESTILOS, configEstilos
     )
     //------- GRÁFICO DAS REPRODUÇÕES ---------
-    const dias = ['06/05','07/05','08/05','09/05','10/05','11/05','12/05'];
-    const qtdReprodcs = [2,4,8,3,0,6,5];
     const dadosReprodcs = {
         labels: dias,
-        datasets: [{
-            data: qtdReprodcs,
-            borderColor: corPrincipal,
-            tension: 0.5,
-            pointStyle: 'star'
-        }]
+        datasets: datasetsReproducoes
     }
     const configReprodcs = {
         type: "line",

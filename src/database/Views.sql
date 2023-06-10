@@ -48,6 +48,80 @@ select alb.*, art.nome as artista, av.salvoOuDispensado as salvoOuDispensado
     join avaliacao as av on av.idAlbum = alb.idAlbum
     where idUsuario = 1;
 -- --------------------------------------------
+-- ------- Ver as 10 faixas mais ouvidas -------
+create or replace view vwMaisOuvidas as
+select u.idUsuario, titulo, count(r.idFaixa) as reproducoes from reproducao as r
+	   join faixa as f on r.idFaixa = f.idFaixa
+       join usuario as u on r.idUsuario = u.idUsuario
+       group by u.idUsuario, f.idFaixa
+	   order by reproducoes desc
+       limit 10;
+/*
+select * from vwMaisOuvidas where idUsuario = 1;
+----------------------------------------------*/
+-- Ver os Pyas mais influentes em determinado usuário
+create or replace view vwPyasUsuario as
+select u.idUsuario, p.nome, count(r.idFaixa) as vezes from reproducao as r
+	join faixa as f on f.idFaixa = r.idFaixa
+    join pyafaixa as pf on f.idFaixa = pf.idFaixa
+    join pya as p on pf.idPya = p.idPya
+    join usuario as u on r.idUsuario = u.idUsuario
+    group by u.idUsuario, p.nome
+	order by vezes desc
+	limit 10;
+/*
+select * from vwPyasUsuario where idUsuario = 1;
+----------------------------------------------*/
+-- Ver os artistas favoritos de um determinado usuário
+create or replace view vwArtistasFavoritos as
+select u.idUsuario, a.nome, count(r.idFaixa) as vezes from reproducao as r
+	join faixa as f on f.idFaixa = r.idFaixa
+    join faixaartista as fa on f.idFaixa = fa.idFaixa
+    join artista as a on a.idArtista = fa.idArtista
+    join usuario as u on r.idUsuario = u.idUsuario
+    group by u.idUsuario, a.nome
+	order by vezes desc
+	limit 10;
+/*
+select * from vwArtistasFavoritos where idUsuario = 1;
+----------------------------------------------*/
+-- Ver os países favoritos de um determinado usuário
+create or replace view vwPaisesFavoritos as
+select u.idUsuario, a.nacionalidade, count(r.idFaixa) as vezes from reproducao as r
+	join faixa as f on f.idFaixa = r.idFaixa
+    join faixaartista as fa on f.idFaixa = fa.idFaixa
+    join artista as a on a.idArtista = fa.idArtista
+    join usuario as u on r.idUsuario = u.idUsuario
+    group by u.idUsuario, a.nacionalidade
+	order by vezes desc
+	limit 10;
+/*
+select * from vwPaisesFavoritos where idUsuario = 1;
+----------------------------------------------*/
+-- Ver os gêneros musicais favoritos de um determinado usuário
+create or replace view vwGenerosFavoritos as
+select u.idUsuario, f.genero, count(r.idFaixa) as vezes from reproducao as r
+	join faixa as f on f.idFaixa = r.idFaixa
+    join usuario as u on r.idUsuario = u.idUsuario
+    group by u.idUsuario, f.genero
+	order by vezes desc
+	limit 10;
+/*
+select * from vwGenerosFavoritos where idUsuario = 1;
+----------------------------------------------*/
+-- Ver últimas reproduções de um determinado usuário
+create or replace view vwReproducoes as
+select
+	u.idUsuario,
+	DATE_FORMAT(r.dataHora,'%d/%m') as diaMes,
+	count(r.idFaixa) as vezes from reproducao as r
+    join usuario as u on r.idUsuario = u.idUsuario
+    group by u.idUsuario, diaMes
+    order by vezes desc
+	limit 10;
+/*
+select * from vwReproducoes where idUsuario = 1;
+----------------------------------------------*/
 -- Inserir usuário e login juntos
 DELIMITER $$
 create procedure spUsuario(
