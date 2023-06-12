@@ -157,3 +157,34 @@ $$
 /*
 call spUpdateUsuario(1, 'gusPear', 'Ele', 'gus.pereira.castro@gmail.com');
 ----------------------------------------------*/
+-- --------------------------------------------
+-- Recomendar álbuns para um determinado usuário baseado em seus gostos
+DELIMITER $$
+create procedure spRecomendar(
+	pidUsuario int
+)
+begin
+select distinct alb.idAlbum, alb.titulo, art.nome from album as alb
+	join artista as art on art.idArtista = alb.idArtista
+    join faixa as f on f.idAlbum = alb.idAlbum
+    where(
+		genero in(select distinct genero from faixa as f
+						join album as alb on f.idAlbum = alb.idAlbum
+						join avaliacao as av on f.idFaixa = alb.idAlbum
+                        where idUsuario = pidUsuario)
+		or art.nome in(select distinct art.nome from artista as art
+						join album as alb on alb.idArtista = art.idArtista
+						join avaliacao as av on av.idAlbum = alb.idAlbum
+						where idUsuario = pidUsuario)
+		or art.nacionalidade in(select distinct art.nacionalidade from artista as art
+						join album as alb on alb.idArtista = art.idArtista
+						join avaliacao as av on av.idAlbum = alb.idAlbum
+						where idUsuario = pidUsuario)
+		)
+        and alb.idAlbum not in (select idAlbum from avaliacao where idUsuario = pidUsuario
+        )
+	order by rand() limit 5;
+end;
+$$/*
+call spRecomendar(1);
+*/

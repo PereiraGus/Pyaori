@@ -61,6 +61,13 @@ function carregarAvaliados(idUsuario, salvoOuDispensado){
     return database.execute(command);
 }
 
+function gerarRecomendacoes(idUsuario){
+    console.log("Gerando as recomendações de um usuário");
+    var command = `call spRecomendar(${idUsuario});`
+    console.log("Comando: \n"+command);
+    return database.execute(command);
+}
+
 module.exports = {
     cadastro,
     login,
@@ -68,5 +75,6 @@ module.exports = {
     atualizar,
     trocarAvatar,
     trocarSenha,
-    carregarAvaliados
+    carregarAvaliados,
+    gerarRecomendacoes
 };

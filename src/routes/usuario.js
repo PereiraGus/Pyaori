@@ -31,4 +31,8 @@ router.get("/carregarAvaliados/:idUsuario/:salvoOuDispensado", function(req, res
     usuarioController.carregarSalvos(req, res);
 })
 
+router.get("/gerarRecomendacoes/:idUsuario", function(req, res){
+    usuarioController.gerarRecomendacoes(req, res);
+})
+
 module.exports = router;

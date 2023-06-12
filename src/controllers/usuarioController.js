@@ -173,6 +173,27 @@ function carregarSalvos(req, res){
         });
 }
 
+function gerarRecomendacoes(req, res){
+    let idUsuario = req.params.idUsuario;
+
+    usuarioModel.gerarRecomendacoes(idUsuario)
+        .then(function (result){
+            if(result.length > 0){
+                console.log(result);
+                res.json(result[0]);
+            }
+            else{
+                res.status(404).send("Não foi possível gerar recomendações");
+            }
+        })
+        .catch(function (error){
+            console.log(error);
+            console.log(`Erro ao gerar as recomendações de um usuário:\n ${error.sqlMessage}`);
+            res.status(500).json(error.sqlMessage);
+        });
+}
+
+
 module.exports = {
     cadastro,
     login,
@@ -180,5 +201,6 @@ module.exports = {
     atualizar,
     trocarAvatar,
     trocarSenha,
-    carregarSalvos
+    carregarSalvos,
+    gerarRecomendacoes
 }
