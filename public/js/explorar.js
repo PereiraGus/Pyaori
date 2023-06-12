@@ -114,7 +114,9 @@ function buscarOpcoes(){
         else{
             if(response.status == 404){
                 tituloAtual.innerHTML = "0 resultados restantes";
-                perguntas[respondidas].innerHTML = "<p style='text-align: center'>Todos os álbuns existentes com essas características já foram salvos ou dispensados. Para verificar os salvos, acesse a aba 'Sua Estante'</p>";
+                perguntas[respondidas].style = "display: none";
+                RESULT.style = "display: flex";
+                explorarListaDeMusicas.innerHTML = "<p style='text-align: center'>Todos os álbuns existentes com essas características já foram salvos ou dispensados. Para verificar os salvos, acesse a aba 'Sua Estante'</p>";
                 console.warn("Nenhum álbum encontrada");
             }
         }
@@ -141,6 +143,12 @@ function darResultados(result) {
     TITULO_GUIA.innerHTML = "Resultados";
     tituloAtual.innerHTML = result.length + " resultados encontrados";
     LISTA_FAIXAS.innerHTML = "";
+    if(result.length >3){
+        btnVerMais.style = "display: block";
+    }
+    else{
+        btnVerMais.style = "display: none";
+    }
 
     let faixas = [];
     let numsSorteados = [];

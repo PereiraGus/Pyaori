@@ -158,7 +158,7 @@ function carregarSalvos(req, res){
 
     usuarioModel.carregarAvaliados(idUsuario, salvoOuDispensado)
         .then(function (result){
-            if(result.length > 1){
+            if(result.length > 0){
                 console.log(result);
                 res.json(result);
             }
