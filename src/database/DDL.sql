@@ -24,7 +24,6 @@ create table faixa(
     titulo varchar(65) not null,
     genero varchar(50) not null,
     explicita char(1) not null,
-    positividade tinyint not null,
 	idAlbum int not null,
     foreign key(idAlbum) references album(idAlbum)
 );

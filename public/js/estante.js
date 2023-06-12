@@ -23,6 +23,7 @@ function esconderMostrarPlayer(estadoDoPlayer){
 
 function trocarAba(abaDestino){
     linkSuporteTecnico.style = "display: none";
+    estatisticasErro.style = "display: none";
     for(var i = 0; i < abas.length; i++){
         if(abas[i].id == abaDestino){
             switch (abaDestino) {

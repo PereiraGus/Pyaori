@@ -4,9 +4,18 @@ const MAIS_INFOS_ALBUM = document.getElementById("maisInfosAlbum");
 const DIV_FAIXAS_ALBUM = document.getElementById("faixasAlbum");
 
 function carregarAlbum(idAlbum) {
+    IMG_CAPA_ALBUM.style = "visibility: hidden";
+    TITULO_ALBUM.innerHTML = "";
     MAIS_INFOS_ALBUM.innerHTML = "";
     DIV_FAIXAS_ALBUM.innerHTML = "";
-
+    cabecalhoAlbum.className = "loading";
+    setTimeout(()=>{
+        selecionarAlbum(idAlbum);
+        cabecalhoAlbum.className = "";
+        IMG_CAPA_ALBUM.style = "visibility: visible";
+    },500);
+}
+function selecionarAlbum(idAlbum){
     fetch(`musica/selecionarAlbum/${idAlbum}`, {
         cache: 'no-store',
     }).then(function (response) {

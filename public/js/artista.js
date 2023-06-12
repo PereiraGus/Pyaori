@@ -5,6 +5,17 @@ const ESTILO_ARTISTA = document.getElementById("estiloArtista");
 const DISCOGRAFIA_ARTISTA = document.getElementById("discografiaArtista");
 
 function carregarArtista(idArtista){
+    NOME_ARTISTA.innerHTML = "";
+    FOTO_ARTISTA.src = "img/loading.gif";
+    BANDEIRA_NACAO_ARTISTA.src = "";
+    ESTILO_ARTISTA.innerHTML = "";
+    DISCOGRAFIA_ARTISTA.innerHTML = "";
+    setTimeout(()=>{
+        selecionarArtista(idArtista);
+    },500);
+}
+
+function selecionarArtista(idArtista){
     DISCOGRAFIA_ARTISTA.innerHTML = "";
     fetch(`musica/selecionarDiscografiaArtista/${idArtista}`, {
         cache: 'no-store',

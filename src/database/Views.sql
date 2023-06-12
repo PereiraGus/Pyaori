@@ -124,15 +124,13 @@ select
 /*
 select * from vwReproducoes where idUsuario = 1;
 ----------------------------------------------*/
-create or replace view vwDiscografia as
 select art.idArtista, nome, nacionalidade, gen.genero as generoPrinc, idAlbum, titulo, anoLanc from artista as art
 	left join album as alb on art.idArtista = alb.idArtista
 	join(select idArtista, genero, count(f.idFaixa) as vezes from faixa as f
 			join faixaartista as fa on f.idFaixa = fa.idFaixa
-            group by idArtista, genero order by vezes desc) as gen on gen.idArtista = art.idArtista;
-/*
-select * from vwDiscografia where idArtista = 1;
-----------------------------------------------*/
+            where idArtista = 6
+            group by idArtista, genero order by vezes desc limit 1) as gen on gen.idArtista = art.idArtista;
+-- --------------------------------------------
 -- Inserir usuário e login juntos
 DELIMITER $$
 create procedure spUsuario(

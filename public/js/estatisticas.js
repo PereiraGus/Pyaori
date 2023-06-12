@@ -33,20 +33,43 @@ var dias = [];
 var datasetsReproducoes = [{data:[],backgroundColor:paletaCores}];
 
 function estMaisOuvidas(){
+    let erro = false;
     fetch(`estatisticas/maisOuvidas/${perfil.id}`, {
         cache: 'no-store',
     }).then(function (response) {
         if (response.ok) {
             response.json().then(json => {
                 console.log(json);
-                for (let i = 0; i < json.length; i++) {
-                    maisOuvidas.push(json[i].titulo);
-                    datasetsMaisOuvidas[0].data.push(json[i].reproducoes);
+                if(json.length >= 10){
+                    estanteEstatisticas.style = "display: flex";
+                    estatisticasErro.style = "display: none";
+                    
+                    for (let i = 0; i < json.length; i++) {
+                        maisOuvidas.push(json[i].titulo);
+                        datasetsMaisOuvidas[0].data.push(json[i].reproducoes);
+                    }
+                    estPya();
                 }
-                estPya();
+                else{
+                    estatisticasErro.style = "display: flex";
+                    estanteEstatisticas.style = "display: none";
+                                
+                    estatisticasErro.innerHTML = `
+                        <h2>Calma lá, ${perfil.nome}!<br>Você precisa ouvir no mínimo 10 faixas diferentes para 
+                        poder acessar suas estatísticas!</h2>
+                        <img src="img/mafematics.jpg">`;
+                }
             })
-
-        } 
+        }
+        else if(response.status == 404){
+            estatisticasErro.style = "display: flex";
+            estanteEstatisticas.style = "display: none";
+                        
+            estatisticasErro.innerHTML = `
+                <h2>Calma lá, ${perfil.nome}!<br>Você precisa ouvir no mínimo 10 faixas diferentes para 
+                poder acessar suas estatísticas!</h2>
+                <img src="img/mafematics.jpg">`;
+        }
     }).catch(function (response) {
         window.location = "https://http.cat/500";
     });

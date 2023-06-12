@@ -1,3 +1,7 @@
+if(sessionStorage.ID_USUARIO != undefined){
+    window.location = "main.html";
+}
+
 function marcarErro(alvo, mensagem){
     for (let i = 0; i < alvo.length; i++) {
         alvo[i].className += " erro";

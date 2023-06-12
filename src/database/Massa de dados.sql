@@ -57,46 +57,46 @@ insert into album values(null,'ARTPOP','Album',2013,1),
 -- select * from album;
 -- -------------------------------------------------------------------------------------------
 -- ------------------------------------- Inserindo faixas ------------------------------------
-insert into faixa values(null,'Aura','Pop',1,100,1),
-						(null,'Venus','Pop',1,100,1),
-						(null,'G.U.Y.','Pop',1,100,1),
-						(null,'Sexxx Dreams','Pop',1,100,1),
-						(null,"Jewels N' Drugs",'Pop',1,100,1),
-						(null,'MANiCURE','Pop',1,100,1),
-						(null,'ARTPOP','Pop',1,100,1),
-						(null,'Swine','Pop',1,100,1),
-						(null,'Donatella','Pop',1,100,1),
-						(null,'Fashion!','Pop',0,100,1),
-						(null,'Mary Jane Holland','Pop',1,100,1),
-						(null,'Dope','Pop',1,100,1),
-						(null,'Gipsy','Pop',0,100,1),
-						(null,'Applause','Pop',0,100,1);
-insert into faixa values(null,'Flow Espacial','Rap / Hip-Hop',1,100,2);
-insert into faixa values(null,'Garota de Ipanema','Samba / Bossa Nova',0,100,3);
-insert into faixa values(null,'Mayonaka no Door / Stay With Me','Pop',0,100,4),
-                        (null,'Ai wa Energy','Pop',0,100,4);
-insert into faixa values(null,'Bad Girls','Rap / Hip-Hop',0,100,5);
-insert into faixa values(null,'Rehab','R&B / Soul',0,100,6),
-						(null,"You Know I'm No Good",'R&B / Soul',0,100,6),
-						(null,"Me & Mr. Jones",'R&B / Soul',1,100,6),
-						(null,"Just Friends",'R&B / Soul',1,100,6),
-						(null,"Back to Black",'R&B / Soul',1,100,6),
-						(null,"Love Is a Losing Game",'R&B / Soul',0,100,6),
-						(null,"Tears Dry on their Own",'R&B / Soul',1,100,6),
-						(null,"Wake Up Alone",'R&B / Soul',0,100,6),
-						(null,"Some Unholy War",'R&B / Soul',0,100,6),
-						(null,"He Can Only Hold Her",'R&B / Soul',0,100,6),
-						(null,"Addicted",'R&B / Soul',0,100,6);
-insert into faixa values(null,'A Pearl','Indie / Alternativa',0,100,7),
-						(null,'Nobody','Pop',0,100,7),
-                        (null,'Washing Machine Heart','Rock',0,100,7);
-insert into faixa values(null,'Brisa','Reggae',0,100,8);
-insert into faixa values(null,'Amarelo, Azul e Branco','Folk',0,100,9);
-insert into faixa values(null,'Erva Venenosa','Rock',0,100,10);
-insert into faixa values(null,'Mas que nada','Samba / Bossa Nova',0,100,11);
-insert into faixa values(null,'Fly Me to the Moon','Jazz',0,100,12);
-insert into faixa values(null,'PLASTIC LOVE','Pop',0,100,13);
-insert into faixa values(null,'Valerie - Live At BBC Radio 1','Jazz',0,100,6);
+insert into faixa values(null,'Aura','Pop',1,1),
+						(null,'Venus','Pop',1,1),
+						(null,'G.U.Y.','Pop',1,1),
+						(null,'Sexxx Dreams','Pop',1,1),
+						(null,"Jewels N' Drugs",'Pop',1,1),
+						(null,'MANiCURE','Pop',1,1),
+						(null,'ARTPOP','Pop',1,1),
+						(null,'Swine','Pop',1,1),
+						(null,'Donatella','Pop',1,1),
+						(null,'Fashion!','Pop',0,1),
+						(null,'Mary Jane Holland','Pop',1,1),
+						(null,'Dope','Pop',1,1),
+						(null,'Gipsy','Pop',0,1),
+						(null,'Applause','Pop',0,1);
+insert into faixa values(null,'Flow Espacial','Rap / Hip-Hop',1,2);
+insert into faixa values(null,'Garota de Ipanema','Samba / Bossa Nova',0,3);
+insert into faixa values(null,'Mayonaka no Door / Stay With Me','Pop',0,4),
+                        (null,'Ai wa Energy','Pop',0,4);
+insert into faixa values(null,'Bad Girls','Rap / Hip-Hop',0,5);
+insert into faixa values(null,'Rehab','R&B / Soul',0,6),
+						(null,"You Know I'm No Good",'R&B / Soul',0,6),
+						(null,"Me & Mr. Jones",'R&B / Soul',1,6),
+						(null,"Just Friends",'R&B / Soul',1,6),
+						(null,"Back to Black",'R&B / Soul',1,6),
+						(null,"Love Is a Losing Game",'R&B / Soul',0,6),
+						(null,"Tears Dry on their Own",'R&B / Soul',1,6),
+						(null,"Wake Up Alone",'R&B / Soul',0,6),
+						(null,"Some Unholy War",'R&B / Soul',0,6),
+						(null,"He Can Only Hold Her",'R&B / Soul',0,6),
+						(null,"Addicted",'R&B / Soul',0,6);
+insert into faixa values(null,'A Pearl','Indie / Alternativa',0,7),
+						(null,'Nobody','Pop',0,7),
+                        (null,'Washing Machine Heart','Rock',0,7);
+insert into faixa values(null,'Brisa','Reggae',0,8);
+insert into faixa values(null,'Amarelo, Azul e Branco','Folk',0,9);
+insert into faixa values(null,'Erva Venenosa','Rock',0,10);
+insert into faixa values(null,'Mas que nada','Samba / Bossa Nova',0,11);
+insert into faixa values(null,'Fly Me to the Moon','Jazz',0,12);
+insert into faixa values(null,'PLASTIC LOVE','Pop',0,13);
+insert into faixa values(null,'Valerie - Live At BBC Radio 1','Jazz',0,6);
 -- select * from faixa;
 -- -------------------------------------------------------------------------------------------
 -- ------------------------------- Ligando faixas e artistas ---------------------------------

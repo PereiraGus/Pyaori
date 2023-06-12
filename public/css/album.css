@@ -136,3 +136,10 @@
 .avisoInd{
     font-size: 10px;
 }
+
+.loading{
+    background-image: url('../img/loading.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100px;
+}
