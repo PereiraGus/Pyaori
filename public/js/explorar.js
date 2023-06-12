@@ -75,7 +75,8 @@ function buscarOpcoes(){
                 anoMax: varAnoMax,
                 nacionalidade: filtros[1],
                 genero: filtros[2],
-                pya: filtros[3]
+                pya: filtros[3],
+                idUsuario: perfil.id
             })
     }).then(function (response) {
         if (response.ok) {

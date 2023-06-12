@@ -11,10 +11,12 @@ var abas = [SALVOS,ESTATISTICAS,CONFIGS];
 function esconderMostrarPlayer(estadoDoPlayer){
     if(estadoDoPlayer){
         player.style = "display: flex";
+        playerCapaFaixa.style = "display: block";
         main.className = "";
     }
     else{
         player.style = "display: none";
+        playerCapaFaixa.style = "display: none";
         main.className = "mainPaginaInteira";
     }
 }

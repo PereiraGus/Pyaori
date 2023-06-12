@@ -71,8 +71,9 @@ function resultados(req, res) {
     let nacionalidade = req.body.nacionalidade;
     let genero = req.body.genero;
     let pya = req.body.pya;
+    let idUsuario = req.body.idUsuario;
 
-    explorarModel.resultados(anoMin, anoMax, nacionalidade, genero, pya)
+    explorarModel.resultados(anoMin, anoMax, nacionalidade, genero, pya, idUsuario)
         .then(function (result) {
             if (result.length > 0) {
                 console.log(result);

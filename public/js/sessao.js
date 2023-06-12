@@ -42,5 +42,8 @@ function encerrarSessao(){
     sessionStorage.PRONOME_USUARIO = undefined;
     sessionStorage.EMAIL_USUARIO = undefined;
 
-    window.location = "index.html";
+    sfx.sair.play();
+    setInterval(() => {
+        window.location = "index.html";
+    },1000)
 }

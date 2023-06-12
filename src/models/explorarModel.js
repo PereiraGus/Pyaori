@@ -38,7 +38,7 @@ function pyas(anoMin, anoMax, nacionalidade, genero){
     return database.execute(command);
 }
 
-function resultados(anoMin, anoMax, nacionalidade, genero, pya){
+function resultados(anoMin, anoMax, nacionalidade, genero, pya, idUsuario){
     console.log("Explorar passo 4 - resultados");
     var command = `
     select distinct alb.*, art.nome as artista
@@ -48,7 +48,7 @@ function resultados(anoMin, anoMax, nacionalidade, genero, pya){
     join pya as p on p.idPya = pf.idPya
     join faixaartista as fa on fx.idFaixa = fa.idFaixa
     join artista as art on art.idArtista = alb.idArtista
-    where (anoLanc between ${anoMin} and ${anoMax}) and (nacionalidade like '${nacionalidade}') and (genero like '${genero}') and (p.nome like '${pya}') and (alb.idAlbum not in(select idAlbum from avaliacao))
+    where (anoLanc between ${anoMin} and ${anoMax}) and (nacionalidade like '${nacionalidade}') and (genero like '${genero}') and (p.nome like '${pya}') and (alb.idAlbum not in(select idAlbum from avaliacao where idUsuario = ${idUsuario}))
     order by rand();`;
     console.log("Comando: \n"+command);
     return database.execute(command);
