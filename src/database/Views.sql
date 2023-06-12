@@ -124,6 +124,15 @@ select
 /*
 select * from vwReproducoes where idUsuario = 1;
 ----------------------------------------------*/
+create or replace view vwDiscografia as
+select art.idArtista, nome, nacionalidade, gen.genero as generoPrinc, idAlbum, titulo, anoLanc from artista as art
+	left join album as alb on art.idArtista = alb.idArtista
+	join(select idArtista, genero, count(f.idFaixa) as vezes from faixa as f
+			join faixaartista as fa on f.idFaixa = fa.idFaixa
+            group by idArtista, genero order by vezes desc) as gen on gen.idArtista = art.idArtista;
+/*
+select * from vwDiscografia where idArtista = 1;
+----------------------------------------------*/
 -- Inserir usuário e login juntos
 DELIMITER $$
 create procedure spUsuario(
@@ -164,7 +173,8 @@ create procedure spRecomendar(
 	pidUsuario int
 )
 begin
-select distinct alb.idAlbum, alb.titulo, art.nome from album as alb
+select distinct alb.idAlbum, alb.titulo, art.nome 
+	from album as alb
 	join artista as art on art.idArtista = alb.idArtista
     join faixa as f on f.idAlbum = alb.idAlbum
     where(

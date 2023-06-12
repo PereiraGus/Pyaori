@@ -6,7 +6,13 @@ function maisOuvidas(req, res){
 
     estatisticasModel.maisOuvidas(idUsuario)
         .then(function (result){
-            res.json(result);
+            if(result.length > 0){
+                console.log(result);
+                res.json(result);
+            }
+            else{
+                res.status(404).json("Esse usuário não ouviu nenhuma música.");
+            }
         })
         .catch(function (error){
             console.log("Houve um erro ao realizar a consulta! Erro: ", error.sqlMessage);

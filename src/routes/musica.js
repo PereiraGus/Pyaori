@@ -11,4 +11,8 @@ router.get("/selecionarArtistasMusica/:idAlbum", function(req, res){
     musicaController.selecionarArtistasMusica(req, res);
 });
 
+router.get("/selecionarDiscografiaArtista/:idArtista", function(req, res){
+    musicaController.selecionarDiscografiaArtista(req, res);
+});
+
 module.exports = router;

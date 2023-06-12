@@ -16,7 +16,15 @@ function selecionarArtistasMusica(idFaixa){
     return database.execute(command);
 }
 
+function selecionarDiscografiaArtista(idArtista){
+    console.log("Carregando a discografia de um artista");
+    var command = `select * from vwDiscografia where idArtista = ${idArtista};`;
+    console.log("Comando: \n"+command);
+    return database.execute(command);
+}
+
 module.exports = {
     selecionarAlbum,
-    selecionarArtistasMusica
+    selecionarArtistasMusica,
+    selecionarDiscografiaArtista
 };

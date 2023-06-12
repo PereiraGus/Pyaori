@@ -27,7 +27,21 @@ function selecionarArtistasMusica(req, res){
         });
 }
 
+function selecionarDiscografiaArtista(req, res){
+    let idArtista = req.params.idArtista;
+
+    musicaModel.selecionarDiscografiaArtista(idArtista)
+        .then(function (result){
+            res.json(result);
+        })
+        .catch(function (error){
+            console.log("Houve um erro ao realizar a consulta! Erro: ", error.sqlMessage);
+            res.status(500).json(error.sqlMessage);
+        });
+}
+
 module.exports = {
     selecionarAlbum,
-    selecionarArtistasMusica
+    selecionarArtistasMusica,
+    selecionarDiscografiaArtista
 }

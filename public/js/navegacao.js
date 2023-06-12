@@ -28,7 +28,7 @@ function trocarPagina(paginaDeDestino, identificador){
                     carregarAlbum(identificador);
                     break;
                 case 'artista':
-                    carregarArtista(identificador-1);
+                    carregarArtista(identificador);
                     break;
                 case 'explorar':
                     reiniciarExplorar();

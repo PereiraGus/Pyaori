@@ -29,3 +29,10 @@ h1{
 #saudacao img{
     height: 50px;
 }
+
+#favsVazio, #recommendsVazio{
+    margin: 5% 0;
+    color: var(--purpleDark);
+    font-weight: normal;
+    font-family: 'Libre Baskerville';
+}

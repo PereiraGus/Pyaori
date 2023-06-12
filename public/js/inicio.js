@@ -22,6 +22,9 @@ function carregarFavs() {
                 }
             })
         }
+        else if(response.status == 404){
+            inicioFavs.innerHTML += `<h2 id="favsVazio">Opa ${perfil.nome}, como vai? Percebemos que você ainda não ouviu nada, então essa sessão aqui ficou vazia. Quando você se sentir à vontade, acesse um álbum, ouça algumas faixas e então poderemos atualizar esta parte.</h2>`;
+        }
     }).catch(function (response) {
         window.location = "https://http.cat/500";
     });
@@ -45,6 +48,9 @@ function carregarRecomends() {
                             `
                 }
             })
+        }
+        else if(response.status == 404){
+            inicioRecomends.innerHTML += `<h2 id="recommendsVazio">Eaí ${perfil.nome}! A gente ainda não se conhece muito bem, então não sabemos o que recomendar à você. Salve algumas músicas e saberemos melhor que tipo de som você curte.</h2>`;
         }
     }).catch(function (response) {
         window.location = "https://http.cat/500";

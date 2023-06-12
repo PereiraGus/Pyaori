@@ -178,7 +178,7 @@ function gerarRecomendacoes(req, res){
 
     usuarioModel.gerarRecomendacoes(idUsuario)
         .then(function (result){
-            if(result.length > 0){
+            if(result[0].length > 0){
                 console.log(result);
                 res.json(result[0]);
             }
