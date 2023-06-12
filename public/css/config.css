@@ -44,7 +44,7 @@
 }
 
 .infosConfig input, .infosConfig select{
-    color: var(--purpleDark);
+    color: var(--orangeDark);
     font-family: 'Roxborough CF';
     font-size: 22px;
     font-weight: bold;
@@ -55,11 +55,15 @@
     width: 75%;
 }
 .infosConfig input:disabled, .infosConfig select:disabled{
-    color: var(--orangeDark);
+    color: var(--purpleLight);
     font-family: 'Roxborough CF';
     font-weight: bold;
     background-color: transparent;
     opacity: 1;
+    transition: 0.5s;
+}
+.infosConfig input:disabled:hover, .infosConfig select:disabled:hover{
+    color: var(--purpleDark);
 }
 .infosConfig input:disabled{
     border: none;
@@ -87,8 +91,13 @@
 }
 #iconMaioridade{
     font-size: 35px;
+    color: var(--purpleLight);
+}
+#linkSuporte{
     color: var(--orangeDark);
 }
+
+
 #imgAvatarConfig{
     height: 150px;
     width: 150px;

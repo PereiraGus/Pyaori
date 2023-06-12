@@ -18,4 +18,9 @@ aside span img, aside span i{
 }
 #linkSuporteTecnico i{
     font-size: 45px;
+    height: fit-content;
+}
+#linkSuporteTecnico a{
+    color: inherit;
+    text-decoration: none;
 }

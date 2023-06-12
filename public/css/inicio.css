@@ -24,6 +24,7 @@ h1{
     color: var(--orangeDark);
     display: flex;
     align-items: center;
+    cursor: default;
 }
 #saudacao img{
     height: 50px;

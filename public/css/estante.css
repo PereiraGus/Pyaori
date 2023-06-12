@@ -13,6 +13,7 @@
 }
 #abaSuaEstante, #abaEstatisticas{
     cursor: pointer;
+    color: var(--orangeDark)
 }
 
 #cabecalhoEstante{
@@ -44,6 +45,7 @@
 #cabecalhoEstante i{
     margin: 5px 5px 0 0;
     cursor: pointer;
+    color: var(--orangeDark);
 }
 
 .subpaginaEstante{

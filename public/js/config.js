@@ -51,6 +51,7 @@ function alterarModo(editar) {
         BTN_ALTERAR_MODO.innerHTML = `
             <button onclick="alterarModo(true)">Editar</button>
         `;
+        spanEncerrarSessao.style = "display: flex";
     }
     else {
         INP_CONFIG_NOME.disabled = false;
@@ -62,6 +63,7 @@ function alterarModo(editar) {
         BTN_ALTERAR_MODO.innerHTML = `
             <button onclick="salvarAlteracoes()" class="btnSalvarConfig">Salvar<br>alterações</button>
         `;
+        spanEncerrarSessao.style = "display: none";
     }
 }
 

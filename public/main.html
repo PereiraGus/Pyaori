@@ -67,8 +67,10 @@
                 Sua Estante
             </span>
             <span id="linkSuporteTecnico">
-                <i class="fa-solid fa-ticket-simple"></i>
-                Suporte Técnico
+                <a href="https://pyaori.on.spiceworks.com/portal" target="_blank">
+                    <i class="fa-solid fa-ticket-simple"></i>
+                    Suporte Técnico
+                </a>
             </span>
         </aside>
         <!-- Fim da barra lateral -->
@@ -268,7 +270,8 @@
                                 <span id="infoMaioridade">
                                     <i id="iconMaioridade"></i>
                                     <p id="avisoMaioridade">
-                                        Essa opção só pode ser alterada  mediante solicitação do <u id="linkSuporte">suporte</u>.
+                                        Essa opção só pode ser alterada  mediante solicitação do 
+                                        <a href="https://pyaori.on.spiceworks.com/portal" target="_blank" id="linkSuporte">suporte</a>.
                                     </p>
                                 </span>
                             </span>
@@ -276,7 +279,7 @@
                                 <label for="pronomesConfig">Pronome</label>
                                 <select id="pronomesConfig"></select>
                             </span>
-                            <span class="infosConfig">
+                            <span class="infosConfig" id="spanEncerrarSessao">
                                 <label for="btnEncessarSessao">Sair</label>
                                 <button id="btnEncessarSessao" onclick="encerrarSessao()">Encerrar sessão</button>
                             </span>
