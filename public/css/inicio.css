@@ -15,3 +15,16 @@ h1{
     color: var(--purpleDark);
     font-size: 30px;
 }
+#saudacao{
+    position: absolute;
+    top: -10px;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    background-color: var(--neutralTransp);
+    color: var(--orangeDark);
+    display: flex;
+    align-items: center;
+}
+#saudacao img{
+    height: 50px;
+}

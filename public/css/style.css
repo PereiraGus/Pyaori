@@ -39,7 +39,7 @@ button{
     font-family: 'Libre Baskerville', serif;
     font-size: 20px;
     font-weight: bold;
-    background-color: var(--purpleDark);
+    background-color: var(--orangeDark);
     color: var(--neutral);
     border: none;
     border-radius: 20px;

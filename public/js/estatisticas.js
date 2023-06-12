@@ -97,7 +97,21 @@ function estPaisesFavs(){
             response.json().then(json => {
                 console.log(json);
                 for (let i = 0; i < json.length; i++) {
-                    paisesFavs.push(json[i].nacionalidade);
+                    switch(json[i].nacionalidade){
+                        case 'us':
+                            paisesFavs.push("Estados Unidos");
+                            break;
+                        case 'br':
+                            paisesFavs.push("Brasil");
+                            break;
+                        case 'jp':
+                            paisesFavs.push("Japão");
+                            break;
+                        default:
+                            paisesFavs.push((json[i].nacionalidade).toUpperCase());
+                            break;
+                    }
+                    paisesFavs.push();
                     datasetsPaisesFavs[0].data.push(json[i].vezes);
                 }
                 estEstilosFavs();
@@ -187,8 +201,7 @@ function carregarGraficos(){
         options: { 
             plugins: { legend: {
             position: 'bottom'
-            }},
-            aspectRatio: '4/2'
+            }}
         }
     }
     const CONFIG_PYAS = new Chart(

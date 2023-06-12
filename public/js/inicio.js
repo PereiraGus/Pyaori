@@ -1,53 +1,34 @@
-const FAVS = document.getElementById("inicioFavs");
 const RECOMENDS = document.getElementById("inicioRecomends");
 
-function carregarFavs(){
-    // FAVS.innerHTML = "";
-    // //Array de JSONs provisório até a conexão com o banco
-    // var albuns = [
-    //     {
-    //         id: 1,
-    //         titulo: "ARTPOP",
-    //         artista: "Lady Gaga"
-    //     },
-    //     {
-    //         id: 2,
-    //         titulo: "Love Song",
-    //         artista: "Sara Bairelles"
-    //     },
-    //     {
-    //         id: 3,
-    //         titulo: "Não Fosse Tão Tarde",
-    //         artista: "Lou Garcia"
-    //     },
-    //     {
-    //         id: 4,
-    //         titulo: "Patched Up",
-    //         artista: "Beabadobee"
-    //     },
-    //     {
-    //         id: 5,
-    //         titulo: "The Blueprint 3",
-    //         artista: "Jay-Z"
-    //     },
-    //     {
-    //         id: 6,
-    //         titulo: "brutus",
-    //         artista: "the buttress"
-    //     }
-    // ]
-    // for(var i = 0;i < albuns.length; i++){
-    //     FAVS.innerHTML += `
-    //         <span onclick="trocarPagina('album',${albuns[i].id})">
-    //             <img src="img/albuns/${albuns[i].id}.webp">
-    //             <h4>${albuns[i].titulo}</h4>
-    //             <p>${albuns[i].artista}</p>
-    //         </span>
-    //     `
-    // }
+function saudarUsuario(){
+    saudacao.innerHTML = `Olá, ${perfil.nome}!<img src="img/avatares/${perfil.avatar}.webp">`;
 }
 
-function carregarRecomends(){
+function carregarFavs() {
+    inicioFavs.innerHTML = "";
+    fetch(`estatisticas/maisOuvidas/${perfil.id}`, {
+        cache: 'no-store',
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(json => {
+                for (let z = 0; z < json.length && z < 5; z++) {
+                    console.log(json);
+                        inicioFavs.innerHTML += `
+                                <span onclick="trocarPagina('album',${json[z].idAlbum})">
+                                    <img src="img/albuns/${json[z].idAlbum}.webp">
+                                    <h4>${json[z].titulo}</h4>
+                                    <p>${json[z].artista}</p>
+                                </span>
+                            `
+                }
+            })
+        }
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
+}
+
+function carregarRecomends() {
     // RECOMENDS.innerHTML = "";
     // //Array de JSONs provisório até a conexão com o banco
     // var albuns = [

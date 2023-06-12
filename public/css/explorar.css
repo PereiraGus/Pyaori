@@ -52,6 +52,7 @@
     height: 75px;
     word-wrap:normal;
     transition: 1s;
+    background-color: var(--purpleDark);
 }
 #explorar button:hover{
     margin: 5px 3px;

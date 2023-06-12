@@ -19,6 +19,7 @@ function trocarPagina(paginaDeDestino, identificador){
             //Chamando a função inicial de cada tela apenas quando forem selecionadas
             switch (paginas[i].id) {
                 case 'inicio':
+                    saudarUsuario();
                     carregarFavs();
                     carregarRecomends();
                     esconderMostrarPlayer(true);
@@ -51,6 +52,8 @@ function trocarPagina(paginaDeDestino, identificador){
 //quando o método é chamado. Se não, esta div é ocultada, o que limpa a tela e
 //deixa espaço apenas para a div desejada.
 
-trocarPagina("inicio");
+window.onload = () => {
+    trocarPagina("inicio");
+}
 //Inicia-se a função na primeira vez em que se carrega o HTML, para aparecer
 //primeiramente a página de início

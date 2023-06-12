@@ -50,9 +50,11 @@ select alb.*, art.nome as artista, av.salvoOuDispensado as salvoOuDispensado
 -- --------------------------------------------
 -- ------- Ver as 10 faixas mais ouvidas -------
 create or replace view vwMaisOuvidas as
-select u.idUsuario, titulo, count(r.idFaixa) as reproducoes from reproducao as r
+select u.idUsuario, art.nome as artista, f.titulo, a.idAlbum, count(r.idFaixa) as reproducoes from reproducao as r
 	   join faixa as f on r.idFaixa = f.idFaixa
        join usuario as u on r.idUsuario = u.idUsuario
+       join album as a on a.idAlbum = f.idAlbum
+       join artista as art on a.idArtista = art.idArtista
        group by u.idUsuario, f.idFaixa
 	   order by reproducoes desc
        limit 10;
