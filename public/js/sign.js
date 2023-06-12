@@ -53,7 +53,7 @@ function cadastro(){
         alvo.push(inpDataNasc);
         mensagem.push("Digite uma data de nascimento válida.");
     }
-    if(senha > 15 || senha < 8){
+    if(senha.length > 15 || senha.length < 8){
         alvo.push(inpPassUp);
         mensagem.push("A senha deve ter entre 8 e 15 caracteres.");
     }
@@ -143,7 +143,7 @@ function login(){
          alvo.push(inpEmailIn);
          mensagem.push("Digite um email válido.");
     }
-    if(senha > 15 || senha < 8){
+    if(senha.length > 15 || senha.length < 8){
         alvo.push(inpPassIn);
         mensagem.push("A senha deve ter entre 8 e 15 caracteres.");
     }
@@ -172,6 +172,9 @@ function login(){
                     window.location = "main.html";
                 },750);
             });
+            }
+            else if(response.status == 404){
+                marcarErro([inpEmailIn, inpPassIn],["Email ou senha inválidos"])
             }
             else{
                 console.log("Houve um erro ao tentar realizar o login!");
