@@ -36,11 +36,12 @@ function carregarPerfil(){
 carregarPerfil();
 
 function encerrarSessao(){
-    sessionStorage.ID_USUARIO = undefined;
-    sessionStorage.NOME_USUARIO = undefined;
-    sessionStorage.DATA_NASC_USUARIO = undefined;
-    sessionStorage.PRONOME_USUARIO = undefined;
-    sessionStorage.EMAIL_USUARIO = undefined;
+    sessionStorage.ID_USUARIO = "n";
+    sessionStorage.NOME_USUARIO = null;
+    sessionStorage.AVATAR_USUARIO = null;
+    sessionStorage.DATA_NASC_USUARIO = null;
+    sessionStorage.PRONOME_USUARIO = null;
+    sessionStorage.EMAIL_USUARIO = null;
 
     sfx.sair.play();
     setInterval(() => {

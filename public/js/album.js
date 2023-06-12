@@ -141,5 +141,4 @@ function carregarAudio(idAlbum, quantidade){
             }
         }
     }
-    //DURACAO
 }

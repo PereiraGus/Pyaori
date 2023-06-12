@@ -1,4 +1,4 @@
-if(sessionStorage.ID_USUARIO != undefined){
+if(sessionStorage.ID_USUARIO != "n"){
     window.location = "main.html";
 }
 
@@ -104,6 +104,7 @@ function cadastro(){
         }).then(function(response){
             console.log("Resposta:\n", response);
             if(response.ok){
+                sfx.notificacao.play();
                 alert("Cadastro efetuado com sucesso!");
                 trocarAba(true);
             }

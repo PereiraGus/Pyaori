@@ -109,6 +109,7 @@ function escolherAvatar(index, img) {
             },2000)
         }
         else if (response.status == 404) {
+            sfx.erro.play();
             alert("Avatar inválido. Escolha outro ou tente novamente mais tarde")
         }
         else {
@@ -186,6 +187,7 @@ function salvarAlteracoes() {
         }).then(function (response) {
             console.log("Resposta:\n", response);
             if (response.ok) {
+                sfx.notificacao.play();
                 alert("Alterações salvas com sucesso");
                 sessionStorage.NOME_USUARIO = INP_CONFIG_NOME.value;
                 sessionStorage.EMAIL_USUARIO = INP_CONFIG_EMAIL.value;
@@ -226,6 +228,7 @@ function erroConfigs(alvo, mensagem) {
     for (let i = 0; i < mensagem.length; i++) {
         mensagemAlerta += mensagem[i] + "\n";
     }
+    sfx.erro.play();
     alert(mensagemAlerta);
     setTimeout(() => {
         for (let i = 0; i < alvo.length; i++) {
@@ -284,6 +287,7 @@ function alterarSenha(){
         }).then(function (response) {
             console.log("Resposta:\n", response);
             if (response.ok) {
+                sfx.notificacao.play();
                 alert("Senha alterada com sucesso");
                                 
                 inpSenhaAntiga.value = "";
