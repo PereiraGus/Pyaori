@@ -280,11 +280,26 @@
                                 <label for="pronomesConfig">Pronome</label>
                                 <select id="pronomesConfig"></select>
                             </span>
+                            <span class="infosConfig">
+                                <label for="btnDispensados">Gerenciar álbuns dispensados</label>
+                                <button id="btnDispensados" onclick="modalDispensados(true)">Visualizar dispensados</button>
+                            </span>
                             <span class="infosConfig" id="spanEncerrarSessao">
                                 <label for="btnEncessarSessao">Sair</label>
                                 <button id="btnEncessarSessao" onclick="encerrarSessao()">Encerrar sessão</button>
                             </span>
                         </div>
+                        <!-- Início do modal de gerenciar álbuns dispensados -->
+                        <div id="modalDispen" class="modal">    
+                            <div class="modal__inner">
+                                <label for="modalDispen" class="modal__close" onclick="modalDispensados(false)">
+                                    <i class="fa-solid fa-x"></i>
+                                </label>
+                                <h1>Álbuns dispensados</h1>
+                                <div id="listaDispensados"></div>
+                            </div>
+                        </div>
+                        <!-- Fim do modal de álbuns dispensados -->
                     </div>
                     <div id="btnEditarConfig"></div>
                 </div>
@@ -313,9 +328,9 @@
                     <p id="playerMinuteEnd"></p>
                 </div>
                 <div id="playerButtons">
-                    <i class="fa-solid fa-backward"></i>
+                    <i class="fa-solid fa-backward" onclick="reiniciar()"></i>
                     <i class="fa-solid fa-circle-play" id="iconPlay" onclick="tocarOuPausar()"></i>
-                    <i class="fa-solid fa-forward"></i>
+                    <i class="fa-solid fa-forward" onclick="proxima()"></i>
                 </div>
             </div>
             <div id="playerSecond">

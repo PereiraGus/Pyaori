@@ -67,7 +67,7 @@ function selecionarAlbum(idAlbum){
                 `;
                 }
                 carregarArtistasFaixas(json);
-                carregarAudio(idAlbum, json.length);
+                carregarAudio(idAlbum, json);
             })
         }
     }).catch(function (response) {
@@ -110,9 +110,9 @@ function carregarArtistasFaixas(faixas) {
     }
 }
 
-function carregarAudio(idAlbum, quantidade){
-    for (let i = 0; i < quantidade; i++) {
-        let url = `audio/${idAlbum}/${i+1}.mp3`;;
+function carregarAudio(idAlbum, faixas){
+    for (let i = 0; i < faixas.length; i++) {
+        let url = `audio/${idAlbum}/${faixas[i].idFaixa}.mp3`;;
         let http = new XMLHttpRequest();
 
         http.open('HEAD', url, false);

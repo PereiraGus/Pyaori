@@ -184,12 +184,18 @@ function darResultados(result) {
 }
 
 function salvarOuDispensar(spanMusica, varIdAlbum, varSalvarDispensar){
-    let varIdUsuario = perfil.id;
+    if(varSalvarDispensar == "S"){
+        sfx.favoritar.play();
+    }
+    else if(varSalvarDispensar == "D"){
+        sfx.desfavorititar.play();
+    }
+
     fetch(`interacoes/salvarOuDispensar`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                idUsuario: varIdUsuario,
+                idUsuario: perfil.id,
                 idAlbum: varIdAlbum,
                 salvarDispensar: varSalvarDispensar
             })

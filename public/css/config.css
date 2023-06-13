@@ -97,6 +97,13 @@
     color: var(--orangeDark);
 }
 
+#btnDispensados{
+    width: fit-content;
+}
+
+#modal h1{
+    color: var(--neutral);
+}
 
 #imgAvatarConfig{
     height: 150px;
@@ -164,4 +171,42 @@
     80% { transform: scale3d(0.5,0.5,1); }
     90% { transform: scale3d(1.2,1.2,1); }
     100% { transform: scale3d(1,1,1); }
+}
+
+#modalDispen{
+    background-image: url("../svg/blobPurple.svg");
+    background-size: 60%;
+}
+#modalDispen .modal__inner{
+    width: 50%;
+}
+#listaDispensados{
+    max-height: 40%;
+    max-width: 75%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+#listaDispensados div{
+    border: solid 1px var(--neutral);
+    border-width: 1px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 5px 0;
+}
+#listaDispensados span{
+    font-family: 'Libre Baskerville';
+    font-size: 16px;
+    color: var(--neutral);
+    cursor: default;
+    margin: 0 10px;
+}
+#listaDispensados button{
+    background-color: var(--orangeDark);
+    font-family: 'Libre Baskerville';
+    font-size: 14px;
+    padding: 2px;
+    margin: 0px;
+    color: var(--neutral);
 }

@@ -4,7 +4,11 @@ var segundos = 0;
 var atualizarMinutos = 0;
 var tocandoMusica = false;
 
+var i = 0;
+var faixas = [];
+
 function carregarFaixa(idAlbum, indiceFaixa){
+    i = indiceFaixa;
     if(tocandoMusica){
         tocarOuPausar();
     }
@@ -14,6 +18,7 @@ function carregarFaixa(idAlbum, indiceFaixa){
     }).then(function (response) {
         if (response.ok) {
             response.json().then(json => {
+                faixas = json;
                 atualizarInformacoes(json[indiceFaixa]);
                 marcarReproducao(json[indiceFaixa].idFaixa);
             })
@@ -43,6 +48,7 @@ function atualizarInformacoes(faixa){
     mostrarCapa(true);
 
     song = new Audio();
+    song.loop = false;
     song.src = `audio/${faixa.idAlbum}/${faixa.idFaixa}.mp3`;
     song.oncanplaythrough = () => {
         playerMinuteEnd.innerText = converterTempo(song.duration);
@@ -79,12 +85,13 @@ function atualizarTempo(){
         `;
 
         if(song.ended){
-            clearInterval(atualizar);
+            clearInterval(atualizarMinutos);
             playerMinuteStart.innerHTML = "0:00";
             playerTime.value = 0;
             iconPlay.className = "fa-solid fa-circle-play";
             playerTime.style = `background-color: var(--neutral)`;
             tocandoMusica = false;
+            proxima();
         }
     },100);
 }
@@ -105,7 +112,23 @@ function tocarOuPausar(){
 //Atualiza o tempo atual da música de acordo com o slider
 playerTime.oninput = () => {
     song.currentTime = playerTime.value;
-    // atualizarTempo();
+}
+
+function reiniciar(){
+    song.currentTime = 0;
+    tocarOuPausar();
+}
+
+function proxima(){
+    i++;
+    if(faixas[i] != undefined){
+        atualizarInformacoes(faixas[i]);
+        marcarReproducao(faixas[i].idFaixa);
+    }
+    else{
+        sfx.notificacao.play();
+        alert("A fila acabou");
+    }
 }
 
 playerVolume.min = 0;

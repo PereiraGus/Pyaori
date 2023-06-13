@@ -309,3 +309,53 @@ function alterarSenha(){
         erroConfigs(alvo, mensagem);
     }
 }
+
+function modalDispensados(abrir){
+    if(abrir){
+        fetch(`/usuario/carregarAvaliados/${perfil.id}/D`, {
+            cache: 'no-store',
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(json => {
+                    listaDispensados.innerHTML = "";
+                    modalDispen.style = "visibility: visible";
+                    console.log(json);
+                    for (let a = 0; a < json.length; a++) {
+                        listaDispensados.innerHTML += `
+                        <div>
+                            <span>${json[a].titulo}</span>
+                            <span>${json[a].artista}</span>
+                            <button onclick="restaurarDisp(${json[a].idAlbum})">Restaurar</button>
+                        </div>
+                        `
+                    }
+                })
+            }
+            else if(response.status == 404){
+                sfx.erro.play();
+                alert("Nenhum álbum dispensado restante.");
+                modalDispensados(false);
+            }
+        }).catch(function (response) {
+            window.location = "https://http.cat/500";
+        });
+    }
+    else{
+        modalDispen.style = "visibility: hidden";
+        listaDispensados.innerHTML = "";
+    }
+}
+
+function restaurarDisp(pIdAlbum){
+    fetch(`interacoes/deletarAvaliacao`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            idUsuario: perfil.id,
+            idAlbum: pIdAlbum
+        })
+    }).catch(function (response) {
+        window.location = "https://http.cat/500";
+    });
+    modalDispensados(false);
+    modalDispensados(true);
+}

@@ -17,6 +17,21 @@ function salvarOuDispensar(req, res) {
         });
 }
 
+function deletarAvaliacao(req, res) {
+    let idUsuario = req.body.idUsuario;
+    let idAlbum = req.body.idAlbum;
+
+    interacoesModel.deletarAvaliacao(idUsuario, idAlbum)
+        .then(function (result) {
+            res.json(result);
+        })
+        .catch(function (error) {
+            console.log(error);
+            console.log(`Erro ao deletar avaliação de faixa:\n ${error.sqlMessage}`);
+            res.status(500).json(error.sqlMessage);
+        });
+}
+
 function marcarReproducao(req, res) {
     let idUsuario = req.body.idUsuario;
     let idFaixa = req.body.idFaixa;
@@ -34,5 +49,6 @@ function marcarReproducao(req, res) {
 
 module.exports = {
     salvarOuDispensar,
+    deletarAvaliacao,
     marcarReproducao
 }

@@ -1,7 +1,3 @@
-if(sessionStorage.ID_USUARIO != "n"){
-    window.location = "main.html";
-}
-
 function marcarErro(alvo, mensagem){
     for (let i = 0; i < alvo.length; i++) {
         alvo[i].className += " erro";
