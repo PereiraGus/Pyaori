@@ -191,15 +191,15 @@ function estReproducoes(){
                 }
                 else if(ultimoDado >= 10){
                     metricaOuvinte.innerHTML = "Fã dedicado";
-                    metricaImg = "m3.png";
+                    metricaImg.src = "img/m3.png";
                 }
                 else if(ultimoDado >= 5){
                     metricaOuvinte.innerHTML = "Apreciador de melodias";
-                    metricaImg = "m2.png";
+                    metricaImg.src = "img/m2.png";
                 }
                 else{
                     metricaOuvinte.innerHTML = "Ouvinte casua";
-                    metricaImg = "m1.png";
+                    metricaImg.src = "img/m1.png";
                 }
                 document.fonts.add(font);
                 font.load();

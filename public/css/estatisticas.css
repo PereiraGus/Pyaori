@@ -77,3 +77,11 @@
 #metricaOuvinte{
     color: var(--orangeDark);
 }
+.metrica img{
+    width: 25%;
+    transition: 1s;
+    margin: 10px 0;
+}
+.metrica img:hover{
+    transform: scale(1.2,1.2);
+}
