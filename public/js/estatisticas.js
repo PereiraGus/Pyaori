@@ -30,7 +30,10 @@ var generosFavs = [];
 var datasetsGenerosFavs = [{data:[],backgroundColor:paletaCores}];
 
 var dias = [];
-var datasetsReproducoes = [{data:[],backgroundColor:paletaCores}];
+var datasetsReproducoes = [{data:[],
+                            borderColor: "#CF5443",
+                            backgroundColor:'#623DF5',
+                            tension: 0.4}]
 
 function estMaisOuvidas(){
     let erro = false;
@@ -181,6 +184,23 @@ function estReproducoes(){
                     dias.push(json[i].diaMes);
                     datasetsReproducoes[0].data.push(json[i].vezes);
                 }
+                let ultimoDado = datasetsReproducoes[0].data[datasetsReproducoes[0].data.length-1];
+                if(ultimoDado >= 15){
+                    metricaOuvinte.innerHTML = "Especialista musical";
+                    metricaImg = "m4.png";
+                }
+                else if(ultimoDado >= 10){
+                    metricaOuvinte.innerHTML = "Fã dedicado";
+                    metricaImg = "m3.png";
+                }
+                else if(ultimoDado >= 5){
+                    metricaOuvinte.innerHTML = "Apreciador de melodias";
+                    metricaImg = "m2.png";
+                }
+                else{
+                    metricaOuvinte.innerHTML = "Ouvinte casua";
+                    metricaImg = "m1.png";
+                }
                 document.fonts.add(font);
                 font.load();
 
@@ -292,7 +312,12 @@ function carregarGraficos(){
         options: { 
             plugins: { legend: {
             display: false
-            }}
+            }},
+            scales:{
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     }
     const CONFIG_REPRODUCOES = new Chart(

@@ -119,7 +119,7 @@ select
 	count(r.idFaixa) as vezes from reproducao as r
     join usuario as u on r.idUsuario = u.idUsuario
     group by u.idUsuario, diaMes
-    order by vezes desc
+    order by vezes asc
 	limit 10;
 /*
 select * from vwReproducoes where idUsuario = 1;

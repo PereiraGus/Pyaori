@@ -279,3 +279,49 @@ insert into pyafaixa values(1,6),
                            (40,8),
                            (40,10);
 -- select * from pyafaixa;
+-- -------------------------------------------------------------------------------------------
+-- ---------------------------- Criando reproducoes ---------------------------------------
+insert into reproducao values(1,31,'2023-06-10 13:00:00');
+insert into reproducao values(1,13,'2023-06-10 13:00:00');
+insert into reproducao values(1,7,'2023-06-10 13:00:00');
+
+insert into reproducao values(1,7,'2023-06-11 13:00:00');
+insert into reproducao values(1,22,'2023-06-11 13:00:00');
+insert into reproducao values(1,16,'2023-06-11 13:00:00');
+insert into reproducao values(1,38,'2023-06-11 13:00:00');
+
+insert into reproducao values(1,36,'2023-06-12 13:00:00');
+insert into reproducao values(1,34,'2023-06-12 13:00:00');
+insert into reproducao values(1,40,'2023-06-12 13:00:00');
+insert into reproducao values(1,16,'2023-06-12 13:00:00');
+insert into reproducao values(1,15,'2023-06-12 13:00:00');
+
+insert into reproducao values(1,19,'2023-06-13 13:00:00');
+insert into reproducao values(1,9,'2023-06-13 13:00:00');
+
+insert into reproducao values(1,39,'2023-06-14 13:00:00');
+insert into reproducao values(1,22,'2023-06-14 13:00:00');
+insert into reproducao values(1,35,'2023-06-14 13:00:00');
+insert into reproducao values(1,16,'2023-06-14 13:00:00');
+insert into reproducao values(1,16,'2023-06-14 13:00:10');
+
+insert into reproducao values(1,26,'2023-06-15 13:00:00');
+insert into reproducao values(1,25,'2023-06-15 13:00:00');
+insert into reproducao values(1,16,'2023-06-15 13:00:00');
+insert into reproducao values(1,22,'2023-06-15 13:00:00');
+
+insert into reproducao values(1,13,'2023-06-16 13:00:00');
+insert into reproducao values(1,14,'2023-06-16 13:00:00');
+insert into reproducao values(1,10,'2023-06-16 13:00:00');
+insert into reproducao values(1,16,'2023-06-16 13:00:00');
+insert into reproducao values(1,31,'2023-06-16 13:00:00');
+-- -------------------------------------------------------------------------------------------
+-- ---------------------------- Criando salvos ---------------------------------------
+insert into avaliacao values(1,1,'S');
+insert into avaliacao values(1,3,'S');
+insert into avaliacao values(1,4,'S');
+insert into avaliacao values(1,7,'S');
+
+insert into avaliacao values(1,12,'D');
+insert into avaliacao values(1,13,'D');
+select * from FAIXA;
