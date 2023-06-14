@@ -43,7 +43,7 @@ function estMaisOuvidas(){
         if (response.ok) {
             response.json().then(json => {
                 console.log(json);
-                if(json.length >= 10){
+                if(json.length >= 5){
                     estanteEstatisticas.style = "display: flex";
                     estatisticasErro.style = "display: none";
                     

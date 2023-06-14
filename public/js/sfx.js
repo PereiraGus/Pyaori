@@ -7,6 +7,3 @@ var sfx = {
     sair: new Audio("sfx/Sair.wav"),
     tutorial: new Audio("sfx/Tutorial.wav")
 }
-sfx.entrar.oncanplaythrough = () => {
-    sfx.entrar.play();//ADICIONAR MODAL ENTRAR
-}
